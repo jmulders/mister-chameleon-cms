@@ -1,0 +1,32 @@
+name: 'jasper mulders'
+super: true
+id: de818d99-7334-4873-9168-dc2055441185
+password_hash: $2y$12$VdH/49Rt3Qu//qjkb7AMJucxY9XJXWepb5yLOb0X2G.gOX5FUhg3q
+preferences:
+  collections:
+    pages:
+      view: tree
+    cta_variants:
+      view: list
+    hero_variants:
+      view: list
+    proof_variants:
+      view: list
+    case_studies:
+      view: list
+    site_settings:
+      view: list
+    testimonials:
+      view: list
+    faq_items:
+      view: list
+    team_members:
+      view: list
+    pricing_plans:
+      view: list
+    features:
+      view: list
+    vacancies:
+      view: list
+    blog:
+      view: list

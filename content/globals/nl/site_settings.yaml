@@ -1,0 +1,34 @@
+site_name: 'Mister Chameleon'
+site_tagline: 'Website personalisation for every visitor'
+logo: 032001_logo-mister-chameleon_kleur_cmyk.jpg
+logo_alt: 'Mister Chameleon'
+logo_dark: 032001_logo-mister-chameleon_diap.jpg
+logo_dark_alt: 'Mister Chameleon'
+contact_email: hello@mister-chameleon.io
+support_email: support@mister-chameleon.io
+social_media:
+  - id: 2VFUj4vy
+    platform: linkedin
+    url: 'https://linkedin.com/company/mister-chameleon'
+    enabled: true
+  - id: Qj8HYkvU
+    platform: twitter
+    url: 'https://twitter.com/misterchameleo'
+    enabled: true
+  - id: GNtKZX0R
+    platform: github
+    url: 'https://github.com/mister-chameleon'
+    enabled: true
+top_bar_show_search: false
+top_bar_show_cart: false
+top_bar_show_language_switcher: true
+top_bar_cta_enabled: true
+top_bar_cta_label: 'Boek een demo'
+top_bar_cta_href: 'entry::pricing'
+top_bar_cta_open_in_new_tab: false
+primary_cta_label: 'Start free'
+primary_cta_href: '#signup'
+footer_bottom_show_social: true
+docs_url: 'https://docs.mister-chameleon.io'
+status_url: 'https://status.mister-chameleon.io'
+theme_preset: dark-ai
