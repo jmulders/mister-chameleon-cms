@@ -28,10 +28,5 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 # ── Laravel/Statamic runtime caches (nooit committen) ──
-/storage/framework/cache/**
-/storage/framework/sessions/**
-/storage/framework/views/**
-/storage/framework/testing/**
-/storage/debugbar/**
-/storage/logs/**
-/storage/statamic/**
+# Inhoud wordt genegeerd via de .gitignore-bestanden IN die mappen,
+# zodat de mappen zelf in de repo blijven bestaan (Laravel vereist dat).
