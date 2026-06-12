@@ -27,3 +27,11 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+# ── Laravel/Statamic runtime caches (nooit committen) ──
+/storage/framework/cache/**
+/storage/framework/sessions/**
+/storage/framework/views/**
+/storage/framework/testing/**
+/storage/debugbar/**
+/storage/logs/**
+/storage/statamic/**
