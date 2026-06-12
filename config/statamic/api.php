@@ -17,12 +17,14 @@ return [
 
     'enabled' => env('STATAMIC_API_ENABLED', false),
 
+    // Read by the Next.js platform (Vercel) via STATAMIC_API_URL.
+    // Users and forms stay disabled — never expose those publicly.
     'resources' => [
-        'collections' => false,
-        'navs' => false,
-        'taxonomies' => false,
-        'assets' => false,
-        'globals' => false,
+        'collections' => true,
+        'navs' => true,
+        'taxonomies' => true,
+        'assets' => true,
+        'globals' => true,
         'forms' => false,
         'users' => false,
     ],
