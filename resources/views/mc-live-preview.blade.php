@@ -58,6 +58,7 @@
         // POST blocks to the Next.js draft store, refresh the iframe. Sequence
         // guard: only the newest render wins if edits outpace the round-trip.
         var renderSeq = 0;
+        function clearStatus() { if (status) status.style.display = 'none'; }
         function render(p) {
             var seq = ++renderSeq;
             log('render #' + seq + ' (' + ((p.pageBlocks || []).length) + ' blocks)');
@@ -66,15 +67,23 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(p)
             })
-            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (r) { log('render #' + seq + ' POST', r.status); return r.ok ? r.json() : null; })
             .then(function (resp) {
-                if (seq !== renderSeq) return;
+                // Always clear the loading text once any render returns, so it
+                // never sticks while rapid edits supersede each other.
+                clearStatus();
+                if (seq !== renderSeq) { log('render #' + seq + ' superseded by #' + renderSeq); return; }
                 if (resp && resp.token) {
                     // Lightweight preview route — renders just the blocks, fast.
-                    show(BASE + '/mc-preview?mcdraft=' + encodeURIComponent(resp.token));
-                } else { fallback(); }
+                    log('show #' + seq + ' → /mc-preview');
+                    frame.src = BASE + '/mc-preview?mcdraft=' + encodeURIComponent(resp.token);
+                    frame.style.display = 'block';
+                } else {
+                    log('render #' + seq + ' no token → fallback');
+                    fallback();
+                }
             })
-            .catch(function () { if (seq === renderSeq) fallback(); });
+            .catch(function (e) { clearStatus(); log('render #' + seq + ' ERROR', e && e.message); });
         }
 
         // Re-render only when the content actually changed. Debounced.
