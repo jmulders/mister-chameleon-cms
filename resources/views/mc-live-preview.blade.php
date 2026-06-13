@@ -1,17 +1,16 @@
 {{--
     Live Preview bridge view (rendered by the /mc-live-preview route).
 
-    Initial render: POSTs the baked-in unsaved entry to the Next.js draft store
-    and loads the resulting Vercel page (?mcdraft=TOKEN) in an iframe.
+    Renders the unsaved entry by POSTing its blocks to the Next.js draft store
+    and loading the lightweight /mc-preview route (?mcdraft=TOKEN) in an iframe.
 
-    Live updates: two mechanisms, deduped by a content fingerprint so only real
-    changes trigger a re-render —
-      1. Statamic `statamic.preview.updated` postMessage (fast, when it fires);
-      2. Polling the parent CP's reactive publish-form values + a
-         MutationObserver (reliable for reorders/typing — the postMessage is
-         not always emitted for a custom preview target).
-    Both feed maybeRender(), which re-POSTs the current blocks and refreshes the
-    iframe. Debounced to coalesce rapid edits.
+    Live updates: changes (incl. block reorder) are detected via Statamic's
+    postMessage AND by polling the parent CP's reactive publish-form values,
+    deduped by a content fingerprint. Each change re-POSTs the current blocks.
+
+    Double-buffered iframes: the new preview loads in a hidden iframe and is
+    swapped in only once fully loaded, so the visible preview never goes blank
+    or flickers while the next render is in flight.
 --}}
 <!DOCTYPE html>
 <html lang="nl">
@@ -21,14 +20,15 @@
     <title>Live Preview</title>
     <style>
         html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #fff; }
-        #mc-preview { display: block; width: 100%; height: 100%; border: 0; }
-        #mc-status  { font: 13px/1.5 system-ui, -apple-system, sans-serif; color: #6b7280; padding: 16px; }
+        .mc-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+        #mc-status { position: absolute; top: 0; left: 0; font: 13px/1.5 system-ui, -apple-system, sans-serif; color: #6b7280; padding: 16px; z-index: 3; }
     </style>
 </head>
 <body>
     <script type="application/json" id="mc-draft-data">{!! json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
     <div id="mc-status">Live preview laden…</div>
-    <iframe id="mc-preview" title="Live preview" style="display:none"></iframe>
+    <iframe id="mc-a" class="mc-frame" title="Live preview"></iframe>
+    <iframe id="mc-b" class="mc-frame" title="Live preview" style="visibility:hidden"></iframe>
 
     <script>
     (function () {
@@ -40,13 +40,31 @@
         var payload = null;
         try { payload = JSON.parse(document.getElementById('mc-draft-data').textContent); } catch (e) {}
 
-        var frame  = document.getElementById('mc-preview');
         var status = document.getElementById('mc-status');
+        var frames = [document.getElementById('mc-a'), document.getElementById('mc-b')];
+        var front  = 0;
+        frames[0].style.visibility = 'visible';
+        frames[1].style.visibility = 'hidden';
 
+        // ── Double-buffered show ──────────────────────────────────────────────
+        // Load the new URL into the hidden (back) iframe; swap it to the front
+        // only after it finishes loading. The currently visible iframe stays put
+        // until then, so there is never a blank/flicker. Rapid calls keep
+        // overwriting the back buffer; only the final load swaps in.
+        var showSeq = 0;
         function show(src) {
-            frame.src = src;
-            frame.style.display = 'block';
-            if (status) status.style.display = 'none';
+            var mySeq = ++showSeq;
+            var back  = frames[1 - front];
+            back.onload = function () {
+                back.onload = null;
+                if (mySeq !== showSeq) return;          // a newer render is loading
+                back.style.visibility = 'visible';
+                frames[front].style.visibility = 'hidden';
+                front = 1 - front;
+                if (status) status.style.display = 'none';
+                log('swapped in #' + mySeq);
+            };
+            back.src = src;
         }
         function fallback() { show(BASE + PATH); }
 
@@ -55,38 +73,22 @@
         }
         var lastFp = payload ? fp(payload.pageBlocks, payload.title) : '';
 
-        // POST blocks to the Next.js draft store, refresh the iframe. Sequence
-        // guard: only the newest render wins if edits outpace the round-trip.
-        var renderSeq = 0;
-        function clearStatus() { if (status) status.style.display = 'none'; }
         function render(p) {
-            var seq = ++renderSeq;
-            log('render #' + seq + ' (' + ((p.pageBlocks || []).length) + ' blocks)');
+            log('render (' + ((p.pageBlocks || []).length) + ' blocks)');
             return fetch(BASE + '/api/statamic-draft', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(p)
             })
-            .then(function (r) { log('render #' + seq + ' POST', r.status); return r.ok ? r.json() : null; })
+            .then(function (r) { log('POST', r.status); return r.ok ? r.json() : null; })
             .then(function (resp) {
-                // Always clear the loading text once any render returns, so it
-                // never sticks while rapid edits supersede each other.
-                clearStatus();
-                if (seq !== renderSeq) { log('render #' + seq + ' superseded by #' + renderSeq); return; }
                 if (resp && resp.token) {
-                    // Lightweight preview route — renders just the blocks, fast.
-                    log('show #' + seq + ' → /mc-preview');
-                    frame.src = BASE + '/mc-preview?mcdraft=' + encodeURIComponent(resp.token);
-                    frame.style.display = 'block';
-                } else {
-                    log('render #' + seq + ' no token → fallback');
-                    fallback();
-                }
+                    show(BASE + '/mc-preview?mcdraft=' + encodeURIComponent(resp.token));
+                } else { fallback(); }
             })
-            .catch(function (e) { clearStatus(); log('render #' + seq + ' ERROR', e && e.message); });
+            .catch(function (e) { log('render error', e && e.message); });
         }
 
-        // Re-render only when the content actually changed. Debounced.
         var debTimer = null;
         function maybeRender(blocks, title, seo) {
             if (!Array.isArray(blocks)) return;
@@ -103,13 +105,13 @@
                     seoDescription: seo   !== undefined ? seo   : (payload ? payload.seoDescription : null),
                     pageBlocks:     blocks
                 });
-            }, 350);
+            }, 450);
         }
 
         // ── Initial render ────────────────────────────────────────────────────
         if (!payload) { fallback(); } else { render(payload); }
 
-        // ── Mechanism 1: Statamic postMessage (fast, but not always emitted) ──
+        // ── Mechanism 1: Statamic postMessage ────────────────────────────────
         window.addEventListener('message', function (e) {
             var msg = e.data;
             if (!msg || typeof msg !== 'object') return;
@@ -122,7 +124,7 @@
             .catch(function () {});
         });
 
-        // ── Mechanism 2: read the parent CP's reactive publish-form values ────
+        // ── Mechanism 2: poll the parent CP's reactive publish-form values ────
         function scanProvides(prov) {
             if (!prov || typeof prov !== 'object') return null;
             try {
@@ -214,7 +216,7 @@
         }
         function poll() { var v = findValues(); if (v) maybeRender(v.page_blocks, v.title, v.seo_description); }
 
-        setInterval(poll, 500);
+        setInterval(poll, 600);
         try {
             var pdoc = window.parent.document;
             if (pdoc && pdoc.body) {
