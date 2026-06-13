@@ -50,6 +50,32 @@ Route::get('/mc-live-preview', function (Request $request) {
     return response()->view('mc-live-preview', compact('payload', 'base', 'path'));
 });
 
+// ── Live Preview data endpoint (JSON) ────────────────────────────────────────
+//
+// Same-origin endpoint the bridge calls on every Statamic Live Preview
+// `postMessage` (statamic.preview.updated). Statamic provides a fresh token on
+// each edit/reorder; this returns the current UNSAVED entry's page_blocks as
+// JSON so the bridge can re-POST them to Next.js and refresh the preview iframe
+// live — without waiting for a save.
+Route::get('/mc-live-preview-data', function (Request $request) {
+    $token = $request->statamicToken();
+    $entry = $token ? LivePreview::item($token) : null;
+
+    if (! $entry) {
+        return response()->json(['error' => 'Live Preview token missing or expired.'], 400);
+    }
+
+    $slug = $entry->slug();
+
+    return response()->json([
+        'collection'     => optional($entry->collection())->handle() ?? 'pages',
+        'slug'           => $slug,
+        'title'          => $entry->value('title'),
+        'seoDescription' => $entry->value('seo_description'),
+        'pageBlocks'     => $entry->value('page_blocks') ?? [],
+    ]);
+});
+
 // Route::statamic('example', 'example-view', [
 //    'title' => 'Example'
 // ]);

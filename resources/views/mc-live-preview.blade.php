@@ -44,23 +44,57 @@
         }
         function fallback() { show(BASE + PATH); }
 
-        if (!payload) { fallback(); return; }
+        // POST a payload to the Next.js draft store and point the preview iframe
+        // at the resulting draft URL. Used for the initial render and for every
+        // subsequent live edit.
+        function render(payload) {
+            return fetch(BASE + '/api/statamic-draft', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (resp) {
+                if (resp && resp.token) {
+                    var sep = PATH.indexOf('?') > -1 ? '&' : '?';
+                    show(BASE + PATH + sep + 'mcdraft=' + encodeURIComponent(resp.token));
+                } else {
+                    fallback();
+                }
+            })
+            .catch(function () { fallback(); });
+        }
 
-        fetch(BASE + '/api/statamic-draft', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        })
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (resp) {
-            if (resp && resp.token) {
-                var sep = PATH.indexOf('?') > -1 ? '&' : '?';
-                show(BASE + PATH + sep + 'mcdraft=' + encodeURIComponent(resp.token));
-            } else {
-                fallback();
+        // ── Initial render from the baked-in payload ─────────────────────────
+        if (!payload) { fallback(); } else { render(payload); }
+
+        // ── Live updates via Statamic Live Preview postMessage ───────────────
+        // With the preview target's refresh:false, Statamic posts a message on
+        // every change (incl. block reorder) carrying a fresh token. We fetch
+        // the current unsaved entry for that token and re-render — no save
+        // needed. Debounced so rapid edits collapse into one refresh.
+        var debTimer = null;
+        function scheduleUpdate(token) {
+            if (debTimer) clearTimeout(debTimer);
+            debTimer = setTimeout(function () {
+                fetch('/mc-live-preview-data?token=' + encodeURIComponent(token), {
+                    headers: { 'Accept': 'application/json' }
+                })
+                .then(function (r) { return r.ok ? r.json() : null; })
+                .then(function (p) {
+                    if (p && !p.error) render(p);
+                })
+                .catch(function () {});
+            }, 300);
+        }
+
+        window.addEventListener('message', function (e) {
+            var msg = e.data;
+            if (!msg || typeof msg !== 'object') return;
+            if (msg.name === 'statamic.preview.updated' && msg.token) {
+                scheduleUpdate(msg.token);
             }
-        })
-        .catch(function () { fallback(); });
+        });
     })();
     </script>
 </body>
