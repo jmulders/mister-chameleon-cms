@@ -2,7 +2,7 @@
     Live Preview bridge view (rendered by the /mc-live-preview route).
 
     Receives the unsaved entry's draft data ($payload), POSTs it to the Next.js
-    draft API, and loads the resulting Vercel page (with ?_mc_draft=TOKEN) inside
+    draft API, and loads the resulting Vercel page (with ?mcdraft=TOKEN) inside
     an iframe — so the Statamic CP Live Preview pane shows the real Next.js
     rendering of the in-progress page blocks.
 
@@ -55,7 +55,7 @@
         .then(function (resp) {
             if (resp && resp.token) {
                 var sep = PATH.indexOf('?') > -1 ? '&' : '?';
-                show(BASE + PATH + sep + '_mc_draft=' + encodeURIComponent(resp.token));
+                show(BASE + PATH + sep + 'mcdraft=' + encodeURIComponent(resp.token));
             } else {
                 fallback();
             }
