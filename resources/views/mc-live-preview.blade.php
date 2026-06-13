@@ -55,15 +55,21 @@
         function show(src) {
             var mySeq = ++showSeq;
             var back  = frames[1 - front];
-            back.onload = function () {
-                back.onload = null;
-                if (mySeq !== showSeq) return;          // a newer render is loading
+            var done  = false;
+            function swap() {
+                if (done || mySeq !== showSeq) return;  // already swapped / superseded
+                done = true;
                 back.style.visibility = 'visible';
                 frames[front].style.visibility = 'hidden';
                 front = 1 - front;
                 if (status) status.style.display = 'none';
                 log('swapped in #' + mySeq);
-            };
+            }
+            back.onload = function () { back.onload = null; swap(); };
+            // Don't wait for slow sub-resources (autoplay YouTube embeds keep the
+            // iframe `load` event pending for seconds). The page DOM is rendered
+            // well before then, so swap after a short grace period regardless.
+            setTimeout(swap, 1800);
             back.src = src;
         }
         function fallback() { show(BASE + PATH); }
