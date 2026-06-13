@@ -66,10 +66,12 @@
                 log('swapped in #' + mySeq);
             }
             back.onload = function () { back.onload = null; swap(); };
-            // Don't wait for slow sub-resources (autoplay YouTube embeds keep the
-            // iframe `load` event pending for seconds). The page DOM is rendered
-            // well before then, so swap after a short grace period regardless.
-            setTimeout(swap, 1800);
+            // Primary trigger is the iframe `load` event (fires reliably once the
+            // preview page is rendered). The timeout is only a long safety net for
+            // the rare case where `load` never fires — it must NOT pre-empt a slow
+            // render (the decision engine can take a few seconds on slot pages),
+            // otherwise we'd swap in a blank/half-loaded frame.
+            setTimeout(swap, 8000);
             back.src = src;
         }
         function fallback() { show(BASE + PATH); }
