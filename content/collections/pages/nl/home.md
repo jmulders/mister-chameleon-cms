@@ -7,7 +7,7 @@ template: home
 uri: /
 seo_description: 'Mister Chameleon personaliseert je B2B-website voor elke bezoeker — zonder code, live in one afternoon.'
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1781379275
+updated_at: 1781379970
 page_blocks:
   - id: seed-feature
     type: context_slot
@@ -15,16 +15,6 @@ page_blocks:
     variant_key: feature_default
     is_active: true
     enabled: true
-  - id: ihVwQtz5QbZPKiChh_pXx
-    title: video
-    video_url: uER64JbBd7M
-    type: video
-    enabled: true
-    video_source: youtube
-    video_id: uER64JbBd7M
-    video_autoplay: false
-    video_loop: false
-    variant: contained
   - id: seed-hero
     type: context_slot
     slot_type: hero
@@ -54,12 +44,6 @@ page_blocks:
     variant_key: proof_default
     is_active: true
     enabled: true
-  - id: seed-cta
-    type: context_slot
-    slot_type: cta
-    variant_key: cta_default
-    is_active: true
-    enabled: true
   -
     id: AQfPmgghtta-dapPdu6tp
     variant: feature_grid_3up
@@ -83,12 +67,28 @@ page_blocks:
         title: a
         body: a
         enabled: true
+  - id: seed-cta
+    type: context_slot
+    slot_type: cta
+    variant_key: cta_default
+    is_active: true
+    enabled: true
   - id: seed-conversion
     type: context_slot
     slot_type: conversion
     variant_key: conversion_default
     is_active: true
     enabled: true
+  - id: ihVwQtz5QbZPKiChh_pXx
+    title: video
+    video_url: uER64JbBd7M
+    type: video
+    enabled: true
+    video_source: youtube
+    video_id: uER64JbBd7M
+    video_autoplay: false
+    video_loop: false
+    variant: contained
   -
     id: Yn02wa_tjg-svU1Pv9ZtZ
     variant: team_grid
