@@ -5,6 +5,50 @@ use Illuminate\Support\Facades\Route;
 use Statamic\Facades\Entry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Facades\Statamic\CP\LivePreview;
+
+// ── Live Preview bridge ──────────────────────────────────────────────────────
+//
+// Statamic's native Live Preview iframe loads this route (configured as the
+// `pages` collection preview target in content/collections/pages.yaml).
+//
+// Why a bridge is needed: the site's url is the absolute Vercel domain, so
+// Statamic would otherwise iframe Vercel directly using its *native*
+// ?live-preview&token mechanism — which the Next.js app doesn't understand, so
+// it would render the SAVED page instead of the in-progress edits.
+//
+// Instead, this same-origin route retrieves the unsaved entry via the
+// live-preview token (LivePreview::item), POSTs its draft page_blocks to the
+// Next.js draft API, and points an inner iframe at the Vercel site with
+// ?_mc_draft=TOKEN — reusing the existing, working draft-render flow. Because
+// the preview target has refresh:true, Statamic reloads this route with a fresh
+// token on every change, so the preview always reflects the latest edits.
+Route::get('/mc-live-preview', function (Request $request) {
+    $token = $request->statamicToken();
+    $entry = $token ? LivePreview::item($token) : null;
+
+    if (! $entry) {
+        return response('Live Preview token missing or expired.', 400);
+    }
+
+    $slug = $entry->slug();
+    $uri  = $entry->uri();
+    $path = $slug === 'home' ? '/' : ($uri ?: '/'.$slug);
+
+    $base = config('app.env') === 'production'
+        ? 'https://www.misterchameleon.nl'
+        : 'http://localhost:3000';
+
+    $payload = [
+        'collection'     => optional($entry->collection())->handle() ?? 'pages',
+        'slug'           => $slug,
+        'title'          => $entry->value('title'),
+        'seoDescription' => $entry->value('seo_description'),
+        'pageBlocks'     => $entry->value('page_blocks') ?? [],
+    ];
+
+    return response()->view('mc-live-preview', compact('payload', 'base', 'path'));
+});
 
 // Route::statamic('example', 'example-view', [
 //    'title' => 'Example'
