@@ -52,6 +52,7 @@
         // until then, so there is never a blank/flicker. Rapid calls keep
         // overwriting the back buffer; only the final load swaps in.
         var showSeq = 0;
+        var pendingSwap = null;   // swaps in the currently-loading back buffer
         function show(src) {
             var mySeq = ++showSeq;
             var back  = frames[1 - front];
@@ -63,14 +64,15 @@
                 frames[front].style.visibility = 'hidden';
                 front = 1 - front;
                 if (status) status.style.display = 'none';
+                if (pendingSwap === swap) pendingSwap = null;
                 log('swapped in #' + mySeq);
             }
+            pendingSwap = swap;
+            // Swap as soon as the preview page signals it has rendered
+            // (mc-preview-ready postMessage, handled below) — that fires before
+            // slow sub-resources like autoplay YouTube. `load` and a long timeout
+            // are fallbacks in case the signal never arrives.
             back.onload = function () { back.onload = null; swap(); };
-            // Primary trigger is the iframe `load` event (fires reliably once the
-            // preview page is rendered). The timeout is only a long safety net for
-            // the rare case where `load` never fires — it must NOT pre-empt a slow
-            // render (the decision engine can take a few seconds on slot pages),
-            // otherwise we'd swap in a blank/half-loaded frame.
             setTimeout(swap, 8000);
             back.src = src;
         }
@@ -123,6 +125,12 @@
         window.addEventListener('message', function (e) {
             var msg = e.data;
             if (!msg || typeof msg !== 'object') return;
+            // The preview page (inner iframe) reports it has rendered → swap now,
+            // without waiting for its full `load` (YouTube etc.).
+            if (msg.name === 'mc-preview-ready') {
+                if (pendingSwap) pendingSwap();
+                return;
+            }
             var isUpdate = msg.name === 'statamic.preview.updated' || msg.type === 'statamic.preview.updated';
             var token = msg.token || (msg.data && msg.data.token);
             if (!isUpdate || !token) return;
