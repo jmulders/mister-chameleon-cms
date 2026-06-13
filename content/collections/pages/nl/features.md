@@ -6,16 +6,16 @@ title: Features
 template: default
 seo_description: 'Discover every feature of Mister Chameleon — server-side personalisation, A/B experiments, GDPR compliance, CMS integrations, and more.'
 page_blocks:
-  - id: ctx-hero
-    type: context_slot
-    slot_type: hero
-    variant_key: hero_features
-    is_active: true
-    enabled: true
   - id: ctx-cta
     type: context_slot
     slot_type: cta
     variant_key: cta_features_bottom
+    is_active: true
+    enabled: true
+  - id: ctx-hero
+    type: context_slot
+    slot_type: hero
+    variant_key: hero_features
     is_active: true
     enabled: true
   - id: ctx-proof
@@ -33,5 +33,5 @@ page_blocks:
 robots_noindex: false
 robots_nofollow: false
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1781384687
+updated_at: 1781384857
 ---
