@@ -1,13 +1,15 @@
 {{--
     Live Preview bridge view (rendered by the /mc-live-preview route).
 
-    Receives the unsaved entry's draft data ($payload), POSTs it to the Next.js
-    draft API, and loads the resulting Vercel page (with ?mcdraft=TOKEN) inside
-    an iframe — so the Statamic CP Live Preview pane shows the real Next.js
-    rendering of the in-progress page blocks.
+    Initial render: POSTs the baked-in unsaved entry to the Next.js draft store
+    and loads the resulting Vercel page (?mcdraft=TOKEN) in an iframe.
 
-    Statamic reloads this route with a fresh token on every change
-    (preview_targets refresh:true), so each render reflects the latest edits.
+    Live updates: Statamic Live Preview (preview target refresh:false) posts a
+    `statamic.preview.updated` message with a fresh token on every change incl.
+    block reorder. We fetch the current unsaved entry for that token via the
+    same-origin /mc-live-preview-data endpoint, re-POST it, and refresh the
+    iframe — so the preview tracks edits without a save. Debounced to coalesce
+    rapid edits.
 --}}
 <!DOCTYPE html>
 <html lang="nl">
@@ -30,94 +32,65 @@
     (function () {
         var BASE = @json($base);
         var PATH = @json($path);
-        function log() {
-            try {
-                var a = Array.prototype.slice.call(arguments);
-                a.unshift('[mc-bridge]');
-                console.log.apply(console, a);
-            } catch (e) {}
-        }
-        log('init — BASE=' + BASE + ' PATH=' + PATH);
 
         var payload = null;
         try { payload = JSON.parse(document.getElementById('mc-draft-data').textContent); } catch (e) {}
-        log('initial payload blocks:', payload && payload.pageBlocks ? payload.pageBlocks.length : '(none)');
 
         var frame  = document.getElementById('mc-preview');
         var status = document.getElementById('mc-status');
 
-        function setStatus(t) { if (status) status.textContent = t; }
         function show(src) {
-            log('show iframe →', src);
             frame.src = src;
             frame.style.display = 'block';
             if (status) status.style.display = 'none';
         }
-        function fallback() { log('fallback (no draft)'); show(BASE + PATH); }
+        function fallback() { show(BASE + PATH); }
 
-        // POST a payload to the Next.js draft store and point the preview iframe
-        // at the resulting draft URL. Used for the initial render and every edit.
+        // POST a payload to the Next.js draft store, point the iframe at the
+        // resulting draft URL. A sequence guard ensures only the newest render
+        // wins when edits arrive faster than the round-trip completes.
         var renderSeq = 0;
         function render(p) {
             var seq = ++renderSeq;
-            var n = p && p.pageBlocks ? p.pageBlocks.length : '?';
-            log('render #' + seq + ' — POST draft (' + n + ' blocks)');
-            setStatus('Voorbeeld bijwerken…');
             return fetch(BASE + '/api/statamic-draft', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(p)
             })
-            .then(function (r) { log('render #' + seq + ' draft status', r.status); return r.ok ? r.json() : null; })
+            .then(function (r) { return r.ok ? r.json() : null; })
             .then(function (resp) {
-                if (seq !== renderSeq) { log('render #' + seq + ' stale, skip'); return; }
+                if (seq !== renderSeq) return;          // a newer edit superseded this one
                 if (resp && resp.token) {
                     var sep = PATH.indexOf('?') > -1 ? '&' : '?';
                     show(BASE + PATH + sep + 'mcdraft=' + encodeURIComponent(resp.token));
-                } else { fallback(); }
+                } else {
+                    fallback();
+                }
             })
-            .catch(function (err) { log('render #' + seq + ' ERROR', err && err.message); fallback(); });
+            .catch(function () { if (seq === renderSeq) fallback(); });
         }
 
-        // ── Initial render ────────────────────────────────────────────────────
+        // ── Initial render from the baked-in payload ─────────────────────────
         if (!payload) { fallback(); } else { render(payload); }
 
-        // ── Live updates via Statamic Live Preview postMessage ────────────────
+        // ── Live updates via Statamic Live Preview postMessage ───────────────
         var debTimer = null;
         function scheduleUpdate(token) {
-            log('scheduleUpdate token=' + String(token).slice(0, 12));
             if (debTimer) clearTimeout(debTimer);
             debTimer = setTimeout(function () {
                 fetch('/mc-live-preview-data?token=' + encodeURIComponent(token), { headers: { 'Accept': 'application/json' } })
-                .then(function (r) { log('data status', r.status); return r.ok ? r.json() : null; })
-                .then(function (p) {
-                    if (p && !p.error) { render(p); }
-                    else { log('data endpoint returned error/empty', p); }
-                })
-                .catch(function (err) { log('data fetch ERROR', err && err.message); });
-            }, 250);
-        }
-
-        // Extract a live-preview token from whatever message shape Statamic sends.
-        function tokenFromMessage(msg) {
-            if (!msg || typeof msg !== 'object') return null;
-            if (msg.token) return msg.token;
-            if (msg.data && msg.data.token) return msg.data.token;
-            return null;
+                .then(function (r) { return r.ok ? r.json() : null; })
+                .then(function (p) { if (p && !p.error) render(p); })
+                .catch(function () {});
+            }, 300);
         }
 
         window.addEventListener('message', function (e) {
             var msg = e.data;
             if (!msg || typeof msg !== 'object') return;
-            // Log every structured message so we can see Statamic's real format.
-            log('postMessage', JSON.stringify({ name: msg.name, type: msg.type, hasToken: !!tokenFromMessage(msg), keys: Object.keys(msg) }));
-            var isUpdate =
-                msg.name === 'statamic.preview.updated' ||
-                msg.type === 'statamic.preview.updated' ||
-                msg.name === 'statamic:live-preview' ||
-                msg.type === 'statamic:live-preview';
-            var token = tokenFromMessage(msg);
-            if (isUpdate && token) { scheduleUpdate(token); }
+            var isUpdate = msg.name === 'statamic.preview.updated' || msg.type === 'statamic.preview.updated';
+            var token = msg.token || (msg.data && msg.data.token);
+            if (isUpdate && token) scheduleUpdate(token);
         });
     })();
     </script>
