@@ -30,70 +30,94 @@
     (function () {
         var BASE = @json($base);
         var PATH = @json($path);
+        function log() {
+            try {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift('[mc-bridge]');
+                console.log.apply(console, a);
+            } catch (e) {}
+        }
+        log('init — BASE=' + BASE + ' PATH=' + PATH);
 
         var payload = null;
         try { payload = JSON.parse(document.getElementById('mc-draft-data').textContent); } catch (e) {}
+        log('initial payload blocks:', payload && payload.pageBlocks ? payload.pageBlocks.length : '(none)');
 
         var frame  = document.getElementById('mc-preview');
         var status = document.getElementById('mc-status');
 
+        function setStatus(t) { if (status) status.textContent = t; }
         function show(src) {
+            log('show iframe →', src);
             frame.src = src;
             frame.style.display = 'block';
             if (status) status.style.display = 'none';
         }
-        function fallback() { show(BASE + PATH); }
+        function fallback() { log('fallback (no draft)'); show(BASE + PATH); }
 
         // POST a payload to the Next.js draft store and point the preview iframe
-        // at the resulting draft URL. Used for the initial render and for every
-        // subsequent live edit.
-        function render(payload) {
+        // at the resulting draft URL. Used for the initial render and every edit.
+        var renderSeq = 0;
+        function render(p) {
+            var seq = ++renderSeq;
+            var n = p && p.pageBlocks ? p.pageBlocks.length : '?';
+            log('render #' + seq + ' — POST draft (' + n + ' blocks)');
+            setStatus('Voorbeeld bijwerken…');
             return fetch(BASE + '/api/statamic-draft', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
+                body: JSON.stringify(p)
             })
-            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (r) { log('render #' + seq + ' draft status', r.status); return r.ok ? r.json() : null; })
             .then(function (resp) {
+                if (seq !== renderSeq) { log('render #' + seq + ' stale, skip'); return; }
                 if (resp && resp.token) {
                     var sep = PATH.indexOf('?') > -1 ? '&' : '?';
                     show(BASE + PATH + sep + 'mcdraft=' + encodeURIComponent(resp.token));
-                } else {
-                    fallback();
-                }
+                } else { fallback(); }
             })
-            .catch(function () { fallback(); });
+            .catch(function (err) { log('render #' + seq + ' ERROR', err && err.message); fallback(); });
         }
 
-        // ── Initial render from the baked-in payload ─────────────────────────
+        // ── Initial render ────────────────────────────────────────────────────
         if (!payload) { fallback(); } else { render(payload); }
 
-        // ── Live updates via Statamic Live Preview postMessage ───────────────
-        // With the preview target's refresh:false, Statamic posts a message on
-        // every change (incl. block reorder) carrying a fresh token. We fetch
-        // the current unsaved entry for that token and re-render — no save
-        // needed. Debounced so rapid edits collapse into one refresh.
+        // ── Live updates via Statamic Live Preview postMessage ────────────────
         var debTimer = null;
         function scheduleUpdate(token) {
+            log('scheduleUpdate token=' + String(token).slice(0, 12));
             if (debTimer) clearTimeout(debTimer);
             debTimer = setTimeout(function () {
-                fetch('/mc-live-preview-data?token=' + encodeURIComponent(token), {
-                    headers: { 'Accept': 'application/json' }
-                })
-                .then(function (r) { return r.ok ? r.json() : null; })
+                fetch('/mc-live-preview-data?token=' + encodeURIComponent(token), { headers: { 'Accept': 'application/json' } })
+                .then(function (r) { log('data status', r.status); return r.ok ? r.json() : null; })
                 .then(function (p) {
-                    if (p && !p.error) render(p);
+                    if (p && !p.error) { render(p); }
+                    else { log('data endpoint returned error/empty', p); }
                 })
-                .catch(function () {});
-            }, 300);
+                .catch(function (err) { log('data fetch ERROR', err && err.message); });
+            }, 250);
+        }
+
+        // Extract a live-preview token from whatever message shape Statamic sends.
+        function tokenFromMessage(msg) {
+            if (!msg || typeof msg !== 'object') return null;
+            if (msg.token) return msg.token;
+            if (msg.data && msg.data.token) return msg.data.token;
+            return null;
         }
 
         window.addEventListener('message', function (e) {
             var msg = e.data;
             if (!msg || typeof msg !== 'object') return;
-            if (msg.name === 'statamic.preview.updated' && msg.token) {
-                scheduleUpdate(msg.token);
-            }
+            // Log every structured message so we can see Statamic's real format.
+            log('postMessage', JSON.stringify({ name: msg.name, type: msg.type, hasToken: !!tokenFromMessage(msg), keys: Object.keys(msg) }));
+            var isUpdate =
+                msg.name === 'statamic.preview.updated' ||
+                msg.type === 'statamic.preview.updated' ||
+                msg.name === 'statamic:live-preview' ||
+                msg.type === 'statamic:live-preview';
+            var token = tokenFromMessage(msg);
+            if (isUpdate && token) { scheduleUpdate(token); }
         });
     })();
     </script>
