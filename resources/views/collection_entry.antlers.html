@@ -38,7 +38,7 @@
 
 <script>
 (function () {
-    var nextjsBase = 'http://localhost:3000';
+    var nextjsBase = ('{{ config:app:env }}' === 'production') ? 'https://www.misterchameleon.nl' : 'http://localhost:3000';
 
     var dataEl = document.getElementById('mc-entry-data');
     var entry  = null;

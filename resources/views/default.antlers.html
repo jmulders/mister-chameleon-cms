@@ -56,7 +56,7 @@
         draftPayload = JSON.parse(dataEl ? dataEl.textContent : 'null');
     } catch (e) {}
 
-    var nextjsBase  = 'http://localhost:3000';
+    var nextjsBase = ('{{ config:app:env }}' === 'production') ? 'https://www.misterchameleon.nl' : 'http://localhost:3000';
     var slug        = (draftPayload && draftPayload.slug) ? draftPayload.slug : '';
     var fallbackSrc = nextjsBase + '/' + slug;
 

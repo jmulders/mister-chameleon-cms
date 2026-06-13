@@ -1,7 +1,7 @@
 nl:
   name: Nederlands
   locale: nl_NL
-  url: /
+  url: 'https://www.misterchameleon.nl'
   attributes:
     showSite: 'true'
 en-gb:

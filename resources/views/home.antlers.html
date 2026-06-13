@@ -59,7 +59,7 @@
     var draftPayload = null;
     try { draftPayload = JSON.parse(dataEl ? dataEl.textContent : 'null'); } catch (e) {}
 
-    var nextjsBase  = 'http://localhost:3000';
+    var nextjsBase = ('{{ config:app:env }}' === 'production') ? 'https://www.misterchameleon.nl' : 'http://localhost:3000';
     var fallbackSrc = nextjsBase + '/';
 
     if (window.self === window.top) { window.location.replace(fallbackSrc); return; }
