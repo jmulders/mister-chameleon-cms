@@ -20,7 +20,18 @@ return [
     // Read by the Next.js platform (Vercel) via STATAMIC_API_URL.
     // Users and forms stay disabled — never expose those publicly.
     'resources' => [
-        'collections' => true,
+        // The Next.js platform looks up entries by slug
+        // (?filter[slug:is]=home&limit=1). Statamic disables filtering by
+        // default, so we must opt in via allowed_filters — otherwise those
+        // lookups return nothing and pages fail to load over the API.
+        // The `*` wildcard enables every collection with slug/title/status
+        // filtering in one shot.
+        'collections' => [
+            '*' => [
+                'enabled' => true,
+                'allowed_filters' => ['slug', 'title', 'status', 'id'],
+            ],
+        ],
         'navs' => true,
         'taxonomies' => true,
         'assets' => true,
