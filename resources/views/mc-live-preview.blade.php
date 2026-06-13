@@ -70,8 +70,8 @@
             .then(function (resp) {
                 if (seq !== renderSeq) return;
                 if (resp && resp.token) {
-                    var sep = PATH.indexOf('?') > -1 ? '&' : '?';
-                    show(BASE + PATH + sep + 'mcdraft=' + encodeURIComponent(resp.token));
+                    // Lightweight preview route — renders just the blocks, fast.
+                    show(BASE + '/mc-preview?mcdraft=' + encodeURIComponent(resp.token));
                 } else { fallback(); }
             })
             .catch(function () { if (seq === renderSeq) fallback(); });
