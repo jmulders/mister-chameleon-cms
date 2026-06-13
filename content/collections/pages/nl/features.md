@@ -18,20 +18,20 @@ page_blocks:
     variant_key: hero_features
     is_active: true
     enabled: true
-  - id: ctx-feature
-    type: context_slot
-    slot_type: feature
-    variant_key: feature_full_platform
-    is_active: true
-    enabled: true
   - id: ctx-proof
     type: context_slot
     slot_type: proof
     variant_key: proof_features_stats
     is_active: true
     enabled: true
+  - id: ctx-feature
+    type: context_slot
+    slot_type: feature
+    variant_key: feature_full_platform
+    is_active: true
+    enabled: true
 robots_noindex: false
 robots_nofollow: false
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1781385063
+updated_at: 1781385230
 ---
