@@ -7,8 +7,31 @@ template: home
 uri: /
 seo_description: 'Mister Chameleon personaliseert je B2B-website voor elke bezoeker — zonder code, live in one afternoon.'
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1781379970
+updated_at: 1781380609
 page_blocks:
+  -
+    id: AQfPmgghtta-dapPdu6tp
+    variant: feature_grid_3up
+    heading: Features
+    cta:
+      label: aaa
+      href: '#'
+      variant: primary
+    type: feature_grid
+    enabled: true
+    items:
+      - id: 0B3WvdcEstLzlv6KLYhi6
+        type: feature
+        icon: zap
+        title: zap
+        body: zap
+        enabled: true
+      - id: DW0D7hfvpZwUIGMBRj7SI
+        type: feature
+        icon: a
+        title: a
+        body: a
+        enabled: true
   - id: seed-feature
     type: context_slot
     slot_type: feature
@@ -44,29 +67,6 @@ page_blocks:
     variant_key: proof_default
     is_active: true
     enabled: true
-  -
-    id: AQfPmgghtta-dapPdu6tp
-    variant: feature_grid_3up
-    heading: Features
-    cta:
-      label: aaa
-      href: '#'
-      variant: primary
-    type: feature_grid
-    enabled: true
-    items:
-      - id: 0B3WvdcEstLzlv6KLYhi6
-        type: feature
-        icon: zap
-        title: zap
-        body: zap
-        enabled: true
-      - id: DW0D7hfvpZwUIGMBRj7SI
-        type: feature
-        icon: a
-        title: a
-        body: a
-        enabled: true
   - id: seed-cta
     type: context_slot
     slot_type: cta
