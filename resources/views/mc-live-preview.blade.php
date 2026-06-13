@@ -1,16 +1,15 @@
 {{--
     Live Preview bridge view (rendered by the /mc-live-preview route).
 
-    Renders the unsaved entry by POSTing its blocks to the Next.js draft store
-    and loading the lightweight /mc-preview route (?mcdraft=TOKEN) in an iframe.
+    Single iframe (proven to display inside the Statamic CP). It POSTs the
+    current unsaved blocks to the Next.js draft store and points the iframe at
+    the lightweight /mc-preview route (?mcdraft=TOKEN).
 
-    Live updates: changes (incl. block reorder) are detected via Statamic's
-    postMessage AND by polling the parent CP's reactive publish-form values,
-    deduped by a content fingerprint. Each change re-POSTs the current blocks.
+    Change detection: Statamic postMessage + polling the parent CP's reactive
+    publish-form values, deduped by a content fingerprint.
 
-    Double-buffered iframes: the new preview loads in a hidden iframe and is
-    swapped in only once fully loaded, so the visible preview never goes blank
-    or flickers while the next render is in flight.
+    The loading text is hidden once the preview reports it has rendered
+    (mc-preview-ready postMessage) or on iframe load.
 --}}
 <!DOCTYPE html>
 <html lang="nl">
@@ -20,15 +19,14 @@
     <title>Live Preview</title>
     <style>
         html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #fff; }
-        .mc-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-        #mc-status { position: absolute; top: 0; left: 0; font: 13px/1.5 system-ui, -apple-system, sans-serif; color: #6b7280; padding: 16px; z-index: 3; }
+        #mc-preview { display: block; width: 100%; height: 100%; border: 0; }
+        #mc-status  { position: absolute; top: 0; left: 0; right: 0; font: 13px/1.5 system-ui, -apple-system, sans-serif; color: #6b7280; padding: 16px; background: #fff; }
     </style>
 </head>
 <body>
     <script type="application/json" id="mc-draft-data">{!! json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+    <iframe id="mc-preview" title="Live preview"></iframe>
     <div id="mc-status">Live preview laden…</div>
-    <iframe id="mc-a" class="mc-frame" title="Live preview"></iframe>
-    <iframe id="mc-b" class="mc-frame" title="Live preview" style="visibility:hidden"></iframe>
 
     <script>
     (function () {
@@ -40,50 +38,23 @@
         var payload = null;
         try { payload = JSON.parse(document.getElementById('mc-draft-data').textContent); } catch (e) {}
 
+        var frame  = document.getElementById('mc-preview');
         var status = document.getElementById('mc-status');
-        var frames = [document.getElementById('mc-a'), document.getElementById('mc-b')];
-        var front  = 0;
-        frames[0].style.visibility = 'visible';
-        frames[1].style.visibility = 'hidden';
+        var shownOnce = false;
 
-        // ── Double-buffered show ──────────────────────────────────────────────
-        // Load the new URL into the hidden (back) iframe; swap it to the front
-        // only after it finishes loading. The currently visible iframe stays put
-        // until then, so there is never a blank/flicker. Rapid calls keep
-        // overwriting the back buffer; only the final load swaps in.
-        var showSeq = 0;
-        var pendingSwap = null;   // swaps in the currently-loading back buffer
-        function show(src) {
-            var mySeq = ++showSeq;
-            var back  = frames[1 - front];
-            var done  = false;
-            function swap() {
-                if (done || mySeq !== showSeq) return;  // already swapped / superseded
-                done = true;
-                back.style.visibility = 'visible';
-                frames[front].style.visibility = 'hidden';
-                front = 1 - front;
-                if (status) status.style.display = 'none';
-                if (pendingSwap === swap) pendingSwap = null;
-                log('swapped in #' + mySeq);
-            }
-            pendingSwap = swap;
-            // Swap as soon as the preview page signals it has rendered
-            // (mc-preview-ready postMessage, handled below) — that fires before
-            // slow sub-resources like autoplay YouTube. `load` and a long timeout
-            // are fallbacks in case the signal never arrives.
-            back.onload = function () { back.onload = null; swap(); };
-            setTimeout(swap, 8000);
-            back.src = src;
-        }
-        function fallback() { show(BASE + PATH); }
+        function hideStatus() { if (status) status.style.display = 'none'; }
+        frame.addEventListener('load', function () { if (shownOnce) hideStatus(); });
 
         function fp(blocks, title) {
             try { return JSON.stringify(blocks || []) + '|' + (title || ''); } catch (e) { return String(Math.random()); }
         }
         var lastFp = payload ? fp(payload.pageBlocks, payload.title) : '';
 
+        // POST blocks to the Next.js draft store, then point the iframe at the
+        // resulting preview URL. Sequence guard so only the newest edit wins.
+        var renderSeq = 0;
         function render(p) {
+            var seq = ++renderSeq;
             log('render (' + ((p.pageBlocks || []).length) + ' blocks)');
             return fetch(BASE + '/api/statamic-draft', {
                 method: 'POST',
@@ -92,12 +63,35 @@
             })
             .then(function (r) { log('POST', r.status); return r.ok ? r.json() : null; })
             .then(function (resp) {
+                if (seq !== renderSeq) return;
                 if (resp && resp.token) {
-                    show(BASE + '/mc-preview?mcdraft=' + encodeURIComponent(resp.token));
-                } else { fallback(); }
+                    frame.src = BASE + '/mc-preview?mcdraft=' + encodeURIComponent(resp.token);
+                } else if (!shownOnce) {
+                    frame.src = BASE + PATH;
+                }
             })
             .catch(function (e) { log('render error', e && e.message); });
         }
+
+        // The preview page signals it has rendered → hide the loading text.
+        window.addEventListener('message', function (e) {
+            var msg = e.data;
+            if (!msg || typeof msg !== 'object') return;
+            if (msg.name === 'mc-preview-ready') { shownOnce = true; hideStatus(); return; }
+            // Statamic postMessage (when emitted) → live update.
+            var isUpdate = msg.name === 'statamic.preview.updated' || msg.type === 'statamic.preview.updated';
+            var token = msg.token || (msg.data && msg.data.token);
+            if (isUpdate && token) {
+                fetch('/mc-live-preview-data?token=' + encodeURIComponent(token), { headers: { 'Accept': 'application/json' } })
+                .then(function (r) { return r.ok ? r.json() : null; })
+                .then(function (pl) { if (pl && !pl.error) maybeRender(pl.pageBlocks, pl.title, pl.seoDescription); })
+                .catch(function () {});
+            }
+        });
+
+        // Safety: hide the loading text after a few seconds even if no ready
+        // signal arrives (e.g. fallback page), so it never sticks forever.
+        setTimeout(function () { shownOnce = true; hideStatus(); }, 6000);
 
         var debTimer = null;
         function maybeRender(blocks, title, seo) {
@@ -115,32 +109,13 @@
                     seoDescription: seo   !== undefined ? seo   : (payload ? payload.seoDescription : null),
                     pageBlocks:     blocks
                 });
-            }, 450);
+            }, 400);
         }
 
         // ── Initial render ────────────────────────────────────────────────────
-        if (!payload) { fallback(); } else { render(payload); }
+        if (!payload) { frame.src = BASE + PATH; } else { render(payload); }
 
-        // ── Mechanism 1: Statamic postMessage ────────────────────────────────
-        window.addEventListener('message', function (e) {
-            var msg = e.data;
-            if (!msg || typeof msg !== 'object') return;
-            // The preview page (inner iframe) reports it has rendered → swap now,
-            // without waiting for its full `load` (YouTube etc.).
-            if (msg.name === 'mc-preview-ready') {
-                if (pendingSwap) pendingSwap();
-                return;
-            }
-            var isUpdate = msg.name === 'statamic.preview.updated' || msg.type === 'statamic.preview.updated';
-            var token = msg.token || (msg.data && msg.data.token);
-            if (!isUpdate || !token) return;
-            fetch('/mc-live-preview-data?token=' + encodeURIComponent(token), { headers: { 'Accept': 'application/json' } })
-            .then(function (r) { return r.ok ? r.json() : null; })
-            .then(function (p) { if (p && !p.error) maybeRender(p.pageBlocks, p.title, p.seoDescription); })
-            .catch(function () {});
-        });
-
-        // ── Mechanism 2: poll the parent CP's reactive publish-form values ────
+        // ── Poll the parent CP's reactive publish-form values ─────────────────
         function scanProvides(prov) {
             if (!prov || typeof prov !== 'object') return null;
             try {
