@@ -31,23 +31,12 @@ Route::get('/mc-live-preview', function (Request $request) {
         return response('Live Preview token missing or expired.', 400);
     }
 
-    $slug = $entry->slug();
-    $uri  = $entry->uri();
-    $path = $slug === 'home' ? '/' : ($uri ?: '/'.$slug);
-
-    $base = config('app.env') === 'production'
-        ? 'https://www.misterchameleon.nl'
-        : 'http://localhost:3000';
-
-    $payload = [
-        'collection'     => optional($entry->collection())->handle() ?? 'pages',
-        'slug'           => $slug,
-        'title'          => $entry->value('title'),
-        'seoDescription' => $entry->value('seo_description'),
-        'pageBlocks'     => $entry->value('page_blocks') ?? [],
-    ];
-
-    return response()->view('mc-live-preview', compact('payload', 'base', 'path'));
+    // Render the (unsaved) Live Preview entry through its own Statamic template
+    // + layout, SAME-ORIGIN on this CMS host. The templates render page_blocks
+    // via the _blocks partial, so the CP Live Preview shows a faithful, live
+    // content preview — no cross-origin iframe to the Next.js site, so Statamic's
+    // native hot-reload works and updates appear as you type.
+    return $entry->toResponse($request);
 });
 
 // ── Live Preview data endpoint (JSON) ────────────────────────────────────────

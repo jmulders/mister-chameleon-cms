@@ -8,3 +8,8 @@ structure:
   root: true
 route: '{parent_uri}/{slug}'
 propagate: true
+preview_targets:
+  -
+    label: Website
+    url: /mc-live-preview
+    refresh: false
