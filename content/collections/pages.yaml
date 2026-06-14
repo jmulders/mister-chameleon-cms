@@ -12,4 +12,4 @@ preview_targets:
   -
     label: Website
     url: 'https://www.misterchameleon.nl/mc-preview'
-    refresh: true
+    refresh: false
