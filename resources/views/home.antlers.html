@@ -1,145 +1,178 @@
-<div class="mx-auto max-w-5xl px-6 py-12">
-    <div class="mb-10 flex items-center gap-2 border-b border-slate-100 pb-4 text-xs font-medium uppercase tracking-wide text-slate-400">
-        <span class="inline-block h-2 w-2 rounded-full bg-emerald-500"></span>
-        Live preview &middot; {{ title }}
-    </div>
-    <div class="space-y-14">
-        {{ page_blocks }}
-
-            {{ if type == 'context_slot' }}
-            <section class="rounded-2xl border-2 border-dashed border-indigo-300 bg-indigo-50/60 p-6">
-                <div class="flex items-center gap-2">
-                    <span class="inline-flex items-center rounded-full bg-indigo-600 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white">Adaptive slot</span>
-                    <span class="text-sm font-semibold text-indigo-700">{{ slot_type }}</span>
-                </div>
-                <p class="mt-2 text-sm text-indigo-700">Wordt per bezoeker gepersonaliseerd. Standaardvariant: <code class="rounded bg-white px-1.5 py-0.5 font-mono">{{ variant_key }}</code></p>
-            </section>
-            {{ /if }}
-
-            {{ if type == 'text_section' }}
-            <section class="space-y-3">
-                {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}
-                {{ if body }}<div class="prose prose-slate max-w-none text-slate-600">{{ body }}</div>{{ /if }}
-            </section>
-            {{ /if }}
-
-            {{ if type == 'rich_text' }}
-            <section class="prose prose-slate max-w-none">{{ body }}</section>
-            {{ /if }}
-
-            {{ if type == 'image' }}
-            <section class="grid items-center gap-8 md:grid-cols-2">
-                <div class="space-y-3">
-                    {{ if eyebrow }}<div class="text-xs font-semibold uppercase tracking-wide text-indigo-500">{{ eyebrow }}</div>{{ /if }}
-                    {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}
-                    {{ if body }}<p class="text-slate-600">{{ body }}</p>{{ /if }}
-                    {{ ctas }}<a href="{{ href }}" class="mt-2 inline-flex rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white">{{ label }}</a>{{ /ctas }}
-                </div>
-                <div class="flex aspect-video items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
-                    {{ if media_type == 'video' }}<span class="text-sm">&#9654; Video</span>{{ else }}<span class="text-sm">Afbeelding</span>{{ /if }}
-                </div>
-            </section>
-            {{ /if }}
-
-            {{ if type == 'video' }}
-            <section class="space-y-3 text-center">
-                {{ if heading }}<h2 class="text-2xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}
-                <div class="mx-auto flex aspect-video max-w-3xl items-center justify-center rounded-2xl bg-slate-900 text-white/70"><span class="text-sm">&#9654; Video</span></div>
-                {{ if caption }}<p class="text-sm text-slate-500">{{ caption }}</p>{{ /if }}
-            </section>
-            {{ /if }}
-
-            {{ if type == 'quote_block' }}
-            <blockquote class="border-l-4 border-indigo-500 pl-5 text-xl italic text-slate-700">{{ quote }}{{ if author }}<footer class="mt-2 text-sm font-semibold not-italic text-slate-500">&mdash; {{ author }}</footer>{{ /if }}</blockquote>
-            {{ /if }}
-
-            {{ if type == 'feature_grid' }}
-            <section class="space-y-6">
-                {{ if heading }}<h2 class="text-center text-3xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}
-                <div class="grid gap-5 md:grid-cols-3">
-                    {{ items }}<div class="rounded-2xl border border-slate-200 p-5"><div class="text-sm font-bold uppercase text-indigo-600">{{ icon }}</div><h3 class="mt-2 font-semibold text-slate-900">{{ title }}</h3>{{ if body }}<p class="mt-1 text-sm text-slate-600">{{ body }}</p>{{ /if }}</div>{{ /items }}
-                </div>
-            </section>
-            {{ /if }}
-
-            {{ if type == 'team_section' }}
-            <section class="space-y-6">
-                {{ if heading }}<h2 class="text-center text-3xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}
-                {{ if intro }}<p class="mx-auto max-w-2xl text-center text-slate-600">{{ intro }}</p>{{ /if }}
-                <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-                    {{ members }}<div class="text-center"><div class="mx-auto h-20 w-20 rounded-full bg-slate-200"></div><div class="mt-3 font-semibold text-slate-900">{{ name }}</div>{{ if role }}<div class="text-sm text-slate-500">{{ role }}</div>{{ /if }}</div>{{ /members }}
-                </div>
-            </section>
-            {{ /if }}
-
-            {{ if type == 'process_steps' }}
-            <section class="space-y-6">
-                {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}
-                <ol class="space-y-4">{{ steps }}<li class="flex gap-4"><span class="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-indigo-600 text-sm font-semibold text-white">{{ number }}</span><div><div class="font-semibold text-slate-900">{{ title }}</div>{{ if body }}<div class="text-sm text-slate-600">{{ body }}</div>{{ /if }}</div></li>{{ /steps }}</ol>
-            </section>
-            {{ /if }}
-
-            {{ if type == 'timeline' }}
-            <section class="space-y-6">
-                {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}
-                {{ if description }}<p class="text-slate-600">{{ description }}</p>{{ /if }}
-                <div class="space-y-5 border-l-2 border-slate-200 pl-6">{{ items }}<div><div class="text-xs font-semibold uppercase tracking-wide text-indigo-500">{{ date }}</div><div class="font-semibold text-slate-900">{{ title }}</div>{{ if description }}<div class="text-sm text-slate-600">{{ description }}</div>{{ /if }}</div>{{ /items }}</div>
-            </section>
-            {{ /if }}
-
-            {{ if type == 'testimonial_section' }}
-            <section class="space-y-6">
-                {{ if heading }}<h2 class="text-center text-3xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}
-                <div class="grid gap-5 md:grid-cols-2">{{ items }}<blockquote class="rounded-2xl bg-slate-50 p-6"><p class="italic text-slate-700">&ldquo;{{ quote }}&rdquo;</p><footer class="mt-3 text-sm font-semibold text-slate-900">{{ author }}{{ if role }} <span class="font-normal text-slate-500">&middot; {{ role }}</span>{{ /if }}</footer></blockquote>{{ /items }}</div>
-            </section>
-            {{ /if }}
-
-            {{ if type == 'stats' }}
-            <section class="grid gap-6 rounded-2xl bg-slate-50 p-8 text-center sm:grid-cols-3">{{ items }}<div><div class="text-3xl font-bold text-indigo-600">{{ value }}</div>{{ if label }}<div class="mt-1 text-sm text-slate-600">{{ label }}</div>{{ /if }}</div>{{ /items }}</section>
-            {{ /if }}
-
-            {{ if type == 'faq_section' }}
-            <section class="space-y-4">
-                {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}
-                <div class="divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200">{{ items }}<div class="p-5"><div class="font-semibold text-slate-900">{{ question }}</div>{{ if answer }}<div class="mt-1 text-sm text-slate-600">{{ answer }}</div>{{ /if }}</div>{{ /items }}</div>
-            </section>
-            {{ /if }}
-
-            {{ if type == 'cta_section' }}
-            <section class="rounded-2xl bg-indigo-600 p-10 text-center text-white">
-                {{ if heading }}<h2 class="text-3xl font-bold tracking-tight">{{ heading }}</h2>{{ /if }}
-                {{ if body }}<p class="mx-auto mt-2 max-w-xl text-indigo-100">{{ body }}</p>{{ /if }}
-                {{ ctas }}<a href="{{ href }}" class="mt-4 inline-flex rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-indigo-600">{{ label }}</a>{{ /ctas }}
-            </section>
-            {{ /if }}
-
-            {{ if type == 'contact_section' }}
-            <section class="space-y-3">
-                {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}
-                {{ if body }}<p class="text-slate-600">{{ body }}</p>{{ /if }}
-                <div class="rounded-2xl border border-dashed border-slate-300 p-6 text-sm text-slate-400">Contactformulier</div>
-            </section>
-            {{ /if }}
-
-            {{ if type == 'form_section' }}
-            <section class="space-y-3">
-                {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}
-                <div class="rounded-2xl border border-dashed border-slate-300 p-6 text-sm text-slate-400">Formulier</div>
-            </section>
-            {{ /if }}
-
-            {{ if type == 'related_content' }}
-            <section class="space-y-3">{{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}<div class="rounded-2xl border border-dashed border-slate-300 p-6 text-sm text-slate-400">Gekoppelde content &mdash; wordt door het platform geladen</div></section>
-            {{ /if }}
-
-            {{ if type == 'collection_listing' }}
-            <section class="space-y-3">{{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}<div class="rounded-2xl border border-dashed border-slate-300 p-6 text-sm text-slate-400">Collectie-overzicht &mdash; wordt door het platform geladen</div></section>
-            {{ /if }}
-
-            {{ if type == 'listing' }}
-            <section class="space-y-4">{{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-slate-900">{{ heading }}</h2>{{ /if }}<div class="rounded-2xl border border-dashed border-slate-300 p-6 text-sm text-slate-400">Media-slider</div></section>
-            {{ /if }}
-
-        {{ /page_blocks }}
-    </div>
+{{#
+    Live Preview — faithful, on-brand rendering of page_blocks using the real
+    design tokens (brand palette, dark hero, primary CTA, white cards). Rendered
+    same-origin by Statamic so the CP Live Preview hot-reloads as you edit.
+    Adaptive context_slots are rendered as styled, full-width section placeholders
+    (their real content is resolved per-visitor by the platform).
+#}}
+<div class="sticky top-0 z-50 flex items-center gap-2 border-b border-ink-100 bg-white/90 px-6 py-2 text-[11px] font-medium uppercase tracking-wide text-ink-400 backdrop-blur">
+    <span class="inline-block h-2 w-2 rounded-full bg-emerald-500"></span> Live preview &middot; {{ title }}
 </div>
+
+{{ page_blocks }}
+
+    {{ if type == 'context_slot' }}{{ if slot_type == 'hero' }}
+        <section class="relative overflow-hidden bg-ink-950 px-6 py-24 text-center text-white">
+            <div class="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-brand-500 opacity-20 blur-3xl"></div>
+            <div class="relative mx-auto max-w-3xl">
+                <span class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-brand-300">Adaptive hero &middot; gepersonaliseerd</span>
+                <h1 class="mt-5 text-4xl font-extrabold tracking-tight sm:text-5xl">Hero-blok</h1>
+                <p class="mx-auto mt-4 max-w-xl text-ink-300">Dit blok wordt per bezoeker ingevuld door het platform. Standaardvariant: <code class="text-brand-300">{{ variant_key }}</code></p>
+                <span class="mt-6 inline-flex rounded-md bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm">Call to action</span>
+            </div>
+        </section>
+        {{ /if }}{{ if slot_type == 'cta' }}
+        <section class="bg-brand-600 px-6 py-20 text-center text-white">
+            <div class="mx-auto max-w-2xl">
+                <span class="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide">Adaptive CTA</span>
+                <h2 class="mt-4 text-3xl font-bold tracking-tight">Conversie-blok</h2>
+                <p class="mx-auto mt-2 max-w-xl text-brand-100">Gepersonaliseerd per bezoeker. Standaardvariant: {{ variant_key }}</p>
+            </div>
+        </section>
+        {{ /if }}{{ if slot_type == 'proof' }}
+        <section class="bg-ink-50 px-6 py-16"><div class="mx-auto max-w-5xl rounded-card border-2 border-dashed border-brand-300 bg-white p-8 text-center"><span class="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-brand-700">Adaptive slot &middot; proof</span><p class="mt-3 text-sm text-ink-500">Gepersonaliseerd per bezoeker. Standaardvariant: <code class="rounded bg-ink-100 px-1.5 py-0.5 font-mono text-ink-700">{{ variant_key }}</code></p></div></section>
+        {{ /if }}{{ if slot_type == 'feature' }}
+        <section class="bg-ink-50 px-6 py-16"><div class="mx-auto max-w-5xl rounded-card border-2 border-dashed border-brand-300 bg-white p-8 text-center"><span class="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-brand-700">Adaptive slot &middot; feature</span><p class="mt-3 text-sm text-ink-500">Gepersonaliseerd per bezoeker. Standaardvariant: <code class="rounded bg-ink-100 px-1.5 py-0.5 font-mono text-ink-700">{{ variant_key }}</code></p></div></section>
+        {{ /if }}{{ if slot_type == 'conversion' }}
+        <section class="bg-ink-50 px-6 py-16"><div class="mx-auto max-w-5xl rounded-card border-2 border-dashed border-brand-300 bg-white p-8 text-center"><span class="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-brand-700">Adaptive slot &middot; conversion</span><p class="mt-3 text-sm text-ink-500">Gepersonaliseerd per bezoeker. Standaardvariant: <code class="rounded bg-ink-100 px-1.5 py-0.5 font-mono text-ink-700">{{ variant_key }}</code></p></div></section>
+        {{ /if }}
+    {{ /if }}
+
+    {{ if type == 'text_section' }}
+    <section class="px-6 py-16">
+        <div class="mx-auto max-w-3xl space-y-4 text-center">
+            {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl">{{ heading }}</h2>{{ /if }}
+            {{ if body }}<div class="prose prose-slate mx-auto max-w-none text-ink-600">{{ body }}</div>{{ /if }}
+        </div>
+    </section>
+    {{ /if }}
+
+    {{ if type == 'rich_text' }}
+    <section class="px-6 py-12"><div class="prose prose-slate mx-auto max-w-3xl prose-a:text-brand-600 prose-headings:tracking-tight">{{ body }}</div></section>
+    {{ /if }}
+
+    {{ if type == 'image' }}
+    <section class="px-6 py-16">
+        <div class="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
+            <div class="space-y-4">
+                {{ if eyebrow }}<div class="text-xs font-semibold uppercase tracking-wide text-brand-600">{{ eyebrow }}</div>{{ /if }}
+                {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl">{{ heading }}</h2>{{ /if }}
+                {{ if body }}<p class="text-lg text-ink-600">{{ body }}</p>{{ /if }}
+                {{ if ctas }}<div class="flex flex-wrap gap-3 pt-1">{{ ctas }}<a href="{{ href }}" class="inline-flex items-center rounded-md bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-700">{{ label }}</a>{{ /ctas }}</div>{{ /if }}
+            </div>
+            <div class="flex aspect-video items-center justify-center overflow-hidden rounded-card bg-ink-100 text-ink-400 shadow-card">
+                {{ if media_type == 'video' }}<span class="text-sm font-medium">&#9654; Video</span>{{ else }}<span class="text-sm font-medium">Afbeelding</span>{{ /if }}
+            </div>
+        </div>
+    </section>
+    {{ /if }}
+
+    {{ if type == 'video' }}
+    <section class="px-6 py-16">
+        <div class="mx-auto max-w-4xl space-y-4 text-center">
+            {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}
+            <div class="flex aspect-video items-center justify-center overflow-hidden rounded-card bg-ink-950 text-white/70 shadow-card"><span class="text-sm font-medium">&#9654; Video</span></div>
+            {{ if caption }}<p class="text-sm text-ink-500">{{ caption }}</p>{{ /if }}
+        </div>
+    </section>
+    {{ /if }}
+
+    {{ if type == 'quote_block' }}
+    <section class="px-6 py-16"><blockquote class="mx-auto max-w-3xl border-l-4 border-brand-500 pl-6 text-2xl font-medium italic text-ink-800">{{ quote }}{{ if author }}<footer class="mt-3 text-sm font-semibold not-italic text-ink-500">&mdash; {{ author }}</footer>{{ /if }}</blockquote></section>
+    {{ /if }}
+
+    {{ if type == 'feature_grid' }}
+    <section class="bg-ink-50 px-6 py-20">
+        <div class="mx-auto max-w-6xl">
+            {{ if heading }}<h2 class="mb-10 text-center text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl">{{ heading }}</h2>{{ /if }}
+            <div class="grid gap-6 md:grid-cols-3">
+                {{ items }}<div class="rounded-card border border-ink-200 bg-white p-6 shadow-card"><div class="flex h-10 w-10 items-center justify-center rounded-md bg-brand-50 text-sm font-bold uppercase text-brand-600">{{ icon }}</div><h3 class="mt-4 font-semibold text-ink-900">{{ title }}</h3>{{ if body }}<p class="mt-1.5 text-sm text-ink-600">{{ body }}</p>{{ /if }}</div>{{ /items }}
+            </div>
+        </div>
+    </section>
+    {{ /if }}
+
+    {{ if type == 'team_section' }}
+    <section class="px-6 py-20">
+        <div class="mx-auto max-w-6xl">
+            {{ if heading }}<h2 class="text-center text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}
+            {{ if intro }}<p class="mx-auto mt-3 max-w-2xl text-center text-ink-600">{{ intro }}</p>{{ /if }}
+            <div class="mt-10 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+                {{ members }}<div class="text-center"><div class="mx-auto h-24 w-24 rounded-full bg-gradient-to-br from-brand-100 to-ink-100"></div><div class="mt-4 font-semibold text-ink-900">{{ name }}</div>{{ if role }}<div class="text-sm text-brand-600">{{ role }}</div>{{ /if }}</div>{{ /members }}
+            </div>
+        </div>
+    </section>
+    {{ /if }}
+
+    {{ if type == 'process_steps' }}
+    <section class="px-6 py-20">
+        <div class="mx-auto max-w-3xl">
+            {{ if heading }}<h2 class="mb-8 text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}
+            <ol class="space-y-6">{{ steps }}<li class="flex gap-5"><span class="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-brand-600 font-semibold text-white">{{ number }}</span><div class="pt-1"><div class="font-semibold text-ink-900">{{ title }}</div>{{ if body }}<div class="mt-1 text-ink-600">{{ body }}</div>{{ /if }}</div></li>{{ /steps }}</ol>
+        </div>
+    </section>
+    {{ /if }}
+
+    {{ if type == 'timeline' }}
+    <section class="bg-ink-50 px-6 py-20">
+        <div class="mx-auto max-w-3xl">
+            {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}
+            {{ if description }}<p class="mt-2 text-ink-600">{{ description }}</p>{{ /if }}
+            <div class="mt-8 space-y-7 border-l-2 border-ink-200 pl-7">{{ items }}<div class="relative"><div class="absolute -left-[35px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-brand-500"></div><div class="text-xs font-semibold uppercase tracking-wide text-brand-600">{{ date }}</div><div class="font-semibold text-ink-900">{{ title }}</div>{{ if description }}<div class="mt-0.5 text-sm text-ink-600">{{ description }}</div>{{ /if }}</div>{{ /items }}</div>
+        </div>
+    </section>
+    {{ /if }}
+
+    {{ if type == 'testimonial_section' }}
+    <section class="px-6 py-20">
+        <div class="mx-auto max-w-6xl">
+            {{ if heading }}<h2 class="mb-10 text-center text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}
+            <div class="grid gap-6 md:grid-cols-2">{{ items }}<blockquote class="rounded-card border border-ink-200 bg-white p-7 shadow-card"><p class="text-lg italic text-ink-700">&ldquo;{{ quote }}&rdquo;</p><footer class="mt-4 text-sm font-semibold text-ink-900">{{ author }}{{ if role }} <span class="font-normal text-ink-500">&middot; {{ role }}{{ if company }}, {{ company }}{{ /if }}</span>{{ /if }}</footer></blockquote>{{ /items }}</div>
+        </div>
+    </section>
+    {{ /if }}
+
+    {{ if type == 'stats' }}
+    <section class="px-6 py-16"><div class="mx-auto grid max-w-5xl gap-8 rounded-card bg-ink-50 p-10 text-center sm:grid-cols-3">{{ items }}<div><div class="text-4xl font-extrabold tracking-tight text-brand-600">{{ value }}</div>{{ if label }}<div class="mt-1 text-sm text-ink-600">{{ label }}</div>{{ /if }}</div>{{ /items }}</div></section>
+    {{ /if }}
+
+    {{ if type == 'faq_section' }}
+    <section class="px-6 py-20">
+        <div class="mx-auto max-w-3xl">
+            {{ if heading }}<h2 class="mb-8 text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}
+            <div class="divide-y divide-ink-200 overflow-hidden rounded-card border border-ink-200">{{ items }}<div class="p-6"><div class="font-semibold text-ink-900">{{ question }}</div>{{ if answer }}<div class="mt-1.5 text-sm text-ink-600">{{ answer }}</div>{{ /if }}</div>{{ /items }}</div>
+        </div>
+    </section>
+    {{ /if }}
+
+    {{ if type == 'cta_section' }}
+    <section class="bg-brand-600 px-6 py-20 text-center text-white">
+        <div class="mx-auto max-w-2xl">
+            {{ if heading }}<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">{{ heading }}</h2>{{ /if }}
+            {{ if body }}<p class="mx-auto mt-3 max-w-xl text-brand-100">{{ body }}</p>{{ /if }}
+            {{ if ctas }}<div class="mt-6 flex flex-wrap justify-center gap-3">{{ ctas }}<a href="{{ href }}" class="inline-flex items-center rounded-md bg-white px-6 py-3 text-sm font-semibold text-brand-600 shadow-sm hover:bg-brand-50">{{ label }}</a>{{ /ctas }}</div>{{ /if }}
+        </div>
+    </section>
+    {{ /if }}
+
+    {{ if type == 'contact_section' }}
+    <section class="px-6 py-16"><div class="mx-auto max-w-3xl space-y-3">{{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}{{ if body }}<p class="text-ink-600">{{ body }}</p>{{ /if }}<div class="rounded-card border border-dashed border-ink-300 bg-ink-50 p-8 text-center text-sm text-ink-400">Contactformulier</div></div></section>
+    {{ /if }}
+
+    {{ if type == 'form_section' }}
+    <section class="px-6 py-16"><div class="mx-auto max-w-3xl space-y-3">{{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}<div class="rounded-card border border-dashed border-ink-300 bg-ink-50 p-8 text-center text-sm text-ink-400">Formulier</div></div></section>
+    {{ /if }}
+
+    {{ if type == 'related_content' }}
+    <section class="bg-ink-50 px-6 py-16"><div class="mx-auto max-w-6xl">{{ if heading }}<h2 class="mb-6 text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}<div class="grid gap-6 sm:grid-cols-3">{{ entries }}<div class="rounded-card border border-ink-200 bg-white p-6 shadow-card"><div class="h-28 rounded-md bg-ink-100"></div><div class="mt-3 h-3 w-2/3 rounded bg-ink-200"></div></div>{{ /entries }}</div></div></section>
+    {{ /if }}
+
+    {{ if type == 'collection_listing' }}
+    <section class="bg-ink-50 px-6 py-16"><div class="mx-auto max-w-3xl text-center">{{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}<div class="mt-4 rounded-card border border-dashed border-ink-300 bg-white p-8 text-sm text-ink-400">Collectie-overzicht &mdash; door het platform geladen</div></div></section>
+    {{ /if }}
+
+    {{ if type == 'listing' }}
+    <section class="px-6 py-16"><div class="mx-auto max-w-6xl">{{ if heading }}<h2 class="mb-6 text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}<div class="flex gap-5 overflow-x-auto pb-2">{{ media_items }}<div class="flex aspect-video w-72 flex-none items-center justify-center rounded-card bg-ink-100 text-sm text-ink-400 shadow-card">{{ if media_type == 'video' }}&#9654; Video{{ else }}Afbeelding{{ /if }}</div>{{ /media_items }}</div></div></section>
+    {{ /if }}
+
+{{ /page_blocks }}
