@@ -5,3 +5,5 @@ preferences:
   collections:
     pages:
       view: tree
+    features:
+      view: list
