@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2a2bab17c7451c1166fd45e73f3a3a36",
+    "content-hash": "8dc1f55bfec651a8ff06f004b816a4c5",
     "packages": [
         {
             "name": "ajthinking/archetype",
@@ -2953,6 +2953,67 @@
                 "source": "https://github.com/michelf/php-smartypants/tree/1.8.1"
             },
             "time": "2016-12-13T01:01:17+00:00"
+        },
+        {
+            "name": "mister-chameleon/statamic",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jmulders/mister-chameleon-statamic.git",
+                "reference": "0010cfcfb6832bd1178491dccb9be63bbb79708d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jmulders/mister-chameleon-statamic/zipball/0010cfcfb6832bd1178491dccb9be63bbb79708d",
+                "reference": "0010cfcfb6832bd1178491dccb9be63bbb79708d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2",
+                "statamic/cms": "^5.0 || ^6.0"
+            },
+            "default-branch": true,
+            "type": "statamic-addon",
+            "extra": {
+                "statamic": {
+                    "name": "Mister Chameleon",
+                    "description": "Per-visitor personalisation for Statamic, powered by the Mister Chameleon platform."
+                },
+                "laravel": {
+                    "providers": [
+                        "MisterChameleon\\Statamic\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MisterChameleon\\Statamic\\": "src"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mister Chameleon",
+                    "homepage": "https://www.misterchameleon.nl"
+                }
+            ],
+            "description": "Mister Chameleon — per-visitor website personalisation for Statamic. Render platform-managed context slots and blocks natively in Antlers, with variant resolution from the Mister Chameleon decision engine.",
+            "homepage": "https://www.misterchameleon.nl",
+            "keywords": [
+                "ab-testing",
+                "cms",
+                "mister-chameleon",
+                "personalisation",
+                "personalization",
+                "statamic"
+            ],
+            "support": {
+                "email": "support@misterchameleon.nl",
+                "issues": "https://www.misterchameleon.nl/support"
+            },
+            "time": "2026-06-15T08:02:18+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -12191,12 +12252,14 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "mister-chameleon/statamic": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.3"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }

@@ -13,6 +13,7 @@
         "php": "^8.3",
         "laravel/framework": "^13.8",
         "laravel/tinker": "^3.0",
+        "mister-chameleon/statamic": "dev-main",
         "statamic/cms": "^6.0"
     },
     "require-dev": {
@@ -93,5 +94,11 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [{
+        "name": "mc-statamic",
+        "type": "vcs",
+        "url": "https://github.com/jmulders/mister-chameleon-statamic.git",
+        "no-api": true
+    }]
 }
