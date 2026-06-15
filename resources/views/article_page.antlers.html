@@ -60,8 +60,8 @@
                 {{ if body }}<p class="text-lg text-ink-600">{{ body }}</p>{{ /if }}
                 {{ if ctas }}<div class="flex flex-wrap gap-3 pt-1">{{ ctas }}<a href="{{ href }}" class="inline-flex items-center rounded-md bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-700">{{ label }}</a>{{ /ctas }}</div>{{ /if }}
             </div>
-            <div class="flex aspect-video items-center justify-center overflow-hidden rounded-card bg-ink-100 text-ink-400 shadow-card">
-                {{ if media_type == 'video' }}<span class="text-sm font-medium">&#9654; Video</span>{{ else }}<span class="text-sm font-medium">Afbeelding</span>{{ /if }}
+            <div class="aspect-video overflow-hidden rounded-card bg-ink-100 shadow-card">
+                {{ if media_type == 'video' }}<iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/{{ video_id }}?rel=0&amp;modestbranding=1" loading="lazy" allowfullscreen></iframe>{{ else }}{{ if image }}<img src="/assets/{{ image }}" alt="{{ heading }}" class="h-full w-full object-cover">{{ else }}<div class="flex h-full w-full items-center justify-center text-sm font-medium text-ink-400">Afbeelding</div>{{ /if }}{{ /if }}
             </div>
         </div>
     </section>
@@ -71,7 +71,7 @@
     <section class="px-6 py-16">
         <div class="mx-auto max-w-4xl space-y-4 text-center">
             {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}
-            <div class="flex aspect-video items-center justify-center overflow-hidden rounded-card bg-ink-950 text-white/70 shadow-card"><span class="text-sm font-medium">&#9654; Video</span></div>
+            <div class="aspect-video overflow-hidden rounded-card bg-ink-950 shadow-card">{{ if video_id }}<iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/{{ video_id }}?rel=0&amp;modestbranding=1" loading="lazy" allowfullscreen></iframe>{{ else }}<div class="flex h-full w-full items-center justify-center text-sm font-medium text-white/70">&#9654; Video</div>{{ /if }}</div>
             {{ if caption }}<p class="text-sm text-ink-500">{{ caption }}</p>{{ /if }}
         </div>
     </section>
@@ -127,7 +127,7 @@
     <section class="px-6 py-20">
         <div class="mx-auto max-w-6xl">
             {{ if heading }}<h2 class="mb-10 text-center text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}
-            <div class="grid gap-6 md:grid-cols-2">{{ items }}<blockquote class="rounded-card border border-ink-200 bg-white p-7 shadow-card"><p class="text-lg italic text-ink-700">&ldquo;{{ quote }}&rdquo;</p><footer class="mt-4 text-sm font-semibold text-ink-900">{{ author }}{{ if role }} <span class="font-normal text-ink-500">&middot; {{ role }}{{ if company }}, {{ company }}{{ /if }}</span>{{ /if }}</footer></blockquote>{{ /items }}</div>
+            <div class="grid gap-6 md:grid-cols-2">{{ items }}<blockquote class="rounded-card border border-ink-200 bg-white p-7 shadow-card"><p class="text-lg italic text-ink-700">&ldquo;{{ quote }}&rdquo;</p><footer class="mt-4 flex items-center gap-3">{{ if avatar }}<img src="/assets/{{ avatar }}" alt="{{ author }}" class="h-10 w-10 rounded-full object-cover">{{ /if }}<span class="text-sm font-semibold text-ink-900">{{ author }}{{ if role }} <span class="font-normal text-ink-500">&middot; {{ role }}{{ if company }}, {{ company }}{{ /if }}</span>{{ /if }}</span></footer></blockquote>{{ /items }}</div>
         </div>
     </section>
     {{ /if }}
@@ -172,7 +172,7 @@
     {{ /if }}
 
     {{ if type == 'listing' }}
-    <section class="px-6 py-16"><div class="mx-auto max-w-6xl">{{ if heading }}<h2 class="mb-6 text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}<div class="flex gap-5 overflow-x-auto pb-2">{{ media_items }}<div class="flex aspect-video w-72 flex-none items-center justify-center rounded-card bg-ink-100 text-sm text-ink-400 shadow-card">{{ if media_type == 'video' }}&#9654; Video{{ else }}Afbeelding{{ /if }}</div>{{ /media_items }}</div></div></section>
+    <section class="px-6 py-16"><div class="mx-auto max-w-6xl">{{ if heading }}<h2 class="mb-6 text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}<div class="flex gap-5 overflow-x-auto pb-2">{{ media_items }}<div class="aspect-video w-72 flex-none overflow-hidden rounded-card bg-ink-100 shadow-card">{{ if media_type == 'video' }}<iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/{{ video_id }}?rel=0" loading="lazy" allowfullscreen></iframe>{{ else }}{{ if image }}<img src="/assets/{{ image }}" alt="" class="h-full w-full object-cover">{{ else }}<div class="flex h-full w-full items-center justify-center text-sm text-ink-400">Afbeelding</div>{{ /if }}{{ /if }}</div>{{ /media_items }}</div></div></section>
     {{ /if }}
 
 {{ /page_blocks }}
