@@ -7,3 +7,5 @@ preferences:
       view: tree
     features:
       view: list
+    blog:
+      view: list
