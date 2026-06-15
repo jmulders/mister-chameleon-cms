@@ -35,5 +35,6 @@ Thumbs.db
 # Deze worden uit de platform-manifest geschreven bij elke deploy en horen
 # NIET in versiebeheer (anders botst de Statamic Git-integratie hierop).
 /resources/fieldsets/mc_context_slot.yaml
+/resources/fieldsets/mrc_*.yaml
 /resources/views/vendor/mister-chameleon/
 /resources/css/mister-chameleon-tokens.css
