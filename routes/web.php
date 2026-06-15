@@ -32,11 +32,34 @@ Route::get('/mc-live-preview', function (Request $request) {
         return response('Live Preview token missing or expired.', 400);
     }
 
-    // Render the (unsaved) entry through its Statamic template (same-origin), so
-    // the CP Live Preview hot-reloads natively. The templates render page_blocks
-    // in Antlers — which is also the foundation of the planned Statamic block
-    // addon (see RUNBOOK). The render-proxy approach was dropped because Vercel
-    // rate-limits the server-to-server render calls.
+    // Headless preview bridge (env-gated).
+    //
+    // When MC_PREVIEW_FRONTEND_URL is set (local dev → http://localhost:3000),
+    // render the bridge view (resources/views/mc-live-preview.blade.php). It
+    // POSTs the unsaved draft to the Next.js draft store and iframes the real
+    // React /mc-preview route — a faithful, INTERACTIVE preview (sliders, clicks)
+    // identical to the production front-end. The browser does the POST + iframe
+    // load client-side, so there is no server-to-server call (the reason the
+    // original render-proxy was dropped: Vercel rate-limited those).
+    //
+    // When the env var is NOT set (e.g. production), fall back to rendering the
+    // entry through its Statamic Antlers template — unchanged behaviour, so this
+    // change is safe to deploy and never touches the production preview.
+    $base = rtrim((string) env('MC_PREVIEW_FRONTEND_URL', ''), '/');
+    if ($base !== '') {
+        return view('mc-live-preview', [
+            'base'    => $base,
+            'path'    => '/mc-preview',
+            'payload' => [
+                'collection'     => optional($entry->collection())->handle() ?? 'pages',
+                'slug'           => $entry->slug(),
+                'title'          => $entry->value('title'),
+                'seoDescription' => $entry->value('seo_description'),
+                'pageBlocks'     => $entry->value('page_blocks') ?? [],
+            ],
+        ]);
+    }
+
     return $entry->toResponse($request);
 });
 
