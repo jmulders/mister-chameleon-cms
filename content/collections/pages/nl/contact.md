@@ -39,7 +39,7 @@ updated_at: 1781500475
 overview_image: ibiza-rush-no-966-1925010.webp
 detail_image: milton-elegant-648-beach.webp
 excerpt: dddcvvcvc
-date: '2026-06-19 00:00:00'
+date: '2026-06-12 00:00:00'
 overview_image_hover: milton-elegant-648-beach.webp
 robots_noindex: false
 robots_nofollow: false
