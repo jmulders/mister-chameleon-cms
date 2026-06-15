@@ -3,7 +3,7 @@ id: b1e2f3a4-1234-5678-abcd-de-toekomst-blog
 blueprint: blog
 site: nl
 title: 'De toekomst van B2B-marketing: personalisatie op schaal'
-date: '2026-06-18 00:00:00'
+date: '2026-06-11 00:00:00'
 seo_description: 'Hoe website personalisatie de B2B-marketing transformeert en waarom meer bedrijven er nu mee beginnen.'
 excerpt: 'Ontdek waarom gepersonaliseerde B2B-websites gemiddeld 34% meer leads genereren en hoe je er morgen mee kunt starten.'
 page_blocks:
