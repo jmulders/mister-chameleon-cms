@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Statamic\Facades\Entry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
 use Facades\Statamic\CP\LivePreview;
 
 // ── Live Preview bridge ──────────────────────────────────────────────────────
@@ -31,12 +32,56 @@ Route::get('/mc-live-preview', function (Request $request) {
         return response('Live Preview token missing or expired.', 400);
     }
 
-    // Render the (unsaved) Live Preview entry through its own Statamic template
-    // + layout, SAME-ORIGIN on this CMS host. The templates render page_blocks
-    // via the _blocks partial, so the CP Live Preview shows a faithful, live
-    // content preview — no cross-origin iframe to the Next.js site, so Statamic's
-    // native hot-reload works and updates appear as you type.
-    return $entry->toResponse($request);
+    // ── Render-proxy ─────────────────────────────────────────────────────────
+    // Render the (unsaved) entry through the REAL Next.js components, but serve
+    // the result SAME-ORIGIN from this CMS host so Statamic's Live Preview works
+    // (no cross-origin iframe). This gives a pixel-faithful, always-up-to-date
+    // preview without duplicating the front-end in Antlers.
+    //
+    //   1. Push the unsaved page_blocks to the Next.js draft store.
+    //   2. Server-side render https://site/mc-preview?mcdraft=TOKEN (real React).
+    //   3. Rewrite root-relative asset/link URLs to absolute Next.js URLs and
+    //      strip client <script> tags (we want a faithful static render; the
+    //      Next.js runtime would otherwise hydrate/route against the wrong
+    //      origin). CSS is kept, so the look matches exactly.
+    $nextBase = config('app.env') === 'production'
+        ? 'https://www.misterchameleon.nl'
+        : 'http://localhost:3000';
+
+    try {
+        $draft = Http::asJson()->timeout(20)->post($nextBase.'/api/statamic-draft', [
+            'collection'     => optional($entry->collection())->handle() ?? 'pages',
+            'slug'           => $entry->slug(),
+            'title'          => $entry->value('title'),
+            'seoDescription' => $entry->value('seo_description'),
+            'pageBlocks'     => $entry->value('page_blocks') ?? [],
+        ]);
+
+        $draftToken = $draft->ok() ? $draft->json('token') : null;
+        if (! $draftToken) {
+            return response('Kon de live-preview-draft niet aanmaken bij de site.', 502);
+        }
+
+        $res = Http::timeout(25)->get($nextBase.'/mc-preview', ['mcdraft' => $draftToken]);
+        if (! $res->ok()) {
+            return response('Kon de Next.js-preview niet ophalen.', 502);
+        }
+
+        $html = $res->body();
+        // Strip client scripts → faithful static render, no cross-origin hydration.
+        $html = preg_replace('#<script\b[^>]*>.*?</script>#is', '', $html);
+        $html = preg_replace('#<script\b[^>]*/>#i', '', $html);
+        // Root-relative asset/link URLs → absolute Next.js URLs (CSS, images, links).
+        $html = str_replace(
+            ['href="/',            "href='/",            'src="/',            "src='/",            'srcset="/'],
+            ['href="'.$nextBase.'/', "href='".$nextBase.'/', 'src="'.$nextBase.'/', "src='".$nextBase.'/', 'srcset="'.$nextBase.'/'],
+            $html
+        );
+
+        return response($html)->header('Content-Type', 'text/html; charset=utf-8');
+    } catch (\Throwable $e) {
+        return response('Live-preview-proxy fout: '.$e->getMessage(), 502);
+    }
 });
 
 // ── Live Preview data endpoint (JSON) ────────────────────────────────────────
