@@ -34,11 +34,11 @@ page_blocks:
     caption: ss
     media_type: image
     media_bg_type: none
-updated_by: de818d99-7334-4873-9168-dc2055441185
-updated_at: 1781257931
+updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
+updated_at: 1781500475
 overview_image: ibiza-rush-no-966-1925010.webp
 detail_image: milton-elegant-648-beach.webp
-excerpt: ddd
+excerpt: dddcvvcvc
 date: '2026-06-12 00:00:00'
 overview_image_hover: milton-elegant-648-beach.webp
 robots_noindex: false
