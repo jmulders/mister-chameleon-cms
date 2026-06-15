@@ -114,11 +114,28 @@
     {{ /if }}
 
     {{ if type == 'timeline' }}
-    <section class="bg-ink-50 px-6 py-20">
-        <div class="mx-auto max-w-3xl">
-            {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}
-            {{ if description }}<p class="mt-2 text-ink-600">{{ description }}</p>{{ /if }}
-            <div class="mt-8 space-y-7 border-l-2 border-ink-200 pl-7">{{ items }}<div class="relative"><div class="absolute -left-[35px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-brand-500"></div><div class="text-xs font-semibold uppercase tracking-wide text-brand-600">{{ date }}</div><div class="font-semibold text-ink-900">{{ title }}</div>{{ if description }}<div class="mt-0.5 text-sm text-ink-600">{{ description }}</div>{{ /if }}</div>{{ /items }}</div>
+    <section class="bg-ink-950 py-20 text-white">
+        <div class="mx-auto max-w-6xl px-6">
+            {{ if heading }}<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">{{ heading }}</h2>{{ /if }}
+            {{ if description }}<p class="mt-3 max-w-2xl text-ink-300">{{ description }}</p>{{ /if }}
+        </div>
+        <div class="mt-12 overflow-x-auto pb-4">
+            <div class="flex w-max gap-6 px-6">
+                {{ items }}
+                <div class="w-80 flex-none">
+                    <div class="aspect-video overflow-hidden rounded-card bg-ink-800">
+                        {{ if media_type == 'image' }}{{ media_image }}<img src="{{ url }}" alt="{{ title }}" class="h-full w-full object-cover">{{ /media_image }}{{ /if }}
+                        {{ if media_type == 'youtube' }}<iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/{{ video_id }}?rel=0" loading="lazy" allowfullscreen></iframe>{{ /if }}
+                    </div>
+                    <div class="relative mt-6 border-t border-white/15 pt-6">
+                        <div class="absolute -top-[7px] left-0 h-3.5 w-3.5 rounded-full border-2 border-ink-950 bg-brand-500"></div>
+                        {{ if date }}<div class="text-xs font-semibold uppercase tracking-wide text-brand-400">{{ date }}</div>{{ /if }}
+                        {{ if title }}<div class="mt-1 text-lg font-semibold">{{ title }}</div>{{ /if }}
+                        {{ if description }}<p class="mt-1.5 text-sm text-ink-300">{{ description }}</p>{{ /if }}
+                    </div>
+                </div>
+                {{ /items }}
+            </div>
         </div>
     </section>
     {{ /if }}
