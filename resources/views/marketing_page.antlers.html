@@ -61,7 +61,7 @@
                 {{ if ctas }}<div class="flex flex-wrap gap-3 pt-1">{{ ctas }}<a href="{{ href }}" class="inline-flex items-center rounded-md bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-700">{{ label }}</a>{{ /ctas }}</div>{{ /if }}
             </div>
             <div class="aspect-video overflow-hidden rounded-card bg-ink-100 shadow-card">
-                {{ if media_type == 'video' }}<iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/{{ video_id }}?rel=0&amp;modestbranding=1" loading="lazy" allowfullscreen></iframe>{{ else }}{{ if image }}<img src="/assets/{{ image }}" alt="{{ heading }}" class="h-full w-full object-cover">{{ else }}<div class="flex h-full w-full items-center justify-center text-sm font-medium text-ink-400">Afbeelding</div>{{ /if }}{{ /if }}
+                {{ if media_type == 'video' }}<iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/{{ video_id }}?rel=0&amp;modestbranding=1" loading="lazy" allowfullscreen></iframe>{{ else }}{{ if image }}<img src="{{ image | ensure_left:'/assets/' }}" alt="{{ heading }}" class="h-full w-full object-cover">{{ else }}<div class="flex h-full w-full items-center justify-center text-sm font-medium text-ink-400">Afbeelding</div>{{ /if }}{{ /if }}
             </div>
         </div>
     </section>
@@ -114,27 +114,34 @@
     {{ /if }}
 
     {{ if type == 'timeline' }}
-    <section class="bg-ink-950 py-20 text-white">
-        <div class="mx-auto max-w-6xl px-6">
-            {{ if heading }}<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">{{ heading }}</h2>{{ /if }}
-            {{ if description }}<p class="mt-3 max-w-2xl text-ink-300">{{ description }}</p>{{ /if }}
-        </div>
-        <div class="mt-12 overflow-x-auto pb-4">
-            <div class="flex w-max gap-6 px-6">
-                {{ items }}
-                <div class="w-80 flex-none">
-                    <div class="aspect-video overflow-hidden rounded-card bg-ink-800">
-                        {{ if media_type == 'image' }}{{ media_image }}<img src="{{ url }}" alt="{{ title }}" class="h-full w-full object-cover">{{ /media_image }}{{ /if }}
+    <section class="bg-ink-50 px-6 py-16">
+        <div class="mx-auto max-w-6xl">
+            {{ if heading }}<h2 class="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl">{{ heading }}</h2>{{ /if }}
+            {{ if description }}<p class="mt-2 text-ink-500">{{ description }}</p>{{ /if }}
+
+            {{# Statisch beeld van de actieve slide (eerste item); de live site is een interactieve carousel #}}
+            <div class="mt-10">
+                {{ items }}{{ if first }}
+                <div class="grid items-center gap-10 md:grid-cols-2">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-ink-200" style="clip-path: polygon(0 0, 100% 0, 86% 100%, 0% 100%);">
+                        {{ if media_type == 'image' }}{{ media_image }}<img src="{{ url | replace:'assets//assets':'assets' }}" alt="{{ title }}" class="h-full w-full object-cover">{{ /media_image }}{{ /if }}
                         {{ if media_type == 'youtube' }}<iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/{{ video_id }}?rel=0" loading="lazy" allowfullscreen></iframe>{{ /if }}
                     </div>
-                    <div class="relative mt-6 border-t border-white/15 pt-6">
-                        <div class="absolute -top-[7px] left-0 h-3.5 w-3.5 rounded-full border-2 border-ink-950 bg-brand-500"></div>
-                        {{ if date }}<div class="text-xs font-semibold uppercase tracking-wide text-brand-400">{{ date }}</div>{{ /if }}
-                        {{ if title }}<div class="mt-1 text-lg font-semibold">{{ title }}</div>{{ /if }}
-                        {{ if description }}<p class="mt-1.5 text-sm text-ink-300">{{ description }}</p>{{ /if }}
+                    <div>
+                        {{ if date }}<div class="text-5xl font-extrabold italic tracking-tight text-ink-900 sm:text-6xl">{{ date }}</div>{{ /if }}
+                        {{ if title }}<div class="mt-5 text-2xl font-bold text-ink-900">{{ title }}</div>{{ /if }}
+                        {{ if description }}<p class="mt-3 text-ink-500">{{ description }}</p>{{ /if }}
                     </div>
                 </div>
-                {{ /items }}
+                {{ /if }}{{ /items }}
+            </div>
+
+            <div class="mt-12 flex items-center gap-4 border-t border-ink-200 pt-1 text-2xl text-ink-300">
+                &lsaquo;
+                <div class="flex flex-1 items-center justify-center gap-12 text-sm">
+                    {{ items }}<span class="-mt-[5px] border-t-2 pt-4 {{ if first }}border-teal-500 font-semibold text-ink-900{{ else }}border-transparent text-ink-400{{ /if }}">{{ date }}</span>{{ /items }}
+                </div>
+                &rsaquo;
             </div>
         </div>
     </section>
@@ -144,7 +151,7 @@
     <section class="px-6 py-20">
         <div class="mx-auto max-w-6xl">
             {{ if heading }}<h2 class="mb-10 text-center text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}
-            <div class="grid gap-6 md:grid-cols-2">{{ items }}<blockquote class="rounded-card border border-ink-200 bg-white p-7 shadow-card"><p class="text-lg italic text-ink-700">&ldquo;{{ quote }}&rdquo;</p><footer class="mt-4 flex items-center gap-3">{{ if avatar }}<img src="/assets/{{ avatar }}" alt="{{ author }}" class="h-10 w-10 rounded-full object-cover">{{ /if }}<span class="text-sm font-semibold text-ink-900">{{ author }}{{ if role }} <span class="font-normal text-ink-500">&middot; {{ role }}{{ if company }}, {{ company }}{{ /if }}</span>{{ /if }}</span></footer></blockquote>{{ /items }}</div>
+            <div class="grid gap-6 md:grid-cols-2">{{ items }}<blockquote class="rounded-card border border-ink-200 bg-white p-7 shadow-card"><p class="text-lg italic text-ink-700">&ldquo;{{ quote }}&rdquo;</p><footer class="mt-4 flex items-center gap-3">{{ if avatar }}<img src="{{ avatar | ensure_left:'/assets/' }}" alt="{{ author }}" class="h-10 w-10 rounded-full object-cover">{{ /if }}<span class="text-sm font-semibold text-ink-900">{{ author }}{{ if role }} <span class="font-normal text-ink-500">&middot; {{ role }}{{ if company }}, {{ company }}{{ /if }}</span>{{ /if }}</span></footer></blockquote>{{ /items }}</div>
         </div>
     </section>
     {{ /if }}
@@ -188,8 +195,8 @@
                 {{ entries }}
                 <a href="{{ url }}" class="group block overflow-hidden rounded-card border border-ink-200 bg-white shadow-card transition hover:shadow-lg">
                     <div class="relative aspect-[4/3] overflow-hidden bg-ink-100">
-                        {{ overview_image }}<img src="{{ url }}" alt="{{ title }}" class="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0">{{ /overview_image }}
-                        {{ overview_image_hover }}<img src="{{ url }}" alt="" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">{{ /overview_image_hover }}
+                        {{ overview_image }}<img src="{{ url | replace:'assets//assets':'assets' }}" alt="{{ title }}" class="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0">{{ /overview_image }}
+                        {{ overview_image_hover }}<img src="{{ url | replace:'assets//assets':'assets' }}" alt="" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">{{ /overview_image_hover }}
                     </div>
                     <div class="p-5">
                         <div class="font-semibold text-ink-900">{{ title }}</div>
@@ -207,7 +214,26 @@
     {{ /if }}
 
     {{ if type == 'listing' }}
-    <section class="px-6 py-16"><div class="mx-auto max-w-6xl">{{ if heading }}<h2 class="mb-6 text-3xl font-bold tracking-tight text-ink-900">{{ heading }}</h2>{{ /if }}<div class="flex gap-5 overflow-x-auto pb-2">{{ media_items }}<div class="aspect-video w-72 flex-none overflow-hidden rounded-card bg-ink-100 shadow-card">{{ if media_type == 'video' }}<iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/{{ video_id }}?rel=0" loading="lazy" allowfullscreen></iframe>{{ else }}{{ if image }}<img src="/assets/{{ image }}" alt="" class="h-full w-full object-cover">{{ else }}<div class="flex h-full w-full items-center justify-center text-sm text-ink-400">Afbeelding</div>{{ /if }}{{ /if }}</div>{{ /media_items }}</div></div></section>
+    <section class="bg-ink-50 px-6 py-16">
+        <div class="mx-auto max-w-6xl">
+            {{ if heading }}<h2 class="mb-8 text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl">{{ heading }}</h2>{{ /if }}
+            {{# Statisch beeld van het actieve slide (eerste item); de live site is een interactieve carousel #}}
+            <div class="overflow-hidden rounded-card bg-ink-200 shadow-card">
+                {{ media_items }}{{ if first }}
+                <div class="aspect-video w-full">
+                    {{ if media_type == 'video' }}<iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/{{ video_id }}?rel=0" loading="lazy" allowfullscreen></iframe>{{ else }}{{ if image }}<img src="{{ image | ensure_left:'/assets/' }}" alt="" class="h-full w-full object-cover">{{ else }}<div class="flex h-full w-full items-center justify-center text-sm text-ink-400">Afbeelding</div>{{ /if }}{{ /if }}
+                </div>
+                {{ /if }}{{ /media_items }}
+            </div>
+            <div class="mt-8 flex items-center justify-center gap-6">
+                <span class="flex h-10 w-10 items-center justify-center rounded-full border border-ink-200 text-lg text-ink-400">&lsaquo;</span>
+                <div class="flex items-center gap-2">
+                    {{ media_items }}<span class="h-2 rounded-full transition-all {{ if first }}w-7 bg-teal-500{{ else }}w-2 bg-ink-300{{ /if }}"></span>{{ /media_items }}
+                </div>
+                <span class="flex h-10 w-10 items-center justify-center rounded-full border border-ink-200 text-lg text-ink-400">&rsaquo;</span>
+            </div>
+        </div>
+    </section>
     {{ /if }}
 
 {{ /page_blocks }}
