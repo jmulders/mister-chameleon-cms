@@ -7,48 +7,8 @@ template: home
 uri: /
 seo_description: 'Mister Chameleon personaliseert je B2B-website voor elke bezoeker — zonder code, live in one afternoon.'
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1781554446
+updated_at: 1781559078
 page_blocks:
-  - id: seed-feature
-    type: context_slot
-    slot_type: feature
-    variant_key: feature_default
-    is_active: true
-    enabled: true
-  - id: seed-hero
-    type: context_slot
-    slot_type: hero
-    variant_key: hero_default
-    is_active: true
-    enabled: true
-  - id: ihVwQtz5QbZPKiChh_pXx
-    title: video
-    video_url: uER64JbBd7M
-    type: video
-    enabled: true
-    video_source: youtube
-    video_id: uER64JbBd7M
-    video_autoplay: false
-    video_loop: false
-    variant: contained
-    caption: 'caption below!'
-  -
-    id: yExQ9aDRLC7X2CeREbAKt
-    variant: text_media_right
-    eyebrow: 'Eyes on you'
-    heading: Headerrr
-    body: 'Body body body'
-    ctas:
-      - id: gfhzKho8TIsyhi3kA_ZJ1
-        label: CTA
-        href: '#'
-    type: image
-    enabled: true
-    media_type: video
-    video_source: youtube
-    video_id: uER64JbBd7M
-    video_autoplay: true
-    video_loop: true
   -
     id: AQfPmgghtta-dapPdu6tp
     variant: feature_grid_3up
@@ -72,6 +32,46 @@ page_blocks:
         title: a
         body: a
         enabled: true
+  - id: ihVwQtz5QbZPKiChh_pXx
+    title: video
+    video_url: uER64JbBd7M
+    type: video
+    enabled: true
+    video_source: youtube
+    video_id: uER64JbBd7M
+    video_autoplay: false
+    video_loop: false
+    variant: contained
+    caption: 'caption below!'
+  - id: seed-hero
+    type: context_slot
+    slot_type: hero
+    variant_key: hero_default
+    is_active: true
+    enabled: true
+  - id: seed-feature
+    type: context_slot
+    slot_type: feature
+    variant_key: feature_default
+    is_active: true
+    enabled: true
+  -
+    id: yExQ9aDRLC7X2CeREbAKt
+    variant: text_media_right
+    eyebrow: 'Eyes on you'
+    heading: Headerrr
+    body: 'Body body body'
+    ctas:
+      - id: gfhzKho8TIsyhi3kA_ZJ1
+        label: CTA
+        href: '#'
+    type: image
+    enabled: true
+    media_type: video
+    video_source: youtube
+    video_id: uER64JbBd7M
+    video_autoplay: true
+    video_loop: true
   - id: seed-proof
     type: context_slot
     slot_type: proof
