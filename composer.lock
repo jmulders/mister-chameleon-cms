@@ -2960,12 +2960,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jmulders/mister-chameleon-statamic.git",
-                "reference": "0010cfcfb6832bd1178491dccb9be63bbb79708d"
+                "reference": "172382466e0a0402fb5d28bd52c4e7f3d5f09ca7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jmulders/mister-chameleon-statamic/zipball/0010cfcfb6832bd1178491dccb9be63bbb79708d",
-                "reference": "0010cfcfb6832bd1178491dccb9be63bbb79708d",
+                "url": "https://api.github.com/repos/jmulders/mister-chameleon-statamic/zipball/172382466e0a0402fb5d28bd52c4e7f3d5f09ca7",
+                "reference": "172382466e0a0402fb5d28bd52c4e7f3d5f09ca7",
                 "shasum": ""
             },
             "require": {
@@ -3013,7 +3013,7 @@
                 "email": "support@misterchameleon.nl",
                 "issues": "https://www.misterchameleon.nl/support"
             },
-            "time": "2026-06-15T08:02:18+00:00"
+            "time": "2026-06-15T20:22:29+00:00"
         },
         {
             "name": "monolog/monolog",

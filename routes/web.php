@@ -6,88 +6,10 @@ use Statamic\Facades\Entry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
-use Facades\Statamic\CP\LivePreview;
 
-// ── Live Preview bridge ──────────────────────────────────────────────────────
-//
-// Statamic's native Live Preview iframe loads this route (configured as the
-// `pages` collection preview target in content/collections/pages.yaml).
-//
-// Why a bridge is needed: the site's url is the absolute Vercel domain, so
-// Statamic would otherwise iframe Vercel directly using its *native*
-// ?live-preview&token mechanism — which the Next.js app doesn't understand, so
-// it would render the SAVED page instead of the in-progress edits.
-//
-// Instead, this same-origin route retrieves the unsaved entry via the
-// live-preview token (LivePreview::item), POSTs its draft page_blocks to the
-// Next.js draft API, and points an inner iframe at the Vercel site with
-// ?_mc_draft=TOKEN — reusing the existing, working draft-render flow. Because
-// the preview target has refresh:true, Statamic reloads this route with a fresh
-// token on every change, so the preview always reflects the latest edits.
-Route::get('/mc-live-preview', function (Request $request) {
-    $token = $request->statamicToken();
-    $entry = $token ? LivePreview::item($token) : null;
-
-    if (! $entry) {
-        return response('Live Preview token missing or expired.', 400);
-    }
-
-    // Headless preview bridge (env-gated).
-    //
-    // When MC_PREVIEW_FRONTEND_URL is set (local dev → http://localhost:3000),
-    // render the bridge view (resources/views/mc-live-preview.blade.php). It
-    // POSTs the unsaved draft to the Next.js draft store and iframes the real
-    // React /mc-preview route — a faithful, INTERACTIVE preview (sliders, clicks)
-    // identical to the production front-end. The browser does the POST + iframe
-    // load client-side, so there is no server-to-server call (the reason the
-    // original render-proxy was dropped: Vercel rate-limited those).
-    //
-    // When the env var is NOT set (e.g. production), fall back to rendering the
-    // entry through its Statamic Antlers template — unchanged behaviour, so this
-    // change is safe to deploy and never touches the production preview.
-    $base = rtrim((string) env('MC_PREVIEW_FRONTEND_URL', ''), '/');
-    if ($base !== '') {
-        return view('mc-live-preview', [
-            'base'    => $base,
-            'path'    => '/mc-preview',
-            'payload' => [
-                'collection'     => optional($entry->collection())->handle() ?? 'pages',
-                'slug'           => $entry->slug(),
-                'title'          => $entry->value('title'),
-                'seoDescription' => $entry->value('seo_description'),
-                'pageBlocks'     => $entry->value('page_blocks') ?? [],
-            ],
-        ]);
-    }
-
-    return $entry->toResponse($request);
-});
-
-// ── Live Preview data endpoint (JSON) ────────────────────────────────────────
-//
-// Same-origin endpoint the bridge calls on every Statamic Live Preview
-// `postMessage` (statamic.preview.updated). Statamic provides a fresh token on
-// each edit/reorder; this returns the current UNSAVED entry's page_blocks as
-// JSON so the bridge can re-POST them to Next.js and refresh the preview iframe
-// live — without waiting for a save.
-Route::get('/mc-live-preview-data', function (Request $request) {
-    $token = $request->statamicToken();
-    $entry = $token ? LivePreview::item($token) : null;
-
-    if (! $entry) {
-        return response()->json(['error' => 'Live Preview token missing or expired.'], 400);
-    }
-
-    $slug = $entry->slug();
-
-    return response()->json([
-        'collection'     => optional($entry->collection())->handle() ?? 'pages',
-        'slug'           => $slug,
-        'title'          => $entry->value('title'),
-        'seoDescription' => $entry->value('seo_description'),
-        'pageBlocks'     => $entry->value('page_blocks') ?? [],
-    ]);
-});
+// NOTE: The Live Preview bridge routes (/mc-live-preview + /mc-live-preview-data)
+// now ship with the mister-chameleon/statamic addon (registered in its
+// ServiceProvider), so they no longer live here. See the addon's routes/web.php.
 
 // Route::statamic('example', 'example-view', [
 //    'title' => 'Example'
