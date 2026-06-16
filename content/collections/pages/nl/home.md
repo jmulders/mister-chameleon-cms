@@ -7,7 +7,7 @@ template: home
 uri: /
 seo_description: 'Mister Chameleon personaliseert je B2B-website voor elke bezoeker — zonder code, live in one afternoon.'
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1781641288
+updated_at: 1781641729
 page_blocks:
   - id: ihVwQtz5QbZPKiChh_pXx
     title: video
@@ -200,7 +200,7 @@ page_blocks:
     enabled: true
   -
     id: l6xr9V7GwGezIsxAQDFgc
-    variant: timeline_milestones
+    variant: timeline_slider
     heading: ssjkjkj
     description: 'ssakasjka kjacjkca'
     items:
