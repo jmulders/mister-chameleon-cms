@@ -5,40 +5,112 @@ site: nl
 title: Home
 template: home
 uri: /
-seo_description: 'Mister Chameleon personaliseert je B2B-website voor elke bezoeker — zonder code, live in één middag.'
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
 updated_at: 1781641729
 page_blocks:
-  - id: seed-hero
+  - id: ctx_hero
     type: context_slot
     slot_type: hero
     variant_key: hero_default
     is_active: true
-    enabled: true
-  - id: seed-proof
+  - id: ctx_proof
     type: context_slot
     slot_type: proof
     variant_key: proof_default
     is_active: true
-    enabled: true
-  - id: seed-cta
+  - id: ctx_cta
     type: context_slot
     slot_type: cta
     variant_key: cta_default
     is_active: true
+  -
+    type: feature_grid
     enabled: true
-  - id: seed-feature
-    type: context_slot
-    slot_type: feature
-    variant_key: feature_default
-    is_active: true
+    variant: feature_grid_3up
+    heading: 'Waarom kiezen voor ons'
+    subtitle: 'De voordelen die het verschil maken'
+    items:
+      - icon: Zap
+        title: 'Snel van start'
+        body: 'Live in één middag — geen lange implementaties.'
+      - icon: Shield
+        title: Privacy-vriendelijk
+        body: 'Geen cookies, geen toestemming nodig.'
+      - icon: TrendingUp
+        title: 'Meetbare resultaten'
+        body: 'Gemiddeld 3× hogere conversie.'
+      - icon: Settings
+        title: 'Eenvoudig beheer'
+        body: 'Content beheren in uw vertrouwde CMS.'
+      - icon: Users
+        title: 'Persoonlijke aanpak'
+        body: 'Elke bezoeker krijgt de meest relevante boodschap.'
+      - icon: BarChart2
+        title: 'Inzicht & rapportage'
+        body: 'Realtime inzicht in prestaties per segment.'
+  -
+    type: logo_strip
     enabled: true
-  - id: seed-conversion
-    type: context_slot
-    slot_type: conversion
-    variant_key: conversion_default
-    is_active: true
+    variant: default
+    heading: 'Vertrouwd door toonaangevende bedrijven'
+    logos: {}
+  -
+    type: image
     enabled: true
+    variant: text_media_right
+    heading: 'Gebouwd voor groei'
+    body: 'Onze oplossing past zich aan elke bezoeker aan, op basis van wie ze zijn en waarom ze komen. Geen handmatige segmentatie, geen complexe regels — gewoon relevante content op het juiste moment.'
+    ctas:
+      - label: 'Meer over ons'
+        href: /about
+    alt: Afbeelding
+  -
+    type: stats
+    enabled: true
+    variant: default
+    items:
+      - value: 250+
+        label: 'tevreden klanten'
+      - value: 3×
+        label: 'hogere conversie'
+      - value: '< 1 dag'
+        label: implementatietijd
+      - value: 100%
+        label: GDPR-compliant
+  -
+    type: testimonial_section
+    enabled: true
+    variant: testimonial_grid
+    heading: 'Wat onze klanten zeggen'
+    items:
+      - quote: 'Eindelijk personalisatie die écht werkt. Onze conversie is in een week verdubbeld.'
+        author: 'Marie van den Berg'
+        role: 'Marketing Manager'
+        company: 'Voorbeeld B.V.'
+      - quote: 'De implementatie was verrassend eenvoudig. Binnen een dag de eerste resultaten.'
+        author: 'Thomas Jansen'
+        role: CTO
+        company: 'Tech Startup'
+      - quote: 'We zien nu precies wat werkt voor welke bezoeker. Onmisbaar geworden.'
+        author: 'Lisa de Vries'
+        role: 'Growth Lead'
+        company: Scale-up
+  - type: news_list
+    enabled: true
+    variant: default
+    heading: 'Laatste nieuws'
+  -
+    type: cta_section
+    enabled: true
+    variant: cta_card
+    heading: 'Klaar om te starten?'
+    body: 'Sluit u aan bij honderden bedrijven die al personaliseren.'
+    primary_cta:
+      label: 'Gratis proberen'
+      href: /contact
+    secondary_cta:
+      label: 'Demo aanvragen'
+      href: /contact
 hero_variants:
   -
     type: hero_variant
