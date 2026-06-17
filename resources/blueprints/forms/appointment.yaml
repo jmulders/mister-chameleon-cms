@@ -1,0 +1,47 @@
+title: 'Appointment request'
+fields:
+  -
+    handle: name
+    field:
+      type: text
+      display: 'Your name'
+      required: true
+      validate:
+        - required
+  -
+    handle: email
+    field:
+      type: text
+      input_type: email
+      display: 'Email address'
+      required: true
+      validate:
+        - required
+        - email
+  -
+    handle: phone
+    field:
+      type: text
+      input_type: tel
+      display: 'Phone number'
+  -
+    handle: company
+    field:
+      type: text
+      display: 'Company / organisation'
+  -
+    handle: preferredTime
+    field:
+      type: select
+      display: 'Preferred time of day'
+      clearable: true
+      placeholder: 'No preference'
+      options:
+        morning: 'Morning (09:00 – 12:00)'
+        afternoon: 'Afternoon (12:00 – 17:00)'
+        evening: 'Early evening (17:00 – 19:00)'
+  -
+    handle: message
+    field:
+      type: textarea
+      display: "Anything you'd like us to know?"
