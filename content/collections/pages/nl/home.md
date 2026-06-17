@@ -5,73 +5,16 @@ site: nl
 title: Home
 template: home
 uri: /
-seo_description: 'Mister Chameleon personaliseert je B2B-website voor elke bezoeker — zonder code, live in one afternoon.'
+seo_description: 'Mister Chameleon personaliseert je B2B-website voor elke bezoeker — zonder code, live in één middag.'
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
 updated_at: 1781641729
 page_blocks:
-  - id: ihVwQtz5QbZPKiChh_pXx
-    title: video
-    video_url: uER64JbBd7M
-    type: video
-    enabled: true
-    video_source: youtube
-    video_id: uER64JbBd7M
-    video_autoplay: false
-    video_loop: false
-    variant: contained
-    caption: 'caption below!'
   - id: seed-hero
     type: context_slot
     slot_type: hero
     variant_key: hero_default
     is_active: true
     enabled: true
-  -
-    id: AQfPmgghtta-dapPdu6tp
-    variant: feature_grid_3up
-    heading: Features
-    cta:
-      label: aaa
-      href: '#'
-      variant: primary
-    type: feature_grid
-    enabled: true
-    items:
-      - id: 0B3WvdcEstLzlv6KLYhi6
-        type: feature
-        icon: zap
-        title: zap
-        body: zap
-        enabled: true
-      - id: DW0D7hfvpZwUIGMBRj7SI
-        type: feature
-        icon: a
-        title: a
-        body: a
-        enabled: true
-  - id: seed-feature
-    type: context_slot
-    slot_type: feature
-    variant_key: feature_default
-    is_active: true
-    enabled: true
-  -
-    id: yExQ9aDRLC7X2CeREbAKt
-    variant: text_media_right
-    eyebrow: 'Eyes on you'
-    heading: Headerrr
-    body: 'Body body body'
-    ctas:
-      - id: gfhzKho8TIsyhi3kA_ZJ1
-        label: CTA
-        href: '#'
-    type: image
-    enabled: true
-    media_type: video
-    video_source: youtube
-    video_id: uER64JbBd7M
-    video_autoplay: true
-    video_loop: true
   - id: seed-proof
     type: context_slot
     slot_type: proof
@@ -84,170 +27,17 @@ page_blocks:
     variant_key: cta_default
     is_active: true
     enabled: true
+  - id: seed-feature
+    type: context_slot
+    slot_type: feature
+    variant_key: feature_default
+    is_active: true
+    enabled: true
   - id: seed-conversion
     type: context_slot
     slot_type: conversion
     variant_key: conversion_default
     is_active: true
-    enabled: true
-  -
-    id: Yn02wa_tjg-svU1Pv9ZtZ
-    variant: team_grid
-    heading: team
-    intro: ssss
-    members:
-      -
-        id: 33JE0fsCIJOtQa0JMonLB
-        name: aap
-        role: bnoo
-        bio: sad
-        socials:
-          linkedin: 'https://www.linkedin.com/in/jaspermulders/'
-        image: tools_transparent-background_promo-showcase_01-after-(1).webp
-    type: team_section
-    enabled: true
-  -
-    id: d1mfBO68R7exQol8qxLql
-    variant: accordion
-    heading: aa
-    steps:
-      - id: m7ttuJ_MPfRGGZbSvpg-w
-        type: step
-        number: a
-        title: a
-        body: aa
-        duration: ss
-        enabled: true
-    type: process_steps
-    enabled: true
-  -
-    id: 742wwMnxwfim4ZR8nnRVw
-    heading: ss
-    type: related_content
-    enabled: true
-    source_mode: manual
-    entries:
-      - contact
-      - fdc219eb-be02-479f-b6eb-4c0edd7f9687
-      - ca71faba-be67-44a8-93ba-1a8daa4dcaed
-      - cases
-  -
-    id: c6NGpdj31H3BXh7YJ7ub1
-    variant: listing_slider
-    heading: dd
-    media_items:
-      - id: gIqGAqyUs6dg79DYJ7_RR
-        media_type: image
-        type: slide
-        enabled: true
-        image: milton-elegant-648-beach.webp
-      - id: x_VuMuhRjY2GRiY3XPY7w
-        media_type: image
-        type: slide
-        enabled: true
-        image: milton-elegant-648-beach.webp
-      - id: EiMEhEpE5UOV-DP2n5cbG
-        media_type: video
-        video_source: youtube
-        video_id: uER64JbBd7M
-        autoplay: true
-        type: slide
-        enabled: true
-      - id: Ae7Dplc0XUSLJ5Tkz27Ss
-        media_type: image
-        type: slide
-        enabled: true
-        image: milton-elegant-648-beach.webp
-    type: listing
-    enabled: true
-  - id: uo94vuyK1S8Tn8cV93yui
-    variant: text_single
-    heading: dd
-    body: dddd
-    type: text_section
-    enabled: true
-  - id: FWlwNwLiZskhEvvudKZig
-    variant: text_single
-    type: text_section
-    enabled: true
-    heading: ssaas
-    body: sasaas
-  - id: OgH1G-pHj1hgtxPEHqKbE
-    max_width: default
-    body: '<h2>sss</h2><ul><li><p>sss</p></li><li><p>aas</p></li><li><p>ss</p></li></ul><p>dd<img src="statamic://asset::assets::milton-elegant-648-beach.webp"></p><table><tbody><tr><td rowspan="1" colspan="1"><p>a</p></td><td rowspan="1" colspan="1"><p>s</p></td><td rowspan="1" colspan="1"><p>d</p></td></tr><tr><td rowspan="1" colspan="1"><p>gg</p></td><td rowspan="1" colspan="1"><p>gg</p></td><td rowspan="1" colspan="1"><p>ff</p></td></tr><tr><td rowspan="1" colspan="1"><p>bb</p></td><td rowspan="1" colspan="1"><p>dd</p></td><td rowspan="1" colspan="1"><p>ss</p></td></tr></tbody></table>'
-    type: rich_text
-    enabled: true
-  -
-    id: 1Z6i6SWZt00fOFgVCqvPQ
-    variant: horizontal
-    heading: sss
-    steps:
-      - id: AJVtF7UXEIHDn4sQQtSSg
-        type: step
-        number: '11'
-        title: '22'
-        body: '33'
-        duration: '22'
-        enabled: true
-      - id: 1yDsa-P-3wHUuzDWAYNbx
-        type: step
-        number: '2'
-        title: ad
-        body: adad
-        duration: ad
-        enabled: true
-    type: process_steps
-    enabled: true
-  -
-    id: l6xr9V7GwGezIsxAQDFgc
-    variant: timeline_slider
-    heading: ssjkjkj
-    description: 'ssakasjka kjacjkca'
-    items:
-      - id: koAcs2Ksq9NETVHLNrG5W
-        type: item
-        date: 'March 2025'
-        title: Founded
-        description: aaavaccaac
-        media_type: image
-        enabled: true
-        media_image: ibiza-rush-no-966-1925010.webp
-      - id: P48D_0mOxkrB8PG7B2Ucr
-        type: item
-        date: '2023'
-        title: Founded
-        description: 'In 2023 begin het allemaal'
-        media_type: youtube
-        video_id: ioblgpA5eTo
-        video_autoplay: true
-        video_loop: true
-        enabled: true
-    type: timeline
-    enabled: true
-  -
-    id: r_FhF1avhmtuELEjX46L5
-    variant: testimonial_grid
-    heading: ss
-    items:
-      - id: Wxi64-my997qQwUgON5R7
-        quote: sasa
-        author: assa
-        role: sasa
-        company: sasasa
-        avatar: tools_transparent-background_promo-showcase_01-after-(1).webp
-        type: testimonial
-        enabled: true
-    type: testimonial_section
-    enabled: true
-  -
-    id: c5UUQ6ZfwPUn0MQXfV4kW
-    heading: dadda
-    source_mode: manual
-    entries:
-      - 73ffe2e7-8a0a-486e-9754-296f160f9f31
-      - blog
-      - contact
-    type: related_content
     enabled: true
 hero_variants:
   -
