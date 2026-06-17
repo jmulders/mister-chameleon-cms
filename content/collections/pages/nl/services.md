@@ -1,7 +1,7 @@
 ---
-site: nl
 id: 3bb3ae71-088d-4db6-b7f8-72e469a6b549
 blueprint: pages
+site: nl
 title: Services
 template: default
 page_blocks:
@@ -22,40 +22,22 @@ page_blocks:
     heading: 'Waarom kiezen voor ons'
     subtitle: 'De voordelen die het verschil maken'
     items:
-      -
-        id: sv_feat_zap
-        type: feature
-        icon: Zap
+      - icon: Zap
         title: 'Snel van start'
         body: 'Live in één middag — geen lange implementaties.'
-      -
-        id: sv_feat_shield
-        type: feature
-        icon: Shield
+      - icon: Shield
         title: Privacy-vriendelijk
         body: 'Geen cookies, geen toestemming nodig.'
-      -
-        id: sv_feat_trending
-        type: feature
-        icon: TrendingUp
+      - icon: TrendingUp
         title: 'Meetbare resultaten'
         body: 'Gemiddeld 3× hogere conversie.'
-      -
-        id: sv_feat_settings
-        type: feature
-        icon: Settings
+      - icon: Settings
         title: 'Eenvoudig beheer'
         body: 'Content beheren in uw vertrouwde CMS.'
-      -
-        id: sv_feat_users
-        type: feature
-        icon: Users
+      - icon: Users
         title: 'Persoonlijke aanpak'
         body: 'Elke bezoeker krijgt de meest relevante boodschap.'
-      -
-        id: sv_feat_bar
-        type: feature
-        icon: BarChart2
+      - icon: BarChart2
         title: 'Inzicht & rapportage'
         body: 'Realtime inzicht in prestaties per segment.'
   - type: text_section
