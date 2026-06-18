@@ -4,6 +4,8 @@ section_tabs:
   - id: IFFezVcjL50tMQCa--W_Y
     label: Website
     href: 'entry::home'
+    nav_handle: main_nav
   - id: ZxOAwhdOA_hB0sJAplVmC
     label: 'Werken bij'
     href: 'entry::d229a428-009a-4ec7-a6b5-e6be0d1a4eab'
+    nav_handle: top_bar
