@@ -16,8 +16,35 @@ page_blocks:
     type: rich_text
     enabled: true
     max_width: default
+  -
+    id: oVigT4p_JZLTCWJwYow4L
+    variant: timeline_slider
+    heading: ss
+    description: sadaf
+    items:
+      - id: K39eIt_oaNhsvYOPNLB-i
+        date: '2000'
+        title: tty
+        description: jjhhjh
+        media_type: youtube
+        video_id: ioblgpA5eTo
+        video_placeholder: cznmcy1wcml2yxrll3jhd3bpegvsx2ltywdlcy93zwjzaxrlx2nvbnrlbnqvam9injgwlte2ni1wlwwxzgj1ctn2lnbuzw-kopie.png
+        video_autoplay: true
+        video_loop: true
+        type: item
+        enabled: true
+      - id: X09nkUlZKfe9k0ZZIpjGZ
+        date: '2025'
+        title: kjk
+        description: klkl
+        media_type: image
+        media_image: ibiza-rush-no-966-1925010.webp
+        type: item
+        enabled: true
+    type: timeline
+    enabled: true
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1781381368
+updated_at: 1781762601
 robots_noindex: false
 robots_nofollow: false
 ---
