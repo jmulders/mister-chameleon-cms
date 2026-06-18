@@ -1,2 +1,9 @@
 header_variant: triband
 footer_variant: corporate
+section_tabs:
+  - id: IFFezVcjL50tMQCa--W_Y
+    label: Website
+    href: 'entry::home'
+  - id: ZxOAwhdOA_hB0sJAplVmC
+    label: 'Werken bij'
+    href: 'entry::d229a428-009a-4ec7-a6b5-e6be0d1a4eab'
