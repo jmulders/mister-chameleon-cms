@@ -6,7 +6,7 @@ title: Home
 template: home
 uri: /
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1781788544
+updated_at: 1781788855
 page_blocks:
   - id: ctx_hero
     type: context_slot
@@ -146,7 +146,7 @@ page_blocks:
     body: 'Sluit u aan bij honderden bedrijven die al personaliseren.'
     primary_cta:
       label: 'Gratis proberen'
-      href: /contact
+      href: /nl/book-demo
     secondary_cta:
       label: 'Demo aanvragen'
       href: /contact
