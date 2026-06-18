@@ -6,7 +6,7 @@ title: Home
 template: home
 uri: /
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1781788918
+updated_at: 1781802813
 page_blocks:
   - id: ctx_hero
     type: context_slot
@@ -150,6 +150,15 @@ page_blocks:
     secondary_cta:
       label: 'Boek een demo'
       href: /nl/book-demo
+  - id: mKc3TnoTqyC_HpipI-cwA
+    title: 'Mister Chameleon'
+    video_source: youtube
+    video_id: ioblgpA5eTo
+    video_autoplay: true
+    video_loop: true
+    variant: full-width
+    type: video
+    enabled: true
 hero_variants:
   -
     type: hero_variant
