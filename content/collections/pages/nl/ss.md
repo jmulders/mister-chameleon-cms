@@ -45,7 +45,7 @@ page_blocks:
     enabled: true
   -
     id: N-esiBWLkkFsPtPPWbG-n
-    variant: form_inline
+    variant: form_split
     heading: 'Boek een demo'
     subtitle: 'Zelf zien? Boek een persoonlijke demo'
     form:
@@ -53,7 +53,7 @@ page_blocks:
     type: form_section
     enabled: true
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1781762881
+updated_at: 1781764533
 robots_noindex: false
 robots_nofollow: false
 ---
