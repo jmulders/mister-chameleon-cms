@@ -372,6 +372,7 @@ conversion_variants:
   ctas:
   - label: 'Demo plannen'
     href: /demo
+  form_key: book-demo
 - type: conversion_variant
   key: conversion_signup
   is_active: true
