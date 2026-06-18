@@ -43,8 +43,17 @@ page_blocks:
         enabled: true
     type: timeline
     enabled: true
+  -
+    id: N-esiBWLkkFsPtPPWbG-n
+    variant: form_inline
+    heading: 'Boek een demo'
+    subtitle: 'Zelf zien? Boek een persoonlijke demo'
+    form:
+      - appointment
+    type: form_section
+    enabled: true
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1781762601
+updated_at: 1781762872
 robots_noindex: false
 robots_nofollow: false
 ---
