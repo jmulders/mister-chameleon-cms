@@ -6,7 +6,7 @@ title: Home
 template: home
 uri: /
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1781788877
+updated_at: 1781788918
 page_blocks:
   - id: ctx_hero
     type: context_slot
@@ -148,7 +148,7 @@ page_blocks:
       label: 'Gratis proberen'
       href: /contact
     secondary_cta:
-      label: 'Demo aanvragen'
+      label: 'Boek een demo'
       href: /nl/book-demo
 hero_variants:
   -
