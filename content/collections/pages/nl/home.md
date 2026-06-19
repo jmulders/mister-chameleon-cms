@@ -99,10 +99,6 @@ page_blocks:
     author: 'Lisa de Vries'
     role: 'Growth Lead'
     company: Scale-up
-- type: news_list
-  enabled: true
-  variant: default
-  heading: 'Laatste nieuws'
 - type: cta_section
   enabled: true
   variant: cta_card
