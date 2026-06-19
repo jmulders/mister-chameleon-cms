@@ -8,157 +8,36 @@ uri: /
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
 updated_at: 1781802822
 page_blocks:
-  - id: ctx_hero
+  - id: seed-hero
     type: context_slot
     slot_type: hero
     variant_key: hero_default
     is_active: true
     enabled: true
-  - id: mKc3TnoTqyC_HpipI-cwA
-    title: 'Mister Chameleon'
-    video_source: youtube
-    video_id: ioblgpA5eTo
-    video_autoplay: true
-    video_loop: true
-    variant: full-width
-    type: video
-    enabled: true
-  - id: ctx_proof
+  - id: seed-proof
     type: context_slot
     slot_type: proof
     variant_key: proof_default
     is_active: true
     enabled: true
-  - id: ctx_cta
+  - id: seed-cta
     type: context_slot
     slot_type: cta
     variant_key: cta_default
     is_active: true
     enabled: true
-  -
-    id: jRsaUopZ
-    type: feature_grid
+  - id: seed-feature
+    type: context_slot
+    slot_type: feature
+    variant_key: feature_default
+    is_active: true
     enabled: true
-    variant: feature_grid_3up
-    heading: 'Waarom kiezen voor ons'
-    subtitle: 'De voordelen die het verschil maken'
-    items:
-      - id: pef5DgUK
-        icon: Zap
-        title: 'Snel van start'
-        body: 'Live in één middag — geen lange implementaties.'
-        type: feature
-        enabled: true
-      - id: iq3b3sEG
-        icon: Shield
-        title: Privacy-vriendelijk
-        body: 'Geen cookies, geen toestemming nodig.'
-        type: feature
-        enabled: true
-      - id: xlUFFs62
-        icon: TrendingUp
-        title: 'Meetbare resultaten'
-        body: 'Gemiddeld 3× hogere conversie.'
-        type: feature
-        enabled: true
-      - id: sr9vc9uK
-        icon: Settings
-        title: 'Eenvoudig beheer'
-        body: 'Content beheren in uw vertrouwde CMS.'
-        type: feature
-        enabled: true
-      - id: q969Rr56
-        icon: Users
-        title: 'Persoonlijke aanpak'
-        body: 'Elke bezoeker krijgt de meest relevante boodschap.'
-        type: feature
-        enabled: true
-      - id: XkYUfhhN
-        icon: BarChart2
-        title: 'Inzicht & rapportage'
-        body: 'Realtime inzicht in prestaties per segment.'
-        type: feature
-        enabled: true
-    cta:
-      variant: primary
-  - id: iQT0DOeD
-    type: logo_strip
+  - id: seed-conversion
+    type: context_slot
+    slot_type: conversion
+    variant_key: conversion_default
+    is_active: true
     enabled: true
-    variant: default
-    heading: 'Vertrouwd door toonaangevende bedrijven'
-  -
-    id: GwCVKQLg
-    type: image
-    enabled: true
-    variant: text_media_right
-    heading: 'Gebouwd voor groei'
-    body: 'Onze oplossing past zich aan elke bezoeker aan, op basis van wie ze zijn en waarom ze komen. Geen handmatige segmentatie, geen complexe regels — gewoon relevante content op het juiste moment.'
-    ctas:
-      - id: zhIYCRxR
-        label: 'Meer over ons'
-        href: /about
-    alt: Afbeelding
-    media_type: image
-    media_bg_type: none
-  -
-    id: FoFE1Uba
-    type: stats
-    enabled: true
-    variant: default
-    items:
-      - id: BpHAvo00
-        value: 250+
-        label: 'tevreden klanten'
-      - id: onZGWAQ6
-        value: 3×
-        label: 'hogere conversie'
-      - id: 6MnMBlYa
-        value: '< 1 dag'
-        label: implementatietijd
-      - id: 395SPkdn
-        value: 100%
-        label: GDPR-compliant
-  -
-    id: htaeQLgA
-    type: testimonial_section
-    enabled: true
-    variant: testimonial_grid
-    heading: 'Wat onze klanten zeggen'
-    items:
-      - id: G4JINgg4
-        quote: 'Eindelijk personalisatie die écht werkt. Onze conversie is in een week verdubbeld.'
-        author: 'Marie van den Berg'
-        role: 'Marketing Manager'
-        company: 'Voorbeeld B.V.'
-        type: testimonial
-        enabled: true
-      - id: LFsONlqv
-        quote: 'De implementatie was verrassend eenvoudig. Binnen een dag de eerste resultaten.'
-        author: 'Thomas Jansen'
-        role: CTO
-        company: 'Tech Startup'
-        type: testimonial
-        enabled: true
-      - id: vCLb41X8
-        quote: 'We zien nu precies wat werkt voor welke bezoeker. Onmisbaar geworden.'
-        author: 'Lisa de Vries'
-        role: 'Growth Lead'
-        company: Scale-up
-        type: testimonial
-        enabled: true
-  -
-    id: 0qy350df
-    type: cta_section
-    enabled: true
-    variant: cta_card
-    heading: 'Klaar om te starten?'
-    body: 'Sluit u aan bij honderden bedrijven die al personaliseren.'
-    primary_cta:
-      label: 'Gratis proberen'
-      href: /contact
-    secondary_cta:
-      label: 'Boek een demo'
-      href: /nl/book-demo
 hero_variants:
   -
     type: hero_variant
@@ -449,4 +328,5 @@ conversion_variants:
         href: /signup
 robots_noindex: false
 robots_nofollow: false
+seo_description: 'Mister Chameleon personaliseert je B2B-website voor elke bezoeker — zonder code, live in één middag.'
 ---
