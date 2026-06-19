@@ -29,7 +29,7 @@ return [
         'collections' => [
             '*' => [
                 'enabled' => true,
-                'allowed_filters' => ['slug', 'title', 'status', 'id'],
+                'allowed_filters' => ['slug', 'title', 'status', 'id', 'block_key', 'key'],
             ],
         ],
         'navs' => true,
