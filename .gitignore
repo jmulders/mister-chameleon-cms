@@ -31,10 +31,10 @@ Thumbs.db
 # Inhoud wordt genegeerd via de .gitignore-bestanden IN die mappen,
 # zodat de mappen zelf in de repo blijven bestaan (Laravel vereist dat).
 
-# ── Mister Chameleon: door `php please mc:sync` gegenereerde artefacten ──
-# Deze worden uit de platform-manifest geschreven bij elke deploy en horen
-# NIET in versiebeheer (anders botst de Statamic Git-integratie hierop).
-/resources/fieldsets/mc_*.yaml
-/resources/fieldsets/mrc_*.yaml
-/resources/views/vendor/mister-chameleon/
-/resources/css/mister-chameleon-tokens.css
+# ── Mister Chameleon: platform-fieldsets/views (mc:sync-output) ──
+# Deze worden NU GECOMMIT zodat ze meebakken in de Docker-image (Ploi Cloud).
+# Reden: de container-build/-runtime kan `php please mc:sync` daar niet
+# betrouwbaar draaien (please zit niet in de build-context, init-container is
+# ephemeral). Daarom is de platform-manifest-output onderdeel van de repo.
+# Bij een platform-wijziging van de blok-definities: lokaal `php please mc:sync`
+# draaien en het resultaat opnieuw committen.
