@@ -14,9 +14,15 @@ git pull origin "${BRANCH:-main}"
 
 composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
-# Pull the platform-managed fieldsets/blocks (resolves the tenant by
-# MISTER_CHAMELEON_TENANT_KEY against MISTER_CHAMELEON_API_URL).
-php please mc:sync
+# NOTE: `php please mc:sync` is intentionally NOT run here.
+# The platform fieldsets + blueprints are committed in this repo
+# (resources/fieldsets, resources/blueprints) and bake into the image, so the
+# deploy does NOT depend on the platform (MISTER_CHAMELEON_API_URL) being
+# reachable. Running mc:sync fetched the manifest from www.misterchameleon.nl on
+# every deploy and — because of `set -euo pipefail` above — aborted the entire
+# deploy whenever the platform was briefly unavailable (e.g. mid-redeploy),
+# which is exactly the "Fetching build manifest …" hang.
+# To refresh fieldsets, update them in the repo and redeploy.
 
 php please cache:clear
 php please stache:refresh
