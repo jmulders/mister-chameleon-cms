@@ -6,8 +6,17 @@ title: Home
 template: home
 uri: /
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1782153500
+updated_at: 1782153540
 page_blocks:
+  - id: 3siDRco3FuEmNACXISLM3
+    title: 'Online steunles: even goed als steunles aan huis?'
+    video_source: youtube
+    video_id: ksaKvMCyWRo
+    video_autoplay: true
+    video_loop: false
+    variant: contained
+    type: video
+    enabled: true
   - id: ctx_hero
     type: context_slot
     slot_type: hero
@@ -150,15 +159,6 @@ page_blocks:
     secondary_cta:
       label: 'Demo aanvragen'
       href: /contact
-  - id: 3siDRco3FuEmNACXISLM3
-    title: Steunles
-    video_source: youtube
-    video_id: ksaKvMCyWRo
-    video_autoplay: true
-    video_loop: false
-    variant: contained
-    type: video
-    enabled: true
 hero_variants:
   -
     type: hero_variant
