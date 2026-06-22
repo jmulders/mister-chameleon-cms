@@ -13,7 +13,7 @@ social_media:
     enabled: true
   - id: Qj8HYkvU
     platform: twitter
-    url: 'https://twitter.com/misterchameleo'
+    url: 'https://twitter.com/misterchameleon'
     enabled: true
   - id: GNtKZX0R
     platform: github
