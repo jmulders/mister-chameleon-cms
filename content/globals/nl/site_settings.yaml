@@ -1,5 +1,5 @@
-site_name: 'Mister Chameleon'
-site_tagline: 'Website personalisation for every visitor'
+site_name: Steunles
+site_tagline: 'Steunles voor iedereen'
 logo: 032001_logo-mister-chameleon_kleur_cmyk.jpg
 logo_alt: 'Mister Chameleon'
 logo_dark: 032001_logo-mister-chameleon_diap.jpg
@@ -28,6 +28,8 @@ top_bar_cta_href: 'entry::pricing'
 top_bar_cta_open_in_new_tab: false
 primary_cta_label: 'Start free'
 primary_cta_href: '#signup'
+primary_cta_style: primary
+footer_bottom_enabled: true
 footer_bottom_show_social: true
 docs_url: 'https://docs.mister-chameleon.io'
 status_url: 'https://status.mister-chameleon.io'
