@@ -6,8 +6,14 @@ title: Home
 template: home
 uri: /
 updated_by: b334658b-bca1-421e-a73d-1f97e8e38070
-updated_at: 1782153540
+updated_at: 1782162383
 page_blocks:
+  - id: ctx_hero
+    type: context_slot
+    slot_type: hero
+    variant_key: hero_default
+    is_active: true
+    enabled: true
   - id: 3siDRco3FuEmNACXISLM3
     title: 'Online steunles: even goed als steunles aan huis?'
     video_source: youtube
@@ -16,12 +22,6 @@ page_blocks:
     video_loop: false
     variant: contained
     type: video
-    enabled: true
-  - id: ctx_hero
-    type: context_slot
-    slot_type: hero
-    variant_key: hero_default
-    is_active: true
     enabled: true
   - id: ctx_proof
     type: context_slot
