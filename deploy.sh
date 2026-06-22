@@ -24,7 +24,24 @@ if [ -n "${STATAMIC_GIT_SSH_KEY:-}" ]; then
   git remote set-url origin "${STATAMIC_GIT_REMOTE:-$(git remote get-url origin | sed -E 's#https://github.com/#git@github.com:#')}"
 fi
 
+# Discard any local rewrite of sites.yaml from a previous deploy so `git pull`
+# never conflicts (the per-instance URL is re-applied below from the env var).
+git checkout -- resources/sites.yaml 2>/dev/null || true
+
 git pull origin "${BRANCH:-main}"
+
+# ── Per-instance public site URL ─────────────────────────────────────────────
+# resources/sites.yaml is shared across all tenants (one repo) and hard-codes the
+# nl site URL. Statamic v6 doesn't interpolate env in sites.yaml, so we rewrite it
+# here from STATAMIC_SITE_URL — giving each instance its OWN public frontend URL
+# (permalinks, "Visit URL", og:url) without a separate repo. Statamic Git only
+# tracks content/, so this working-copy change is never pushed back.
+#   steunles        → STATAMIC_SITE_URL=https://www.steunles.nl
+#   misterchameleon → STATAMIC_SITE_URL=https://www.misterchameleon.nl  (or unset)
+if [ -n "${STATAMIC_SITE_URL:-}" ]; then
+  sed -i "s#https://www.misterchameleon.nl#${STATAMIC_SITE_URL}#g" resources/sites.yaml
+  echo "→ sites.yaml nl URL set to ${STATAMIC_SITE_URL}"
+fi
 
 composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
