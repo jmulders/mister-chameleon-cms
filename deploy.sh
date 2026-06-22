@@ -25,7 +25,11 @@ composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 # To refresh fieldsets, update them in the repo and redeploy.
 
 php please cache:clear
+# stache:refresh = clear + warm in one, so the content index is pre-built at
+# deploy time instead of lazily on the first visitor request (which would give a
+# slow / briefly empty first hit — the nav flap we want to avoid).
 php please stache:refresh
+php artisan optimize:clear
 
 # Restart the queue/horizon if you run one:
 # php artisan queue:restart
