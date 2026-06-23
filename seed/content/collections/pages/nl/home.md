@@ -5,7 +5,7 @@ site: nl
 title: Home
 template: marketing_page
 uri: /
-seo_description: 'Real-time B2B website personalisation — no cookies, no manual segmenting.'
+seo_description: 'Neutrale startpagina — vervang deze placeholder-tekst door je eigen content.'
 page_blocks:
   - id: ctx-hero
     type: context_slot
@@ -43,60 +43,60 @@ hero_variants:
     is_active: true
     layout_variant: hero_default
     content_align: center
-    title: 'Your website adapts to every visitor'
-    subtitle: 'Real-time B2B personalisation — no cookies, no manual segmenting.'
-    tag: 'Website personalisation'
+    title: 'Jouw belangrijkste boodschap hier'
+    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    tag: 'Introductie'
     ctas:
-      - label: 'Book a demo'
-        href: /nl/book-demo
-      - label: 'How it works'
-        href: /features
+      - label: 'Primaire actie'
+        href: '#'
+      - label: 'Meer informatie'
+        href: '#'
 proof_variants:
   - type: proof_variant
     key: proof_default
     is_active: true
-    title: 'Trusted by B2B teams'
+    title: 'Social proof'
     items:
-      - title: '+34% more leads'
-        text: 'Average result after 90 days of personalisation.'
-      - title: '3× higher engagement'
-        text: 'Relevant content drives clicks, scrolls and contacts.'
-      - title: 'No-code setup'
-        text: 'One snippet in your CMS and you are live.'
+      - title: 'Kerncijfer één'
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      - title: 'Kerncijfer twee'
+        text: 'Sed do eiusmod tempor incididunt ut labore et dolore.'
+      - title: 'Kerncijfer drie'
+        text: 'Ut enim ad minim veniam, quis nostrud exercitation.'
 feature_variants:
   - type: feature_variant
     key: feature_default
     is_active: true
     layout_variant: feature_grid
-    title: 'Everything you need for smart personalisation'
-    subtitle: 'From real-time segmentation to content management.'
+    title: 'Belangrijkste functies'
+    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.'
     items:
-      - title: 'Real-time segmentation'
-        body: 'Classify every visitor instantly — no cookie wall.'
-      - title: 'Visual variant editor'
-        body: 'Configure hero, proof and CTA variants without code.'
-      - title: 'Webhooks & API'
-        body: 'Connect to your CRM, MAP or data layer.'
+      - title: 'Functie één'
+        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      - title: 'Functie twee'
+        body: 'Sed do eiusmod tempor incididunt ut labore et dolore magna.'
+      - title: 'Functie drie'
+        body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco.'
 cta_variants:
   - type: cta_variant
     key: cta_default
     is_active: true
-    title: 'See what personalisation can do for you'
-    text: 'Book a free demo and watch your site become more relevant.'
-    cta_label: 'Book a demo'
-    cta_href: /nl/book-demo
+    title: 'Een duidelijke call-to-action'
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.'
+    cta_label: 'Primaire actie'
+    cta_href: '#'
 conversion_variants:
   - type: conversion_variant
     key: conversion_default
     is_active: true
     layout_variant: default
-    title: 'Start building today'
-    text: 'Create your account and explore the platform — free.'
+    title: 'Sluit af met een laatste duw'
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.'
     ctas:
-      - label: 'Create account'
-        href: /signup
-      - label: 'Book a demo'
-        href: /nl/book-demo
+      - label: 'Account aanmaken'
+        href: '#'
+      - label: 'Neem contact op'
+        href: '#'
 robots_noindex: false
 robots_nofollow: false
 ---
