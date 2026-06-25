@@ -260,8 +260,8 @@ return [
     */
 
     'set_preview_images' => [
-        'container' => 'set_previews',
-        'folder' => null,
+        'container' => 'assets',
+        'folder' => 'set-previews',
     ],
 
 ];
