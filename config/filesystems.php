@@ -70,6 +70,20 @@ return [
             'report' => false,
         ],
 
+        // Set-picker preview images. Deliberately NOT under public/assets:
+        // that path is a persistent volume on Ploi Cloud, which shadows any
+        // image-baked files committed to git. public/set-previews is plain
+        // image-baked static content, served by nginx and reproducible for
+        // every tenant via the template repo.
+        'set_previews' => [
+            'driver' => 'local',
+            'root' => public_path('set-previews'),
+            'url' => '/set-previews',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
     ],
 
     /*
