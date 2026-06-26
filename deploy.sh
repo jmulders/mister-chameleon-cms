@@ -39,7 +39,12 @@ git pull origin "${BRANCH:-main}"
 #   steunles        → STATAMIC_SITE_URL=https://www.steunles.nl
 #   misterchameleon → STATAMIC_SITE_URL=https://www.misterchameleon.nl  (or unset)
 if [ -n "${STATAMIC_SITE_URL:-}" ]; then
-  sed -i "s#https://www.misterchameleon.nl#${STATAMIC_SITE_URL}#g" resources/sites.yaml
+  # Set the nl site's URL (the FIRST `url:` line) to STATAMIC_SITE_URL,
+  # regardless of its current committed value. The previous version replaced a
+  # hard-coded "https://www.misterchameleon.nl" literal, which silently did
+  # NOTHING once the committed value had drifted (e.g. to steunles.nl) — leaving
+  # the wrong public host, which the Live Preview then loaded → wrong tenant.
+  sed -i "0,/^[[:space:]]*url:/ s#^\([[:space:]]*url:\).*#\1 '${STATAMIC_SITE_URL}'#" resources/sites.yaml
   echo "→ sites.yaml nl URL set to ${STATAMIC_SITE_URL}"
 fi
 
