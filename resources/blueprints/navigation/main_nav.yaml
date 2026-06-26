@@ -36,3 +36,60 @@ sections:
           instructions: 'Toont de excerpt / beschrijving van elke subpagina als tekst in het mega menu. Alleen van toepassing wanneer dit item een mega menu heeft.'
           default: true
           width: 50
+      -
+        handle: mega_cta_position
+        field:
+          type: select
+          display: 'CTA-blok positie'
+          instructions: 'Toont een promotie-CTA (afbeelding + kop + tekst + pijl) in het mega menu. Leeg = geen CTA.'
+          options:
+            left: 'Links — kaart naast de kolommen'
+            right: 'Rechts — kaart naast de kolommen'
+            bottom: 'Onder — balk over de volle breedte'
+          clearable: true
+          placeholder: 'Geen CTA'
+          width: 50
+      -
+        handle: mega_cta_heading
+        field:
+          type: text
+          display: 'CTA — kop'
+          instructions: 'Vetgedrukte kopregel, bijv. "Keuzehulp".'
+          width: 50
+      -
+        handle: mega_cta_text
+        field:
+          type: textarea
+          display: 'CTA — tekst'
+          instructions: 'Ondersteunende tekst onder de kop.'
+          rows: 2
+      -
+        handle: mega_cta_image
+        field:
+          type: assets
+          display: 'CTA — afbeelding'
+          container: assets
+          max_files: 1
+          mode: grid
+          width: 50
+      -
+        handle: mega_cta_url
+        field:
+          type: text
+          display: 'CTA — link'
+          instructions: 'Bestemming (intern pad zoals /keuzehulp of volledige URL).'
+          width: 50
+      -
+        handle: mega_cta_label
+        field:
+          type: text
+          display: 'CTA — knoplabel'
+          instructions: 'Optioneel. Leeg = alleen een pijl.'
+          width: 50
+      -
+        handle: mega_cta_new_tab
+        field:
+          type: toggle
+          display: 'CTA — in nieuw tabblad openen'
+          default: false
+          width: 50
