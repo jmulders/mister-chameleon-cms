@@ -21,6 +21,17 @@ sections:
     display: 'Mega Menu'
     fields:
       -
+        handle: dropdown_style
+        field:
+          type: select
+          display: 'Dropdown-weergave'
+          instructions: 'Hoe het submenu van dit item toont (alleen relevant als het subpaginas heeft). Mega = brede feature-kolommen + optionele CTA. Eenvoudig = compacte dropdown-lijst.'
+          options:
+            mega: 'Mega menu — brede kolommen + CTA'
+            simple: 'Eenvoudig — compacte dropdown'
+          default: mega
+          width: 50
+      -
         handle: mega_show_image
         field:
           type: toggle
@@ -75,9 +86,9 @@ sections:
       -
         handle: mega_cta_url
         field:
-          type: text
+          type: link
           display: 'CTA — link'
-          instructions: 'Bestemming (intern pad zoals /keuzehulp of volledige URL).'
+          instructions: 'Kies een pagina (entry) of voer een externe URL in.'
           width: 50
       -
         handle: mega_cta_label
