@@ -6,12 +6,11 @@ fields:
     field:
       type: select
       display: 'Header Variant'
-      instructions: 'Structural layout of the site header. Leave empty to use the theme family default.'
+      instructions: 'Look of the site header. Mega menus appear automatically when a nav item has sub-pages or a CTA — this only controls the style. Leave empty to use the theme family default.'
       options:
-        minimal: 'Minimal — compact logo + horizontal nav'
-        flyout: 'Flyout — logo + nav with dropdown menus'
-        mega: 'Mega — logo + full-width mega-menu'
-        transparent: 'Transparent — overlays the hero section'
+        standard: 'Standard — logo + nav (dropdowns/mega menus automatic)'
+        compact: 'Compact — same, denser nav'
+        transparent: 'Transparent — floats over the hero, solidifies on scroll'
         triband: 'Triband — section tabs / logo+search / main nav (3 rows)'
       clearable: true
       placeholder: 'Theme family default'

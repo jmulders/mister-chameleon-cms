@@ -8,12 +8,11 @@ sections:
         field:
           type: select
           display: 'Header Variant'
-          instructions: 'Override the header style when this page is active. Leave empty to use the site-wide default.'
+          instructions: 'Override the header STYLE when this page is active (mega menus appear automatically when an item has sub-pages/CTA). Leave empty to use the site-wide default.'
           options:
-            minimal: 'Minimal — compact logo + horizontal nav'
-            flyout: 'Flyout — logo + nav with dropdown menus'
-            mega: 'Mega — logo + full-width mega-menu'
-            transparent: 'Transparent — overlays the hero section'
+            standard: 'Standard — logo + nav (dropdowns/mega menus automatic)'
+            compact: 'Compact — same, denser nav'
+            transparent: 'Transparent — floats over the hero, solidifies on scroll'
             triband: 'Triband — section tabs / logo+search / main nav (3 rows)'
           clearable: true
           placeholder: 'Site default'
