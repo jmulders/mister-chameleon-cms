@@ -9,6 +9,11 @@ tabs:
               type: text
               display: Job title
               validate: required
+          - handle: meta_keywords
+            field:
+              type: tags
+              display: 'Interest Keywords'
+              instructions: "Keywords describing the primary topics of this vacancy. Used by the platform's interest-profile scoring engine to infer visitor interests from browsing history. First-party behavioural signals only — NOT SEO meta keywords."
           - handle: date
             field:
               type: date

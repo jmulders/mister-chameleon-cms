@@ -11,9 +11,9 @@ tabs:
               validate: required
           - handle: meta_keywords
             field:
-              type: text
-              display: Meta Keywords
-              instructions: Comma-separated intent keywords for interest scoring.
+              type: tags
+              display: 'Interest Keywords'
+              instructions: "Keywords describing the primary topics of this page. Used by the platform's interest-profile scoring engine to infer visitor interests from browsing history (e.g. 'logistics', 'warehousing', 'automation'). First-party behavioural signals only — NOT rendered as SEO meta keywords."
           - handle: template
             field:
               type: select
