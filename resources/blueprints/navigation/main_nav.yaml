@@ -1,22 +1,5 @@
 title: 'Main Navigation'
 sections:
-  main:
-    display: Main
-    fields:
-      -
-        handle: header_variant
-        field:
-          type: select
-          display: 'Header Variant'
-          instructions: 'Override the header STYLE when this page is active (mega menus appear automatically when an item has sub-pages/CTA). Leave empty to use the site-wide default.'
-          options:
-            standard: 'Standard — logo + nav (dropdowns/mega menus automatic)'
-            compact: 'Compact — same, denser nav'
-            transparent: 'Transparent — floats over the hero, solidifies on scroll'
-            triband: 'Triband — section tabs / logo+search / main nav (3 rows)'
-          clearable: true
-          placeholder: 'Site default'
-          width: 50
   mega_menu:
     display: 'Mega Menu'
     fields:
