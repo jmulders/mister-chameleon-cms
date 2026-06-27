@@ -24,61 +24,61 @@ sections:
         handle: dropdown_style
         field:
           type: select
-          display: 'Dropdown-weergave'
-          instructions: 'Hoe het submenu van dit item toont (alleen relevant als het subpaginas heeft). Mega = brede feature-kolommen + optionele CTA. Eenvoudig = compacte dropdown-lijst.'
+          display: 'Dropdown style'
+          instructions: 'How this item''s submenu renders (only relevant when it has sub-pages). Mega = wide feature columns + optional CTA. Simple = compact dropdown list.'
           options:
-            mega: 'Mega menu — brede kolommen + CTA'
-            simple: 'Eenvoudig — compacte dropdown'
+            mega: 'Mega menu — wide columns + CTA'
+            simple: 'Simple — compact dropdown'
           default: mega
           width: 50
       -
         handle: mega_show_image
         field:
           type: toggle
-          display: 'Afbeelding tonen'
-          instructions: 'Toont de card thumbnail (overview image) van elke subpagina als afbeelding in het mega menu. Alleen van toepassing wanneer dit item een mega menu heeft.'
+          display: 'Show image'
+          instructions: 'Shows the card thumbnail (overview image) of each sub-page in the mega menu. Only applies when this item has a mega menu.'
           default: true
           width: 50
       -
         handle: mega_show_description
         field:
           type: toggle
-          display: 'Beschrijving tonen'
-          instructions: 'Toont de excerpt / beschrijving van elke subpagina als tekst in het mega menu. Alleen van toepassing wanneer dit item een mega menu heeft.'
+          display: 'Show description'
+          instructions: 'Shows the excerpt / description of each sub-page in the mega menu. Only applies when this item has a mega menu.'
           default: true
           width: 50
       -
         handle: mega_cta_position
         field:
           type: select
-          display: 'CTA-blok positie'
-          instructions: 'Toont een promotie-CTA (afbeelding + kop + tekst + pijl) in het mega menu. Leeg = geen CTA.'
+          display: 'CTA block position'
+          instructions: 'Shows a promotional CTA (image + heading + text + arrow) in the mega menu. Empty = no CTA.'
           options:
-            left: 'Links — kaart naast de kolommen'
-            right: 'Rechts — kaart naast de kolommen'
-            bottom: 'Onder — balk over de volle breedte'
+            left: 'Left — card beside the columns'
+            right: 'Right — card beside the columns'
+            bottom: 'Bottom — full-width bar'
           clearable: true
-          placeholder: 'Geen CTA'
+          placeholder: 'No CTA'
           width: 50
       -
         handle: mega_cta_heading
         field:
           type: text
-          display: 'CTA — kop'
-          instructions: 'Vetgedrukte kopregel, bijv. "Keuzehulp".'
+          display: 'CTA — heading'
+          instructions: 'Bold headline, e.g. "Need help choosing?".'
           width: 50
       -
         handle: mega_cta_text
         field:
           type: textarea
-          display: 'CTA — tekst'
-          instructions: 'Ondersteunende tekst onder de kop.'
+          display: 'CTA — text'
+          instructions: 'Supporting text below the heading.'
           rows: 2
       -
         handle: mega_cta_image
         field:
           type: assets
-          display: 'CTA — afbeelding'
+          display: 'CTA — image'
           container: assets
           max_files: 1
           mode: grid
@@ -88,19 +88,24 @@ sections:
         field:
           type: link
           display: 'CTA — link'
-          instructions: 'Kies een pagina (entry) of voer een externe URL in.'
+          instructions: 'Link to a page (entry) or enter an external URL.'
+          collections:
+            - pages
+            - case_studies
+            - blog
+            - vacancies
           width: 50
       -
         handle: mega_cta_label
         field:
           type: text
-          display: 'CTA — knoplabel'
-          instructions: 'Optioneel. Leeg = alleen een pijl.'
+          display: 'CTA — button label'
+          instructions: 'Optional. Empty = arrow only.'
           width: 50
       -
         handle: mega_cta_new_tab
         field:
           type: toggle
-          display: 'CTA — in nieuw tabblad openen'
+          display: 'CTA — open in new tab'
           default: false
           width: 50
