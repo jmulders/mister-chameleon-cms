@@ -81,7 +81,8 @@
     "extra": {
         "laravel": {
             "dont-discover": []
-        }
+        },
+        "build-rev": "2026-07-01-force-rebuild-grid-fieldsets"
     },
     "config": {
         "optimize-autoloader": true,
