@@ -1,0 +1,53 @@
+{{#
+    Mister Chameleon — Adaptive Slot (server-side page-builder block)
+    ----------------------------------------------------------------
+    Renders one context_slot block SERVER-SIDE via the {{ mc:slot }} tag.
+
+    The block's CMS-authored fields are handed to the tag as `fallback_*` params,
+    so the personalised value (when the platform returns one) is baked into the
+    initial HTML, and the CMS content renders otherwise — no client swap, no
+    flash, SEO-personalised.
+
+    Requires the misterchameleon/adaptive-slots addon (this package) installed
+    and a configured MC_SITE_KEY.
+#}}
+{{ mc:slot
+    :type="slot_type"
+    :fallback_tag="tag"
+    :fallback_title="heading"
+    :fallback_subtitle="body"
+    :fallback_text="body"
+    :fallback_message="message"
+    :fallback_severity="severity"
+    :fallback_cta_label="cta_label"
+    :fallback_cta_href="cta_url"
+}}
+  <div class="mc-adaptive-slot" data-mc-slot-type="{{ slot_type }}">
+
+    {{ if slot_type == 'notification' }}
+      {{ if message }}
+        <div class="mc-notification mc-notification--{{ severity ?? 'info' }}" role="status">
+          <span>{{ message }}</span>
+          {{ if cta_label }}<a class="mc-notification__cta"{{ if cta_href }} href="{{ cta_href }}"{{ /if }}>{{ cta_label }}</a>{{ /if }}
+        </div>
+      {{ /if }}
+
+    {{ else }}
+      {{ if slot_type == 'hero' and tag }}<p class="mc-eyebrow">{{ tag }}</p>{{ /if }}
+      {{ if title }}<h2 class="mc-heading">{{ title }}</h2>{{ /if }}
+
+      {{ if slot_type == 'cta' or slot_type == 'conversion' }}
+        {{ if text }}<p class="mc-body">{{ text | nl2br }}</p>{{ /if }}
+      {{ else }}
+        {{ if subtitle }}<p class="mc-body">{{ subtitle | nl2br }}</p>{{ /if }}
+      {{ /if }}
+
+      {{ if media }}{{ media }}<img class="mc-media" src="{{ url }}" alt="{{ alt ?? title }}" loading="lazy">{{ /media }}{{ /if }}
+
+      {{ if cta_label and (slot_type == 'hero' or slot_type == 'cta' or slot_type == 'conversion') }}
+        <a class="mc-cta"{{ if cta_href }} href="{{ cta_href }}"{{ /if }}>{{ cta_label }}</a>
+      {{ /if }}
+    {{ /if }}
+
+  </div>
+{{ /mc:slot }}

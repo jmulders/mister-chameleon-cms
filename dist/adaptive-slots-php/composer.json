@@ -1,0 +1,26 @@
+{
+    "name": "misterchameleon/adaptive-slots",
+    "description": "Server-side adaptive personalisation slots for Statamic, powered by Mister Chameleon.",
+    "type": "statamic-addon",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "MisterChameleon\\AdaptiveSlots\\": "src"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Mister Chameleon Adaptive Slots",
+            "description": "Server-side personalisation slots via the {{ mc:slot }} tag."
+        },
+        "laravel": {
+            "providers": [
+                "MisterChameleon\\AdaptiveSlots\\ServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php": "^8.1",
+        "statamic/cms": "^4.0 || ^5.0"
+    }
+}

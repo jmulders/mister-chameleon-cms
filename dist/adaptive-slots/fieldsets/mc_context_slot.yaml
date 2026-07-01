@@ -1,0 +1,81 @@
+title: 'Mister Chameleon — Context Slot'
+# Adaptive personalisation slot for Statamic page builders.
+# Ships as part of the Mister Chameleon "Adaptive Slots" add-on (client-side edition).
+# The fields below hold the CMS-authored FALLBACK content — it is served as-is to
+# bots / no-JS / when the platform is unavailable, and swapped per visitor by the
+# Mister Chameleon snippet (see views/mc_snippet.antlers.html).
+fields:
+  -
+    handle: slot_type
+    field:
+      type: select
+      display: 'Slot type'
+      instructions: 'Which personalisation slot this block fills. Use at most one of each type per page (the client-side snippet swaps by slot type).'
+      options:
+        hero: Hero
+        proof: Social proof
+        cta: Call to action
+        feature: Feature
+        conversion: Conversion
+        notification: Notification
+      default: hero
+      width: 50
+  -
+    handle: variant_key
+    field:
+      type: text
+      display: 'Default variant key'
+      instructions: 'Optional reference to the platform variant. Informational only for the client-side edition.'
+      width: 50
+  -
+    handle: tag
+    field:
+      type: text
+      display: 'Eyebrow / tag'
+      instructions: 'Hero only.'
+  -
+    handle: heading
+    field:
+      type: text
+      display: 'Heading'
+  -
+    handle: body
+    field:
+      type: textarea
+      display: 'Subtext'
+  -
+    handle: cta_label
+    field:
+      type: text
+      display: 'CTA label'
+      width: 50
+  -
+    handle: cta_url
+    field:
+      type: text
+      display: 'CTA URL'
+      width: 50
+  -
+    handle: media
+    field:
+      type: assets
+      display: 'Media'
+      container: assets
+      max_files: 1
+  -
+    handle: message
+    field:
+      type: text
+      display: 'Message'
+      instructions: 'Notification slot only.'
+  -
+    handle: severity
+    field:
+      type: select
+      display: 'Severity'
+      instructions: 'Notification slot only.'
+      options:
+        info: 'Info'
+        success: 'Success'
+        warning: 'Warning'
+      width: 50

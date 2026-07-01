@@ -1,0 +1,64 @@
+{{#
+    Mister Chameleon — Adaptive Slot (client-side / snippet edition)
+    ---------------------------------------------------------------
+    Renders ONE context_slot block on a standalone Statamic frontend.
+
+    How it works:
+      1. The CMS-authored fields (heading / body / cta ...) render SERVER-SIDE as
+         the fallback. Bots, no-JS visitors, and requests made while the platform
+         is unavailable see this content — so it is fully SEO-safe.
+      2. Each swappable element carries a `data-mc-slot="<key>"` marker. The
+         Mister Chameleon snippet (mc_snippet.antlers.html, loaded in <head>)
+         calls /api/snippet/decide and replaces the text/href of these elements
+         per visitor.
+
+    The data-mc-slot keys below MUST match the platform's decision contract:
+      hero        → hero-tag, hero-title, hero-subtitle, hero-cta-label, hero-cta-href
+      proof       → proof-title
+      cta         → cta-title, cta-text, cta-cta-label, cta-cta-href
+      feature     → feature-title, feature-subtitle
+      conversion  → conversion-title, conversion-text, conversion-cta-label, conversion-cta-href
+      notification→ notification-message, notification-cta-label, notification-cta-href
+
+    Note: the client-side snippet swaps by slot TYPE, so use at most one slot of
+    each type per page. For richer, per-instance server-side personalisation use
+    the PHP-tag edition of the add-on.
+#}}
+<div class="mc-adaptive-slot" data-mc-slot-type="{{ slot_type }}"{{ if variant_key }} data-mc-variant="{{ variant_key }}"{{ /if }}>
+
+  {{ if slot_type == 'notification' }}
+    <div class="mc-notification mc-notification--{{ severity ?? 'info' }}" role="status">
+      {{ if message }}<span data-mc-slot="notification-message">{{ message }}</span>{{ /if }}
+      {{ if cta_label }}<a class="mc-notification__cta"{{ if cta_url }} href="{{ cta_url }}"{{ /if }} data-mc-slot="notification-cta-label"{{ if cta_url }} data-mc-slot-href="notification-cta-href"{{ /if }}>{{ cta_label }}</a>{{ /if }}
+    </div>
+
+  {{ else }}
+    {{ if slot_type == 'hero' and tag }}
+      <p class="mc-eyebrow" data-mc-slot="hero-tag">{{ tag }}</p>
+    {{ /if }}
+
+    {{ if heading }}
+      <h2 class="mc-heading" data-mc-slot="{{ slot_type }}-title">{{ heading }}</h2>
+    {{ /if }}
+
+    {{ if body }}
+      {{# proof has no body slot key on the platform → render static (no swap marker). #}}
+      {{ if slot_type == 'proof' }}
+        <p class="mc-body">{{ body | nl2br }}</p>
+      {{ else }}
+        <p class="mc-body" data-mc-slot="{{ slot_type }}-{{ if slot_type == 'cta' or slot_type == 'conversion' }}text{{ else }}subtitle{{ /if }}">{{ body | nl2br }}</p>
+      {{ /if }}
+    {{ /if }}
+
+    {{# Media is a static fallback: the platform personalises copy, not images, client-side. #}}
+    {{ if media }}
+      {{ media }}<img class="mc-media" src="{{ url }}" alt="{{ alt ?? heading }}" loading="lazy">{{ /media }}
+    {{ /if }}
+
+    {{# Only hero / cta / conversion carry a CTA slot key. #}}
+    {{ if cta_label and (slot_type == 'hero' or slot_type == 'cta' or slot_type == 'conversion') }}
+      <a class="mc-cta"{{ if cta_url }} href="{{ cta_url }}"{{ /if }} data-mc-slot="{{ slot_type }}-cta-label"{{ if cta_url }} data-mc-slot-href="{{ slot_type }}-cta-href"{{ /if }}>{{ cta_label }}</a>
+    {{ /if }}
+  {{ /if }}
+
+</div>

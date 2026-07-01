@@ -1,0 +1,22 @@
+{{#
+    Mister Chameleon — personalisation snippet loader
+    -------------------------------------------------
+    Place this partial inside your site's <head> (once, site-wide). It loads the
+    Mister Chameleon snippet, which reads the site key from `data-site-key`, calls
+    /api/snippet/decide, and swaps every element marked `data-mc-slot="..."`
+    (see mc_context_slot.antlers.html) with the visitor's personalised content.
+
+    Set your site key:
+      • Preferred: define a `mc_site_key` variable (Statamic global "settings",
+        or a .env value surfaced to Antlers) so it is not hard-coded per template.
+      • Or replace the fallback string below with your key from the
+        Mister Chameleon dashboard (Setup → Snippet).
+
+    The snippet is anti-flicker: it briefly hides the page until the decision
+    returns (or a short timeout elapses), then reveals the personalised content.
+#}}
+<script
+  src="https://app.misterchameleon.com/api/snippet.js"
+  data-site-key="{{ mc_site_key ?? 'sk_live_REPLACE_WITH_YOUR_SITE_KEY' }}"
+  async
+></script>
