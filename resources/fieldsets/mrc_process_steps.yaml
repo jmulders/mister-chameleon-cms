@@ -55,3 +55,9 @@ fields:
                 type: text
                 display: Duration
                 instructions: 'Optional timeframe, e.g. "1–2 weeks" or "30 min".'
+  -
+    handle: token_set
+    field:
+      type: text
+      display: 'Token set'
+      instructions: 'Optional. Key of a block token set from Design → Blocks (e.g. dark-section) to restyle just this block.'

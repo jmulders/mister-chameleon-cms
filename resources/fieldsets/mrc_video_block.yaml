@@ -84,3 +84,9 @@ fields:
       options:
         contained: 'Contained (max-width, centred)'
         full-width: 'Full width (edge-to-edge)'
+  -
+    handle: token_set
+    field:
+      type: text
+      display: 'Token set'
+      instructions: 'Optional. Key of a block token set from Design → Blocks (e.g. dark-section) to restyle just this block.'

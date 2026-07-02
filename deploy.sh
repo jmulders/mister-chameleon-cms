@@ -28,6 +28,14 @@ fi
 # never conflicts (the per-instance URL is re-applied below from the env var).
 git checkout -- resources/sites.yaml 2>/dev/null || true
 
+# Discard any local drift in fieldsets/blueprints so `git pull` can always bring
+# in the committed versions. These are platform-owned code (never edited on the
+# container), but an old `mc:sync` run may have left replicator-vs-grid drift in
+# the working copy that otherwise blocks the pull — which manifests as a CP 500
+# ("Undefined array key \"type\"") when a grid field is still defined as a
+# replicator in the stale working copy.
+git checkout -- resources/fieldsets resources/blueprints 2>/dev/null || true
+
 git pull origin "${BRANCH:-main}"
 
 # ── Per-instance public site URL ─────────────────────────────────────────────

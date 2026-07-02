@@ -72,3 +72,9 @@ fields:
       instructions: 'Pick specific FAQ items from the collection. Items appear in the order you select them here.'
       if:
         source_mode: select_items
+  -
+    handle: token_set
+    field:
+      type: text
+      display: 'Token set'
+      instructions: 'Optional. Key of a block token set from Design → Blocks (e.g. dark-section) to restyle just this block.'
