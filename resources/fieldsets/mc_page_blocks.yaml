@@ -10,8 +10,9 @@ title: 'Mister Chameleon — Page Blocks'
 #
 # Set previews: each leaf set carries `icon`, `instructions` and `image`. The
 # `image` resolves to `assets::set-previews/<file>` (see config/statamic/
-# assets.php -> set_preview_images). The PNGs ship in this repo at
-# public/assets/set-previews/.
+# assets.php -> set_preview_images). The PNGs ship in the CMS template repo at
+# public/assets/set-previews/. New tenants inherit them from the template;
+# existing tenants need the PNGs added to their own public/assets/set-previews/.
 fields:
   -
     handle: page_blocks
@@ -41,6 +42,7 @@ fields:
               image: text_section.png
               fields:
                 - import: mrc_text_section
+                - import: mrc_block_design
             rich_text:
               display: Rich Text
               icon: pencil
@@ -48,6 +50,7 @@ fields:
               image: rich_text.png
               fields:
                 - import: mrc_rich_text
+                - import: mrc_block_design
             image:
               display: Text + Media
               icon: image
@@ -55,6 +58,7 @@ fields:
               image: image.png
               fields:
                 - import: mrc_image_block
+                - import: mrc_block_design
             video:
               display: Video
               icon: video
@@ -62,6 +66,7 @@ fields:
               image: video.png
               fields:
                 - import: mrc_video_block
+                - import: mrc_block_design
             quote_block:
               display: Quote
               icon: quote
@@ -69,6 +74,7 @@ fields:
               image: quote_block.png
               fields:
                 - import: mrc_quote_block
+                - import: mrc_block_design
         social_proof:
           display: Social Proof
           sets:
@@ -79,6 +85,7 @@ fields:
               image: testimonial_section.png
               fields:
                 - import: mrc_testimonial_section
+                - import: mrc_block_design
             logo_strip:
               display: Logo Strip
               icon: image
@@ -86,6 +93,7 @@ fields:
               image: logo_strip.png
               fields:
                 - import: mrc_logo_strip
+                - import: mrc_block_design
             stats:
               display: Stats
               icon: chart-bar
@@ -93,6 +101,7 @@ fields:
               image: stats.png
               fields:
                 - import: mrc_stats_block
+                - import: mrc_block_design
         features_and_faq:
           display: Features & FAQ
           sets:
@@ -103,6 +112,7 @@ fields:
               image: feature_grid.png
               fields:
                 - import: mrc_feature_grid
+                - import: mrc_block_design
             faq_section:
               display: FAQ Section
               icon: help
@@ -110,6 +120,7 @@ fields:
               image: faq_section.png
               fields:
                 - import: mrc_faq_section
+                - import: mrc_block_design
             team_section:
               display: Team Section
               icon: users
@@ -117,6 +128,7 @@ fields:
               image: team_section.png
               fields:
                 - import: mrc_team_section
+                - import: mrc_block_design
             process_steps:
               display: Process Steps
               icon: list-ol
@@ -124,6 +136,7 @@ fields:
               image: process_steps.png
               fields:
                 - import: mrc_process_steps
+                - import: mrc_block_design
             timeline:
               display: Timeline
               icon: time
@@ -131,6 +144,7 @@ fields:
               image: timeline.png
               fields:
                 - import: mrc_timeline_block
+                - import: mrc_block_design
         conversion_and_forms:
           display: Conversion & Forms
           sets:
@@ -141,6 +155,7 @@ fields:
               image: cta_section.png
               fields:
                 - import: mrc_cta_section
+                - import: mrc_block_design
             form_section:
               display: Form Section
               icon: form
@@ -148,6 +163,7 @@ fields:
               image: form_section.png
               fields:
                 - import: mrc_form_section
+                - import: mrc_block_design
             contact_section:
               display: Contact Section
               icon: mail
@@ -155,6 +171,7 @@ fields:
               image: contact_section.png
               fields:
                 - import: mrc_contact_section
+                - import: mrc_block_design
             floating_contact:
               display: Floating Contact
               icon: phone
@@ -162,6 +179,7 @@ fields:
               image: floating_contact.png
               fields:
                 - import: mrc_floating_contact
+                - import: mrc_block_design
         listings:
           display: Listings
           sets:
@@ -172,6 +190,7 @@ fields:
               image: collection_listing.png
               fields:
                 - import: mrc_collection_listing
+                - import: mrc_block_design
             listing:
               display: Media Slider / Listing
               icon: images
@@ -179,6 +198,7 @@ fields:
               image: listing.png
               fields:
                 - import: mrc_listing_block
+                - import: mrc_block_design
             related_content:
               display: Related Content
               icon: link
@@ -186,3 +206,4 @@ fields:
               image: related_content.png
               fields:
                 - import: mrc_related_content
+                - import: mrc_block_design

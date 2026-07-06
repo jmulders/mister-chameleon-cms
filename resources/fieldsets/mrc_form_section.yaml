@@ -31,9 +31,3 @@ fields:
       type: form
       display: Form
       instructions: 'Select the form to embed. Forms are managed in Tools → Forms.'
-  -
-    handle: token_set
-    field:
-      type: text
-      display: 'Token set'
-      instructions: 'Optional. Key of a block token set from Design → Blocks (e.g. dark-section) to restyle just this block.'

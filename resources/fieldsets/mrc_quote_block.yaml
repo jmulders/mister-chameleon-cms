@@ -36,9 +36,3 @@ fields:
       display: Avatar
       max_files: 1
       instructions: 'Optional profile photo shown next to the attribution.'
-  -
-    handle: token_set
-    field:
-      type: text
-      display: 'Token set'
-      instructions: 'Optional. Key of a block token set from Design → Blocks (e.g. dark-section) to restyle just this block.'

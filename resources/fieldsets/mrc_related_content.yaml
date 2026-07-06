@@ -52,9 +52,3 @@ fields:
       default: 3
       if:
         source_mode: automatic
-  -
-    handle: token_set
-    field:
-      type: text
-      display: 'Token set'
-      instructions: 'Optional. Key of a block token set from Design → Blocks (e.g. dark-section) to restyle just this block.'
