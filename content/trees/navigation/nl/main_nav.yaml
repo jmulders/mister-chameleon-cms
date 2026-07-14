@@ -1,10 +1,10 @@
 tree:
+  - id: 5b7bd30b-e5d0-4449-ac5e-ddf0bb08ceee
+    entry: features
   - id: 029a74e2-25da-47df-bc95-da52bc1043bb
     entry: cases
   - id: 1278f8fa-fff4-4675-a92e-c8835b78d040
     entry: pricing
-  - id: 5b7bd30b-e5d0-4449-ac5e-ddf0bb08ceee
-    entry: features
   -
     id: 8a8a2794-a73b-444e-92af-c6d720bd2bfb
     entry: about
@@ -12,10 +12,12 @@ tree:
       header_variant: mega
     children:
       - id: 194c196e-7e98-40d3-887c-fb734c6d4181
-        entry: cases
+        entry: team
       - id: 3a5715e5-e27c-42f8-b924-9c1c0ba48d80
-        entry: pricing
+        entry: vacancies
+      - id: 6f2c9d14-8b3a-4c77-9e21-5ad4c81b7e93
+        entry: blog
+      - id: b81e4a37-2f6d-4d59-8c14-7e0a93f5c268
+        entry: events
   - id: d259a7fe-e2c6-42a2-8d2a-143637329b5b
     entry: contact
-  - id: 76501c65-d666-4046-9dc2-df945eeb64f7
-    entry: 4345716b-456d-42db-a8de-c8766c23a0c8

@@ -1,0 +1,11 @@
+title: Events
+sites:
+  - nl
+  - en-gb
+  - de
+route: 'events/{slug}'
+propagate: true
+dated: true
+date_behavior:
+  past: public
+  future: public
