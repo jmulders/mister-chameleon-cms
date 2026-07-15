@@ -10,14 +10,17 @@ tree:
     entry: about
     data:
       header_variant: mega
+    # NB: `entry:` verwijst naar het id-veld van de entry, niet naar de slug.
+    # Voor de meeste pagina's zijn die gelijk (features, cases, about, …), maar
+    # team en events hebben een UUID als id — daar moet de UUID staan.
     children:
       - id: 194c196e-7e98-40d3-887c-fb734c6d4181
-        entry: team
+        entry: 4345716b-456d-42db-a8de-c8766c23a0c8
       - id: 3a5715e5-e27c-42f8-b924-9c1c0ba48d80
         entry: vacancies
       - id: 6f2c9d14-8b3a-4c77-9e21-5ad4c81b7e93
         entry: blog
       - id: b81e4a37-2f6d-4d59-8c14-7e0a93f5c268
-        entry: events
+        entry: c2794fa8-845b-4e23-bdd1-13d837256f6b
   - id: d259a7fe-e2c6-42a2-8d2a-143637329b5b
     entry: contact
