@@ -1,4 +1,4 @@
-tagline: 'Uw website past zich aan iedere bezoeker aan — server-side, zonder cookies, op de site die u al heeft.'
+tagline: 'Website personalisation that runs server-side, respects privacy, and ships in an afternoon.'
 columns:
   -
     id: rIczeb1H
@@ -6,61 +6,82 @@ columns:
     heading: Product
     links:
       - id: Jhv6d4Rm
-        label: 'Wat het doet'
+        label: Features
         href: /features
       - id: 6qWNDdsS
-        label: Prijzen
+        label: Pricing
         href: /pricing
-      - id: 8kQm2WvT
-        label: 'Demo boeken'
-        href: /book-demo
+      - id: voOMtO0y
+        label: Integrations
+        href: /integrations
+      - id: GxbJtHzn
+        label: Changelog
+        href: /changelog
+      - id: ksJNkwVe
+        label: Roadmap
+        href: /roadmap
     enabled: true
   -
     id: lvwMZtzt
     type: column
-    heading: Bewijs
+    heading: Company
     links:
+      - id: J6v0oYa0
+        label: About
+        href: /about
       - id: NK61J7Ez
-        label: Cases
+        label: 'Customer Stories'
         href: /cases
       - id: TQRrpiGd
-        label: Artikelen
+        label: Blog
         href: /blog
-      - id: Rt7Yn3xQ
-        label: Evenementen
-        href: /events
+      - id: NlNHr3xt
+        label: Careers
+        href: /careers
     enabled: true
   -
     id: vj3ee1eJ
     type: column
-    heading: Bedrijf
+    heading: Support
     links:
-      - id: J6v0oYa0
-        label: 'Over ons'
-        href: /about
-      - id: Wq4Zp8Lm
-        label: Team
-        href: /team
-      - id: NlNHr3xt
-        label: 'Werken bij'
-        href: /vacancies
+      - id: MHPeyIM1
+        label: Documentation
+        href: 'https://docs.mister-chameleon.io'
       - id: q1mYB8IR
         label: Contact
         href: /contact
+      - id: pshoHMKC
+        label: Status
+        href: 'https://status.mister-chameleon.io'
+      - id: DfPc0eJG
+        label: Community
+        href: 'https://community.mister-chameleon.io'
     enabled: true
   -
     id: hKuhxNTO
     type: column
-    heading: Juridisch
+    heading: Legal
     links:
       - id: kwRRwNkZ
-        label: Privacyverklaring
+        label: 'Privacy Policy'
         href: /privacy
       - id: AElDa5SC
-        label: 'Algemene voorwaarden'
+        label: 'Terms of Service'
         href: /terms
       - id: kTuDThAl
-        label: Cookieverklaring
+        label: 'Cookie Policy'
         href: /cookies
+      - id: gvGxh6Q0
+        label: DPA
+        href: /dpa
+    enabled: true
+  -
+    id: kZzk508gUULhADyL1UqsC
+    heading: TEst
+    links:
+      - id: FVpz6opR_Ll53OtrNxFk0
+        label: aaa
+        href: '#'
+    type: column
     enabled: true
 copyright: '© {year} Mister Chameleon B.V. — KVK 12345678'

@@ -24,7 +24,6 @@ fields:
         vacancies: Vacatures
         case_studies: Cases
         team_members: Team
-        events: Evenementen
 
   # ── Display style ──────────────────────────────────────────────────────────
   - handle: variant
@@ -79,6 +78,5 @@ fields:
         - vacancies
         - case_studies
         - team_members
-        - events
       max_items: 6
       mode: default
