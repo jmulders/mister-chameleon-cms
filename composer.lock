@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8dc1f55bfec651a8ff06f004b816a4c5",
+    "content-hash": "bb70aaeefa928a46795d9af3c61d4545",
     "packages": [
         {
             "name": "ajthinking/archetype",
@@ -2960,12 +2960,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jmulders/mister-chameleon-statamic.git",
-                "reference": "172382466e0a0402fb5d28bd52c4e7f3d5f09ca7"
+                "reference": "0caca429b3bf9d38b0ba8f16abb9e3391c0d465a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jmulders/mister-chameleon-statamic/zipball/172382466e0a0402fb5d28bd52c4e7f3d5f09ca7",
-                "reference": "172382466e0a0402fb5d28bd52c4e7f3d5f09ca7",
+                "url": "https://api.github.com/repos/jmulders/mister-chameleon-statamic/zipball/0caca429b3bf9d38b0ba8f16abb9e3391c0d465a",
+                "reference": "0caca429b3bf9d38b0ba8f16abb9e3391c0d465a",
                 "shasum": ""
             },
             "require": {
@@ -3013,7 +3013,7 @@
                 "email": "support@misterchameleon.nl",
                 "issues": "https://www.misterchameleon.nl/support"
             },
-            "time": "2026-06-15T20:22:29+00:00"
+            "time": "2026-06-25T18:16:29+00:00"
         },
         {
             "name": "monolog/monolog",
