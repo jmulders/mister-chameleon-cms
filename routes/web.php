@@ -48,6 +48,24 @@ Route::prefix('cp/calendar')
 // Creates a new entry or updates an existing one with the same slug.
 // Returns the saved entry's data + id + slug.
 Route::post('/api/collections/{col}/entries', function (Request $request, string $col) {
+    // ── Write authentication ──────────────────────────────────────────────────
+    // Only the Mister Chameleon platform may write entries. Set
+    // MISTER_CHAMELEON_CMS_WRITE_TOKEN in this CMS's environment to the SAME value
+    // as the platform's Statamic API key. The platform sends it as
+    // "Authorization: Bearer <token>"; an "X-MC-Write-Token" header is also
+    // accepted. Fails closed: no configured secret → 503; bad/missing token → 401.
+    $expected = trim((string) env('MISTER_CHAMELEON_CMS_WRITE_TOKEN', ''));
+    if ($expected === '') {
+        return response()->json(['error' => 'Write route not configured'], 503);
+    }
+    $provided = trim(preg_replace('/^\s*Bearer\s+/i', '', (string) $request->header('Authorization', '')));
+    if ($provided === '') {
+        $provided = trim((string) $request->header('X-MC-Write-Token', ''));
+    }
+    if (! hash_equals($expected, $provided)) {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+
     $collection = $col;
     $body = $request->json()->all();
 
