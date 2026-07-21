@@ -42,6 +42,16 @@ class AppServiceProvider extends ServiceProvider
                 ->url('/cp/calendar')
                 ->icon('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>');
         });
+
+        // ── Platform cache revalidation on content save ───────────────────────
+        // On any entry save, ping the Mister Chameleon platform webhook so it
+        // flushes its Next.js content cache — the edit goes live immediately
+        // instead of after the cache TTL. Requires MISTER_CHAMELEON_API_URL and
+        // MISTER_CHAMELEON_WEBHOOK_SECRET env vars (see the listener).
+        \Illuminate\Support\Facades\Event::listen(
+            \Statamic\Events\EntrySaved::class,
+            \App\Listeners\NotifyPlatformOnSave::class
+        );
     }
 
     /**
