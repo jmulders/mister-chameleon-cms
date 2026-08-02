@@ -318,6 +318,34 @@ hero_variants:
     ctas:
       - label: 'Bekijk een demo'
         href: /demo
+  -
+    type: hero_variant
+    key: hero_intent_direct
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Klaar om te starten? Wij zetten je direct live.'
+    subtitle: 'Je weet wat je wilt. Plan een demo en ga snel live met content die zich per bezoeker aanpast.'
+    tag: 'Aan de slag'
+    ctas:
+      - label: 'Plan een demo'
+        href: /demo
+      - label: 'Bekijk hoe het werkt'
+        href: /features
+  -
+    type: hero_variant
+    key: hero_customer_onboarding
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Welkom. Je adaptieve site staat klaar.'
+    subtitle: 'Koppel je domein, zet je eerste regels en je gepersonaliseerde homepage gaat live. Zonder ontwikkeltraject.'
+    tag: 'Welkom'
+    ctas:
+      - label: 'Open de snelstart'
+        href: /docs
+      - label: 'Bekijk een demo'
+        href: /demo
 proof_variants:
   -
     type: proof_variant
@@ -367,6 +395,42 @@ proof_variants:
         text: 'Alles draait in de EER. We bewaren geen persoonsgegevens en er is altijd een veilige terugval.'
       - title: 'Eén regel code'
         text: 'Eén snippet in je site en je bent live. Geen zware integratie, geen IT-traject.'
+  -
+    type: proof_variant
+    key: proof_cases
+    is_active: true
+    title: 'Zo pakt het uit bij B2B-teams zoals dat van jou'
+    items:
+      - title: 'Relevante landing per bron'
+        text: 'Bezoekers uit een campagne zien de boodschap die bij die campagne hoort, niet een generieke homepage.'
+      - title: 'Meer aanvragen'
+        text: 'Teams zien meer demo-aanvragen zodra de eerste indruk klopt met de verwachting van de bezoeker.'
+      - title: 'Zonder losse pagina''s'
+        text: 'Geen wildgroei aan landingspagina''s meer. Eén site die zich per bezoeker gedraagt.'
+  -
+    type: proof_variant
+    key: proof_vision
+    is_active: true
+    title: 'Waar B2B-websites naartoe gaan'
+    items:
+      - title: 'Van statisch naar contextueel'
+        text: 'Een site die zich aanpast aan wie er leest, is de logische volgende stap na jaren van dezelfde pagina voor iedereen.'
+      - title: 'Relevantie als standaard'
+        text: 'Professionals verwachten dat wat ze zien aansluit op hun situatie. Dat wordt de norm, geen extraatje.'
+      - title: 'Meetbaar en bij te sturen'
+        text: 'Je ziet welke boodschap werkt en stuurt bij op data, in plaats van te gokken.'
+  -
+    type: proof_variant
+    key: proof_reassurance
+    is_active: true
+    title: 'Rustig te starten, zonder risico'
+    items:
+      - title: 'Veilige terugval'
+        text: 'Werkt er iets niet, dan ziet de bezoeker gewoon je normale pagina. Nooit een kapotte site.'
+      - title: 'Privacy op orde'
+        text: 'Je data staat in Europa en we bewaren geen persoonsgegevens. Meestuurbare verwerkersovereenkomst.'
+      - title: 'Klein beginnen'
+        text: 'Begin met één regel en breid uit zodra je ziet dat het werkt. Geen groot traject vooraf.'
 cta_variants:
   - type: cta_variant
     key: cta_default
@@ -402,6 +466,20 @@ cta_variants:
     title: 'Bekijk het platform in actie'
     text: 'Zie de decision-engine, de regels en de varianteditor live werken op je eigen content.'
     cta_label: 'Ontdek het platform'
+    cta_href: /features
+  - type: cta_variant
+    key: cta_onboarding
+    is_active: true
+    title: 'Zet je eerste adaptieve pagina live'
+    text: 'Koppel je domein en zet je eerste regels. Je gepersonaliseerde homepage staat vandaag nog live.'
+    cta_label: 'Aan de slag'
+    cta_href: /contact
+  - type: cta_variant
+    key: cta_expansion
+    is_active: true
+    title: 'Haal meer uit je adaptieve site'
+    text: 'Breid uit met extra regels, doelgroepen en varianten zodra je ziet wat werkt.'
+    cta_label: 'Bekijk de mogelijkheden'
     cta_href: /features
   - type: cta_variant
     key: cta_about
