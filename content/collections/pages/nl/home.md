@@ -355,6 +355,18 @@ proof_variants:
         text: 'Van scale-ups tot gevestigde namen — steeds meer B2B-teams kiezen voor Mister Chameleon om hun website te personaliseren.'
       - title: 'Live in één middag'
         text: 'Onze klanten zijn gemiddeld live binnen één middag, zonder developer en zonder IT-traject.'
+  -
+    type: proof_variant
+    key: proof_platform
+    is_active: true
+    title: 'Gebouwd op een schaalbaar, privacy-first platform'
+    items:
+      - title: 'Server-side beslissingen'
+        text: 'Elke bezoeker krijgt binnen milliseconden de juiste versie, server-side bepaald, zonder geflikker.'
+      - title: 'Je data in Europa'
+        text: 'Alles draait in de EER. We bewaren geen persoonsgegevens en er is altijd een veilige terugval.'
+      - title: 'Eén regel code'
+        text: 'Eén snippet in je site en je bent live. Geen zware integratie, geen IT-traject.'
 cta_variants:
   - type: cta_variant
     key: cta_default
