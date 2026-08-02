@@ -180,12 +180,12 @@ hero_variants:
     is_active: true
     layout_variant: hero_background
     content_align: center
-    title: 'Stop met één boodschap voor iedereen'
-    subtitle: 'De meeste B2B websites tonen iedere bezoeker hetzelfde verhaal. Mister Chameleon maakt het verschil: relevantie per bezoeker, meer conversie.'
-    tag: 'Gevonden via Google'
+    title: 'Eén regel code. Server-side. Geen geflikker.'
+    subtitle: 'De keuze valt op de server, binnen 700 milliseconden, met een veilige terugval. Gaat er iets mis, dan ziet de bezoeker gewoon uw normale pagina. We bewaren geen persoonsgegevens en uw data staat in Europa.'
+    tag: 'Voor techniek'
     ctas:
-      - label: 'Gratis demo aanvragen'
-        href: /demo
+      - label: 'Praat met ons'
+        href: /contact
       - label: 'Hoe het werkt'
         href: /features
   -
@@ -194,12 +194,12 @@ hero_variants:
     is_active: true
     layout_variant: hero_split
     content_align: left
-    title: 'Uw website die meegroeit met uw doelgroep'
-    subtitle: 'Professionals die via LinkedIn binnenkomen, verwachten relevantie. Toon ze exact het verhaal dat aansluit op hun sector en uitdaging.'
-    tag: 'De toekomst van B2B marketing'
+    title: 'Elke klantsite een versie per bezoeker. Zonder losse landingspagina''s.'
+    subtitle: 'Eén laag over de sites die u al beheert. U richt het één keer in en stuurt maandelijks bij. Nieuw werk in de retainer, zonder dat u elke maand pagina''s bouwt.'
+    tag: 'Voor bureaus'
     ctas:
-      - label: 'Plan een kennismaking'
-        href: /demo
+      - label: 'Ontdek het platform'
+        href: /features
       - label: 'Ontdek de cases'
         href: /cases
   -
@@ -208,14 +208,28 @@ hero_variants:
     is_active: true
     layout_variant: hero_default
     content_align: center
-    title: 'Slimste personalisatie voor B2B groei'
-    subtitle: 'U kent ons al. Kijk hoe andere B2B-bedrijven hun conversie verhogen met gepersonaliseerde websites — en hoe u morgen kunt beginnen.'
+    title: 'Eén website. Elke bezoeker.'
+    subtitle: 'Uw site houdt zijn belofte. Alleen de ingang past zich aan wie er leest. Zelfde boodschap, andere insteek.'
     tag: 'Welkom bij Mister Chameleon'
     ctas:
-      - label: 'Start gratis proefperiode'
-        href: /signup
+      - label: 'Bekijk hoe het werkt'
+        href: /features
       - label: 'Bekijk demo'
         href: /demo
+  -
+    type: hero_variant
+    key: hero_consideration
+    is_active: true
+    layout_variant: hero_background
+    content_align: center
+    title: 'Uw advertenties zijn scherp. Uw landingspagina niet.'
+    subtitle: 'U richt precies op wie u wilt bereiken. Toch krijgt iedereen dezelfde pagina in dezelfde volgorde. Wij laten de landing aansluiten op de advertentie. En u meet zelf of het werkt.'
+    tag: 'Voor marketeers'
+    ctas:
+      - label: 'Plan een demo'
+        href: /demo
+      - label: 'Bekijk cases'
+        href: /cases
   -
     type: hero_variant
     key: hero_page_banner_awareness
@@ -352,17 +366,31 @@ cta_variants:
   - type: cta_variant
     key: cta_demo
     is_active: true
-    title: 'Bekijk een gratis demo op uw eigen website'
-    text: 'We laten u in 30 minuten zien hoe personalisatie er voor uw bezoekers uitziet — volledig vrijblijvend.'
-    cta_label: 'Gratis demo bekijken'
+    title: 'Zie hoe het er voor uw campagnes uitziet'
+    text: 'In 30 minuten laten we een adaptieve landing zien rond uw belangrijkste doelgroepen. Vrijblijvend.'
+    cta_label: 'Plan een demo'
     cta_href: /demo
   - type: cta_variant
     key: cta_meeting
     is_active: true
-    title: 'Plan een 20-minuten kennismaking'
-    text: 'Kijk live hoe Mister Chameleon werkt — met uw eigen website als voorbeeld.'
-    cta_label: 'Plan een demo'
-    cta_href: /demo
+    title: 'Even sparren over de techniek?'
+    text: 'Plan een kennismaking van 20 minuten. We laten live zien hoe het werkt, met uw eigen site als voorbeeld.'
+    cta_label: 'Praat met ons'
+    cta_href: /contact
+  - type: cta_variant
+    key: cta_guide
+    is_active: true
+    title: 'Klaar om uw homepage relevant te maken?'
+    text: 'Inrichten kost een middag. Plan een gesprek en we laten zien hoe het voor uw site werkt.'
+    cta_label: 'Bekijk hoe het werkt'
+    cta_href: /contact
+  - type: cta_variant
+    key: cta_platform
+    is_active: true
+    title: 'Bekijk het platform in actie'
+    text: 'Zie de decision-engine, de regels en de varianteditor live werken op uw eigen content.'
+    cta_label: 'Ontdek het platform'
+    cta_href: /features
   - type: cta_variant
     key: cta_about
     is_active: true
