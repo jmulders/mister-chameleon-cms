@@ -181,7 +181,7 @@ hero_variants:
     layout_variant: hero_background
     content_align: center
     title: 'Eén regel code. Server-side. Geen geflikker.'
-    subtitle: 'De keuze valt op de server, binnen 700 milliseconden, met een veilige terugval. Gaat er iets mis, dan ziet de bezoeker gewoon uw normale pagina. We bewaren geen persoonsgegevens en uw data staat in Europa.'
+    subtitle: 'De keuze valt op de server, binnen 700 milliseconden, met een veilige terugval. Gaat er iets mis, dan ziet de bezoeker gewoon je normale pagina. We bewaren geen persoonsgegevens en je data staat in Europa.'
     tag: 'Voor techniek'
     ctas:
       - label: 'Praat met ons'
@@ -195,7 +195,7 @@ hero_variants:
     layout_variant: hero_split
     content_align: left
     title: 'Elke klantsite een versie per bezoeker. Zonder losse landingspagina''s.'
-    subtitle: 'Eén laag over de sites die u al beheert. U richt het één keer in en stuurt maandelijks bij. Nieuw werk in de retainer, zonder dat u elke maand pagina''s bouwt.'
+    subtitle: 'Eén laag over de sites die je al beheert. Je richt het één keer in en stuurt maandelijks bij. Nieuw werk in de retainer, zonder dat je elke maand pagina''s bouwt.'
     tag: 'Voor bureaus'
     ctas:
       - label: 'Ontdek het platform'
@@ -209,7 +209,7 @@ hero_variants:
     layout_variant: hero_default
     content_align: center
     title: 'Eén website. Elke bezoeker.'
-    subtitle: 'Uw site houdt zijn belofte. Alleen de ingang past zich aan wie er leest. Zelfde boodschap, andere insteek.'
+    subtitle: 'Je site houdt zijn belofte. Alleen de ingang past zich aan wie er leest. Zelfde boodschap, andere insteek.'
     tag: 'Welkom bij Mister Chameleon'
     ctas:
       - label: 'Bekijk hoe het werkt'
@@ -222,8 +222,8 @@ hero_variants:
     is_active: true
     layout_variant: hero_background
     content_align: center
-    title: 'Uw advertenties zijn scherp. Uw landingspagina niet.'
-    subtitle: 'U richt precies op wie u wilt bereiken. Toch krijgt iedereen dezelfde pagina in dezelfde volgorde. Wij laten de landing aansluiten op de advertentie. En u meet zelf of het werkt.'
+    title: 'Je advertenties zijn scherp. Je landingspagina niet.'
+    subtitle: 'Je richt precies op wie je wilt bereiken. Toch krijgt iedereen dezelfde pagina in dezelfde volgorde. Wij laten de landing aansluiten op de advertentie. En je meet zelf of het werkt.'
     tag: 'Voor marketeers'
     ctas:
       - label: 'Plan een demo'
@@ -366,29 +366,29 @@ cta_variants:
   - type: cta_variant
     key: cta_demo
     is_active: true
-    title: 'Zie hoe het er voor uw campagnes uitziet'
-    text: 'In 30 minuten laten we een adaptieve landing zien rond uw belangrijkste doelgroepen. Vrijblijvend.'
+    title: 'Zie hoe het er voor je campagnes uitziet'
+    text: 'In 30 minuten laten we een adaptieve landing zien rond je belangrijkste doelgroepen. Vrijblijvend.'
     cta_label: 'Plan een demo'
     cta_href: /demo
   - type: cta_variant
     key: cta_meeting
     is_active: true
     title: 'Even sparren over de techniek?'
-    text: 'Plan een kennismaking van 20 minuten. We laten live zien hoe het werkt, met uw eigen site als voorbeeld.'
+    text: 'Plan een kennismaking van 20 minuten. We laten live zien hoe het werkt, met je eigen site als voorbeeld.'
     cta_label: 'Praat met ons'
     cta_href: /contact
   - type: cta_variant
     key: cta_guide
     is_active: true
-    title: 'Klaar om uw homepage relevant te maken?'
-    text: 'Inrichten kost een middag. Plan een gesprek en we laten zien hoe het voor uw site werkt.'
+    title: 'Klaar om je homepage relevant te maken?'
+    text: 'Inrichten kost een middag. Plan een gesprek en we laten zien hoe het voor je site werkt.'
     cta_label: 'Bekijk hoe het werkt'
     cta_href: /contact
   - type: cta_variant
     key: cta_platform
     is_active: true
     title: 'Bekijk het platform in actie'
-    text: 'Zie de decision-engine, de regels en de varianteditor live werken op uw eigen content.'
+    text: 'Zie de decision-engine, de regels en de varianteditor live werken op je eigen content.'
     cta_label: 'Ontdek het platform'
     cta_href: /features
   - type: cta_variant
