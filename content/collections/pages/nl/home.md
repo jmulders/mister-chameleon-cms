@@ -346,6 +346,62 @@ hero_variants:
         href: /docs
       - label: 'Bekijk een demo'
         href: /demo
+  -
+    type: hero_variant
+    key: hero_careers_default
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Kom werken bij Mister Chameleon'
+    subtitle: 'We bouwen aan slimmere websites voor B2B. Zin om daaraan mee te bouwen? Bekijk waar we mensen voor zoeken.'
+    tag: 'Werken bij'
+    ctas:
+      - label: 'Bekijk vacatures'
+        href: /vacatures
+      - label: 'Lees over ons'
+        href: /over-ons
+  -
+    type: hero_variant
+    key: hero_careers_job_match
+    is_active: true
+    layout_variant: hero_split
+    content_align: left
+    title: 'Vacatures die bij je passen'
+    subtitle: 'Van ontwikkeling tot strategie. Vind de rol die aansluit op wat je kunt en waar je energie van krijgt.'
+    tag: 'Werken bij'
+    ctas:
+      - label: 'Bekijk open rollen'
+        href: /vacatures
+      - label: 'Ontmoet het team'
+        href: /team
+  -
+    type: hero_variant
+    key: hero_careers_high_intent
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Klaar om te solliciteren?'
+    subtitle: 'Mooi. We maken het kort en persoonlijk. Stuur je sollicitatie en we reageren snel.'
+    tag: 'Werken bij'
+    ctas:
+      - label: 'Solliciteer nu'
+        href: /solliciteren
+      - label: 'Bekijk vacatures'
+        href: /vacatures
+  -
+    type: hero_variant
+    key: hero_careers_reassurance
+    is_active: true
+    layout_variant: hero_page_banner
+    content_align: left
+    title: 'Twijfel je nog? We denken graag mee.'
+    subtitle: 'Niet zeker of een rol bij je past? Stel je vraag of drink een kop koffie met het team. Geen verplichtingen.'
+    tag: 'Werken bij'
+    ctas:
+      - label: 'Stel een vraag'
+        href: /contact
+      - label: 'Veelgestelde vragen'
+        href: /faq
 proof_variants:
   -
     type: proof_variant
@@ -431,6 +487,42 @@ proof_variants:
         text: 'Je data staat in Europa en we bewaren geen persoonsgegevens. Meestuurbare verwerkersovereenkomst.'
       - title: 'Klein beginnen'
         text: 'Begin met één regel en breid uit zodra je ziet dat het werkt. Geen groot traject vooraf.'
+  -
+    type: proof_variant
+    key: proof_careers_default
+    is_active: true
+    title: 'Waarom werken bij ons'
+    items:
+      - title: 'Echt impactvol werk'
+        text: 'Wat je bouwt, staat live bij klanten. Je ziet direct wat je bijdrage oplevert.'
+      - title: 'Ruimte om te groeien'
+        text: 'Je krijgt verantwoordelijkheid en de vrijheid om je eigen vak verder te ontwikkelen.'
+      - title: 'Klein en wendbaar team'
+        text: 'Korte lijnen, snelle beslissingen en collega''s die elkaar helpen.'
+  -
+    type: proof_variant
+    key: proof_careers_team
+    is_active: true
+    title: 'Dit is het team waar je bij komt'
+    items:
+      - title: 'Mensen die het snappen'
+        text: 'Ontwikkelaars, strategen en makers die trots zijn op wat ze bouwen.'
+      - title: 'Leren van elkaar'
+        text: 'We delen kennis, geven eerlijke feedback en vieren wat lukt.'
+      - title: 'Werk op jouw manier'
+        text: 'Flexibele uren en plek. We sturen op resultaat, niet op aanwezigheid.'
+  -
+    type: proof_variant
+    key: proof_careers_reassurance
+    is_active: true
+    title: 'Solliciteren hoeft niet spannend te zijn'
+    items:
+      - title: 'Kort en persoonlijk'
+        text: 'Geen eindeloze rondes. Een paar goede gesprekken en je weet waar je aan toe bent.'
+      - title: 'Snel duidelijkheid'
+        text: 'We reageren vlot en houden je op de hoogte, ook als het een nee is.'
+      - title: 'Eerst kennismaken mag'
+        text: 'Nog niet zeker? Drink eerst vrijblijvend een koffie met het team.'
 cta_variants:
   - type: cta_variant
     key: cta_default
@@ -481,6 +573,34 @@ cta_variants:
     text: 'Breid uit met extra regels, doelgroepen en varianten zodra je ziet wat werkt.'
     cta_label: 'Bekijk de mogelijkheden'
     cta_href: /features
+  - type: cta_variant
+    key: cta_careers_browse
+    is_active: true
+    title: 'Bekijk onze vacatures'
+    text: 'Zin om mee te bouwen aan slimmere B2B-websites? Kijk waar we mensen voor zoeken.'
+    cta_label: 'Bekijk vacatures'
+    cta_href: /vacatures
+  - type: cta_variant
+    key: cta_careers_apply
+    is_active: true
+    title: 'Klaar om te solliciteren?'
+    text: 'Stuur je sollicitatie. Kort en persoonlijk, en we reageren snel.'
+    cta_label: 'Solliciteer nu'
+    cta_href: /solliciteren
+  - type: cta_variant
+    key: cta_careers_open
+    is_active: true
+    title: 'Bekijk de open rollen'
+    text: 'Van ontwikkeling tot strategie. Vind de rol die bij je past.'
+    cta_label: 'Bekijk open rollen'
+    cta_href: /vacatures
+  - type: cta_variant
+    key: cta_careers_contact
+    is_active: true
+    title: 'Liever eerst even sparren?'
+    text: 'Stel je vraag of drink vrijblijvend een koffie met het team.'
+    cta_label: 'Neem contact op'
+    cta_href: /contact
   - type: cta_variant
     key: cta_about
     is_active: true
