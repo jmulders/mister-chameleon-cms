@@ -402,6 +402,146 @@ hero_variants:
         href: /contact
       - label: 'Veelgestelde vragen'
         href: /faq
+  -
+    type: hero_variant
+    key: hero_trial_ready
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Je proefperiode staat klaar'
+    subtitle: 'Alles is ingericht om te starten. Zet je eerste regel live en zie personalisatie meteen werken.'
+    tag: 'Klaar om te proberen'
+    ctas:
+      - label: 'Start je proef'
+        href: /signup
+      - label: 'Bekijk hoe het werkt'
+        href: /features
+  -
+    type: hero_variant
+    key: hero_returning
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Fijn dat je terug bent'
+    subtitle: 'Pak op waar je gebleven was, of ontdek een deel van het platform dat je nog niet zag.'
+    tag: 'Welkom terug'
+    ctas:
+      - label: 'Ga verder'
+        href: /features
+      - label: 'Bekijk een demo'
+        href: /demo
+  -
+    type: hero_variant
+    key: hero_enterprise
+    is_active: true
+    layout_variant: hero_split
+    content_align: left
+    title: 'Personalisatie op schaal, voor je hele organisatie'
+    subtitle: 'Dedicated onboarding, SLA en integraties. Gebouwd voor teams die serieus willen personaliseren.'
+    tag: 'Enterprise'
+    ctas:
+      - label: 'Plan een gesprek'
+        href: /contact
+      - label: 'Bekijk de cases'
+        href: /cases
+  -
+    type: hero_variant
+    key: hero_form_dropoff
+    is_active: true
+    layout_variant: hero_page_banner
+    content_align: left
+    title: 'Nog vragen voordat je verdergaat?'
+    subtitle: 'Je was er bijna. Stel je vraag of bekijk hoe anderen het aanpakten, dan help je jezelf verder.'
+    tag: 'Hulp nodig?'
+    ctas:
+      - label: 'Stel een vraag'
+        href: /contact
+      - label: 'Veelgestelde vragen'
+        href: /faq
+  -
+    type: hero_variant
+    key: hero_customer_expansion
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Haal meer uit je adaptieve site'
+    subtitle: 'Je draait al. Breid uit met extra doelgroepen en varianten en vergroot je resultaat.'
+    tag: 'Meer mogelijk'
+    ctas:
+      - label: 'Bekijk de mogelijkheden'
+        href: /features
+      - label: 'Plan een gesprek'
+        href: /contact
+  -
+    type: hero_variant
+    key: hero_post_conversion
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Bedankt. We gaan voor je aan de slag.'
+    subtitle: 'Je aanvraag staat binnen. Ondertussen laten we zien wat er nog meer mogelijk is.'
+    tag: 'Goed geregeld'
+    ctas:
+      - label: 'Ontdek meer'
+        href: /features
+      - label: 'Lees onze cases'
+        href: /cases
+  -
+    type: hero_variant
+    key: hero_high_friction
+    is_active: true
+    layout_variant: hero_page_banner
+    content_align: left
+    title: 'Even vastgelopen? We helpen je op weg.'
+    subtitle: 'Je zoekt duidelijk iets specifieks. Vertel het ons, dan wijzen we je de kortste route.'
+    tag: 'We helpen'
+    ctas:
+      - label: 'Neem contact op'
+        href: /contact
+      - label: 'Veelgestelde vragen'
+        href: /faq
+  -
+    type: hero_variant
+    key: hero_churn_risk
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'We zien je graag blijven'
+    subtitle: 'Loop je ergens tegenaan? Laat het weten, dan lossen we het samen op.'
+    tag: 'Voor jou'
+    ctas:
+      - label: 'Praat met ons'
+        href: /contact
+      - label: 'Bekijk wat nieuw is'
+        href: /features
+  -
+    type: hero_variant
+    key: hero_careers_job_interest
+    is_active: true
+    layout_variant: hero_split
+    content_align: left
+    title: 'Deze rol lijkt iets voor jou'
+    subtitle: 'Je bekeek een vacature die past. Lees verder of stuur meteen je sollicitatie.'
+    tag: 'Werken bij'
+    ctas:
+      - label: 'Solliciteer nu'
+        href: /solliciteren
+      - label: 'Lees de vacature'
+        href: /vacatures
+  -
+    type: hero_variant
+    key: hero_careers_submitted
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Bedankt voor je sollicitatie'
+    subtitle: 'We hebben ''m binnen en reageren snel. Ondertussen leer je ons team vast wat beter kennen.'
+    tag: 'Werken bij'
+    ctas:
+      - label: 'Ontmoet het team'
+        href: /team
+      - label: 'Lees over ons'
+        href: /over-ons
 proof_variants:
   -
     type: proof_variant
