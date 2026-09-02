@@ -180,12 +180,12 @@ hero_variants:
     is_active: true
     layout_variant: hero_background
     content_align: center
-    title: 'Stop met één boodschap voor iedereen'
-    subtitle: 'De meeste B2B websites tonen iedere bezoeker hetzelfde verhaal. Mister Chameleon maakt het verschil: relevantie per bezoeker, meer conversie.'
-    tag: 'Gevonden via Google'
+    title: 'Eén regel code. Server-side. Geen geflikker.'
+    subtitle: 'De keuze valt op de server, binnen 700 milliseconden, met een veilige terugval. Gaat er iets mis, dan ziet de bezoeker gewoon je normale pagina. We bewaren geen persoonsgegevens en je data staat in Europa.'
+    tag: 'Voor techniek'
     ctas:
-      - label: 'Gratis demo aanvragen'
-        href: /demo
+      - label: 'Praat met ons'
+        href: /contact
       - label: 'Hoe het werkt'
         href: /features
   -
@@ -194,12 +194,12 @@ hero_variants:
     is_active: true
     layout_variant: hero_split
     content_align: left
-    title: 'Uw website die meegroeit met uw doelgroep'
-    subtitle: 'Professionals die via LinkedIn binnenkomen, verwachten relevantie. Toon ze exact het verhaal dat aansluit op hun sector en uitdaging.'
-    tag: 'De toekomst van B2B marketing'
+    title: 'Elke klantsite een versie per bezoeker. Zonder losse landingspagina''s.'
+    subtitle: 'Eén laag over de sites die je al beheert. Je richt het één keer in en stuurt maandelijks bij. Nieuw werk in de retainer, zonder dat je elke maand pagina''s bouwt.'
+    tag: 'Voor bureaus'
     ctas:
-      - label: 'Plan een kennismaking'
-        href: /demo
+      - label: 'Ontdek het platform'
+        href: /features
       - label: 'Ontdek de cases'
         href: /cases
   -
@@ -208,14 +208,28 @@ hero_variants:
     is_active: true
     layout_variant: hero_default
     content_align: center
-    title: 'Slimste personalisatie voor B2B groei'
-    subtitle: 'U kent ons al. Kijk hoe andere B2B-bedrijven hun conversie verhogen met gepersonaliseerde websites — en hoe u morgen kunt beginnen.'
+    title: 'Eén website. Elke bezoeker.'
+    subtitle: 'Je site houdt zijn belofte. Alleen de ingang past zich aan wie er leest. Zelfde boodschap, andere insteek.'
     tag: 'Welkom bij Mister Chameleon'
     ctas:
-      - label: 'Start gratis proefperiode'
-        href: /signup
+      - label: 'Bekijk hoe het werkt'
+        href: /features
       - label: 'Bekijk demo'
         href: /demo
+  -
+    type: hero_variant
+    key: hero_consideration
+    is_active: true
+    layout_variant: hero_background
+    content_align: center
+    title: 'Je advertenties zijn scherp. Je landingspagina niet.'
+    subtitle: 'Je richt precies op wie je wilt bereiken. Toch krijgt iedereen dezelfde pagina in dezelfde volgorde. Wij laten de landing aansluiten op de advertentie. En je meet zelf of het werkt.'
+    tag: 'Voor marketeers'
+    ctas:
+      - label: 'Plan een demo'
+        href: /demo
+      - label: 'Bekijk cases'
+        href: /cases
   -
     type: hero_variant
     key: hero_page_banner_awareness
@@ -304,6 +318,230 @@ hero_variants:
     ctas:
       - label: 'Bekijk een demo'
         href: /demo
+  -
+    type: hero_variant
+    key: hero_intent_direct
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Klaar om te starten? Wij zetten je direct live.'
+    subtitle: 'Je weet wat je wilt. Plan een demo en ga snel live met content die zich per bezoeker aanpast.'
+    tag: 'Aan de slag'
+    ctas:
+      - label: 'Plan een demo'
+        href: /demo
+      - label: 'Bekijk hoe het werkt'
+        href: /features
+  -
+    type: hero_variant
+    key: hero_customer_onboarding
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Welkom. Je adaptieve site staat klaar.'
+    subtitle: 'Koppel je domein, zet je eerste regels en je gepersonaliseerde homepage gaat live. Zonder ontwikkeltraject.'
+    tag: 'Welkom'
+    ctas:
+      - label: 'Open de snelstart'
+        href: /docs
+      - label: 'Bekijk een demo'
+        href: /demo
+  -
+    type: hero_variant
+    key: hero_careers_default
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Kom werken bij Mister Chameleon'
+    subtitle: 'We bouwen aan slimmere websites voor B2B. Zin om daaraan mee te bouwen? Bekijk waar we mensen voor zoeken.'
+    tag: 'Werken bij'
+    ctas:
+      - label: 'Bekijk vacatures'
+        href: /vacatures
+      - label: 'Lees over ons'
+        href: /over-ons
+  -
+    type: hero_variant
+    key: hero_careers_job_match
+    is_active: true
+    layout_variant: hero_split
+    content_align: left
+    title: 'Vacatures die bij je passen'
+    subtitle: 'Van ontwikkeling tot strategie. Vind de rol die aansluit op wat je kunt en waar je energie van krijgt.'
+    tag: 'Werken bij'
+    ctas:
+      - label: 'Bekijk open rollen'
+        href: /vacatures
+      - label: 'Ontmoet het team'
+        href: /team
+  -
+    type: hero_variant
+    key: hero_careers_high_intent
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Klaar om te solliciteren?'
+    subtitle: 'Mooi. We maken het kort en persoonlijk. Stuur je sollicitatie en we reageren snel.'
+    tag: 'Werken bij'
+    ctas:
+      - label: 'Solliciteer nu'
+        href: /solliciteren
+      - label: 'Bekijk vacatures'
+        href: /vacatures
+  -
+    type: hero_variant
+    key: hero_careers_reassurance
+    is_active: true
+    layout_variant: hero_page_banner
+    content_align: left
+    title: 'Twijfel je nog? We denken graag mee.'
+    subtitle: 'Niet zeker of een rol bij je past? Stel je vraag of drink een kop koffie met het team. Geen verplichtingen.'
+    tag: 'Werken bij'
+    ctas:
+      - label: 'Stel een vraag'
+        href: /contact
+      - label: 'Veelgestelde vragen'
+        href: /faq
+  -
+    type: hero_variant
+    key: hero_trial_ready
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Je proefperiode staat klaar'
+    subtitle: 'Alles is ingericht om te starten. Zet je eerste regel live en zie personalisatie meteen werken.'
+    tag: 'Klaar om te proberen'
+    ctas:
+      - label: 'Start je proef'
+        href: /signup
+      - label: 'Bekijk hoe het werkt'
+        href: /features
+  -
+    type: hero_variant
+    key: hero_returning
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Fijn dat je terug bent'
+    subtitle: 'Pak op waar je gebleven was, of ontdek een deel van het platform dat je nog niet zag.'
+    tag: 'Welkom terug'
+    ctas:
+      - label: 'Ga verder'
+        href: /features
+      - label: 'Bekijk een demo'
+        href: /demo
+  -
+    type: hero_variant
+    key: hero_enterprise
+    is_active: true
+    layout_variant: hero_split
+    content_align: left
+    title: 'Personalisatie op schaal, voor je hele organisatie'
+    subtitle: 'Dedicated onboarding, SLA en integraties. Gebouwd voor teams die serieus willen personaliseren.'
+    tag: 'Enterprise'
+    ctas:
+      - label: 'Plan een gesprek'
+        href: /contact
+      - label: 'Bekijk de cases'
+        href: /cases
+  -
+    type: hero_variant
+    key: hero_form_dropoff
+    is_active: true
+    layout_variant: hero_page_banner
+    content_align: left
+    title: 'Nog vragen voordat je verdergaat?'
+    subtitle: 'Je was er bijna. Stel je vraag of bekijk hoe anderen het aanpakten, dan help je jezelf verder.'
+    tag: 'Hulp nodig?'
+    ctas:
+      - label: 'Stel een vraag'
+        href: /contact
+      - label: 'Veelgestelde vragen'
+        href: /faq
+  -
+    type: hero_variant
+    key: hero_customer_expansion
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Haal meer uit je adaptieve site'
+    subtitle: 'Je draait al. Breid uit met extra doelgroepen en varianten en vergroot je resultaat.'
+    tag: 'Meer mogelijk'
+    ctas:
+      - label: 'Bekijk de mogelijkheden'
+        href: /features
+      - label: 'Plan een gesprek'
+        href: /contact
+  -
+    type: hero_variant
+    key: hero_post_conversion
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Bedankt. We gaan voor je aan de slag.'
+    subtitle: 'Je aanvraag staat binnen. Ondertussen laten we zien wat er nog meer mogelijk is.'
+    tag: 'Goed geregeld'
+    ctas:
+      - label: 'Ontdek meer'
+        href: /features
+      - label: 'Lees onze cases'
+        href: /cases
+  -
+    type: hero_variant
+    key: hero_high_friction
+    is_active: true
+    layout_variant: hero_page_banner
+    content_align: left
+    title: 'Even vastgelopen? We helpen je op weg.'
+    subtitle: 'Je zoekt duidelijk iets specifieks. Vertel het ons, dan wijzen we je de kortste route.'
+    tag: 'We helpen'
+    ctas:
+      - label: 'Neem contact op'
+        href: /contact
+      - label: 'Veelgestelde vragen'
+        href: /faq
+  -
+    type: hero_variant
+    key: hero_churn_risk
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'We zien je graag blijven'
+    subtitle: 'Loop je ergens tegenaan? Laat het weten, dan lossen we het samen op.'
+    tag: 'Voor jou'
+    ctas:
+      - label: 'Praat met ons'
+        href: /contact
+      - label: 'Bekijk wat nieuw is'
+        href: /features
+  -
+    type: hero_variant
+    key: hero_careers_job_interest
+    is_active: true
+    layout_variant: hero_split
+    content_align: left
+    title: 'Deze rol lijkt iets voor jou'
+    subtitle: 'Je bekeek een vacature die past. Lees verder of stuur meteen je sollicitatie.'
+    tag: 'Werken bij'
+    ctas:
+      - label: 'Solliciteer nu'
+        href: /solliciteren
+      - label: 'Lees de vacature'
+        href: /vacatures
+  -
+    type: hero_variant
+    key: hero_careers_submitted
+    is_active: true
+    layout_variant: hero_default
+    content_align: center
+    title: 'Bedankt voor je sollicitatie'
+    subtitle: 'We hebben ''m binnen en reageren snel. Ondertussen leer je ons team vast wat beter kennen.'
+    tag: 'Werken bij'
+    ctas:
+      - label: 'Ontmoet het team'
+        href: /team
+      - label: 'Lees over ons'
+        href: /over-ons
 proof_variants:
   -
     type: proof_variant
@@ -341,6 +579,90 @@ proof_variants:
         text: 'Van scale-ups tot gevestigde namen — steeds meer B2B-teams kiezen voor Mister Chameleon om hun website te personaliseren.'
       - title: 'Live in één middag'
         text: 'Onze klanten zijn gemiddeld live binnen één middag, zonder developer en zonder IT-traject.'
+  -
+    type: proof_variant
+    key: proof_platform
+    is_active: true
+    title: 'Gebouwd op een schaalbaar, privacy-first platform'
+    items:
+      - title: 'Server-side beslissingen'
+        text: 'Elke bezoeker krijgt binnen milliseconden de juiste versie, server-side bepaald, zonder geflikker.'
+      - title: 'Je data in Europa'
+        text: 'Alles draait in de EER. We bewaren geen persoonsgegevens en er is altijd een veilige terugval.'
+      - title: 'Eén regel code'
+        text: 'Eén snippet in je site en je bent live. Geen zware integratie, geen IT-traject.'
+  -
+    type: proof_variant
+    key: proof_cases
+    is_active: true
+    title: 'Zo pakt het uit bij B2B-teams zoals dat van jou'
+    items:
+      - title: 'Relevante landing per bron'
+        text: 'Bezoekers uit een campagne zien de boodschap die bij die campagne hoort, niet een generieke homepage.'
+      - title: 'Meer aanvragen'
+        text: 'Teams zien meer demo-aanvragen zodra de eerste indruk klopt met de verwachting van de bezoeker.'
+      - title: 'Zonder losse pagina''s'
+        text: 'Geen wildgroei aan landingspagina''s meer. Eén site die zich per bezoeker gedraagt.'
+  -
+    type: proof_variant
+    key: proof_vision
+    is_active: true
+    title: 'Waar B2B-websites naartoe gaan'
+    items:
+      - title: 'Van statisch naar contextueel'
+        text: 'Een site die zich aanpast aan wie er leest, is de logische volgende stap na jaren van dezelfde pagina voor iedereen.'
+      - title: 'Relevantie als standaard'
+        text: 'Professionals verwachten dat wat ze zien aansluit op hun situatie. Dat wordt de norm, geen extraatje.'
+      - title: 'Meetbaar en bij te sturen'
+        text: 'Je ziet welke boodschap werkt en stuurt bij op data, in plaats van te gokken.'
+  -
+    type: proof_variant
+    key: proof_reassurance
+    is_active: true
+    title: 'Rustig te starten, zonder risico'
+    items:
+      - title: 'Veilige terugval'
+        text: 'Werkt er iets niet, dan ziet de bezoeker gewoon je normale pagina. Nooit een kapotte site.'
+      - title: 'Privacy op orde'
+        text: 'Je data staat in Europa en we bewaren geen persoonsgegevens. Meestuurbare verwerkersovereenkomst.'
+      - title: 'Klein beginnen'
+        text: 'Begin met één regel en breid uit zodra je ziet dat het werkt. Geen groot traject vooraf.'
+  -
+    type: proof_variant
+    key: proof_careers_default
+    is_active: true
+    title: 'Waarom werken bij ons'
+    items:
+      - title: 'Echt impactvol werk'
+        text: 'Wat je bouwt, staat live bij klanten. Je ziet direct wat je bijdrage oplevert.'
+      - title: 'Ruimte om te groeien'
+        text: 'Je krijgt verantwoordelijkheid en de vrijheid om je eigen vak verder te ontwikkelen.'
+      - title: 'Klein en wendbaar team'
+        text: 'Korte lijnen, snelle beslissingen en collega''s die elkaar helpen.'
+  -
+    type: proof_variant
+    key: proof_careers_team
+    is_active: true
+    title: 'Dit is het team waar je bij komt'
+    items:
+      - title: 'Mensen die het snappen'
+        text: 'Ontwikkelaars, strategen en makers die trots zijn op wat ze bouwen.'
+      - title: 'Leren van elkaar'
+        text: 'We delen kennis, geven eerlijke feedback en vieren wat lukt.'
+      - title: 'Werk op jouw manier'
+        text: 'Flexibele uren en plek. We sturen op resultaat, niet op aanwezigheid.'
+  -
+    type: proof_variant
+    key: proof_careers_reassurance
+    is_active: true
+    title: 'Solliciteren hoeft niet spannend te zijn'
+    items:
+      - title: 'Kort en persoonlijk'
+        text: 'Geen eindeloze rondes. Een paar goede gesprekken en je weet waar je aan toe bent.'
+      - title: 'Snel duidelijkheid'
+        text: 'We reageren vlot en houden je op de hoogte, ook als het een nee is.'
+      - title: 'Eerst kennismaken mag'
+        text: 'Nog niet zeker? Drink eerst vrijblijvend een koffie met het team.'
 cta_variants:
   - type: cta_variant
     key: cta_default
@@ -352,17 +674,73 @@ cta_variants:
   - type: cta_variant
     key: cta_demo
     is_active: true
-    title: 'Bekijk een gratis demo op uw eigen website'
-    text: 'We laten u in 30 minuten zien hoe personalisatie er voor uw bezoekers uitziet — volledig vrijblijvend.'
-    cta_label: 'Gratis demo bekijken'
+    title: 'Zie hoe het er voor je campagnes uitziet'
+    text: 'In 30 minuten laten we een adaptieve landing zien rond je belangrijkste doelgroepen. Vrijblijvend.'
+    cta_label: 'Plan een demo'
     cta_href: /demo
   - type: cta_variant
     key: cta_meeting
     is_active: true
-    title: 'Plan een 20-minuten kennismaking'
-    text: 'Kijk live hoe Mister Chameleon werkt — met uw eigen website als voorbeeld.'
-    cta_label: 'Plan een demo'
-    cta_href: /demo
+    title: 'Even sparren over de techniek?'
+    text: 'Plan een kennismaking van 20 minuten. We laten live zien hoe het werkt, met je eigen site als voorbeeld.'
+    cta_label: 'Praat met ons'
+    cta_href: /contact
+  - type: cta_variant
+    key: cta_guide
+    is_active: true
+    title: 'Klaar om je homepage relevant te maken?'
+    text: 'Inrichten kost een middag. Plan een gesprek en we laten zien hoe het voor je site werkt.'
+    cta_label: 'Bekijk hoe het werkt'
+    cta_href: /contact
+  - type: cta_variant
+    key: cta_platform
+    is_active: true
+    title: 'Bekijk het platform in actie'
+    text: 'Zie de decision-engine, de regels en de varianteditor live werken op je eigen content.'
+    cta_label: 'Ontdek het platform'
+    cta_href: /features
+  - type: cta_variant
+    key: cta_onboarding
+    is_active: true
+    title: 'Zet je eerste adaptieve pagina live'
+    text: 'Koppel je domein en zet je eerste regels. Je gepersonaliseerde homepage staat vandaag nog live.'
+    cta_label: 'Aan de slag'
+    cta_href: /contact
+  - type: cta_variant
+    key: cta_expansion
+    is_active: true
+    title: 'Haal meer uit je adaptieve site'
+    text: 'Breid uit met extra regels, doelgroepen en varianten zodra je ziet wat werkt.'
+    cta_label: 'Bekijk de mogelijkheden'
+    cta_href: /features
+  - type: cta_variant
+    key: cta_careers_browse
+    is_active: true
+    title: 'Bekijk onze vacatures'
+    text: 'Zin om mee te bouwen aan slimmere B2B-websites? Kijk waar we mensen voor zoeken.'
+    cta_label: 'Bekijk vacatures'
+    cta_href: /vacatures
+  - type: cta_variant
+    key: cta_careers_apply
+    is_active: true
+    title: 'Klaar om te solliciteren?'
+    text: 'Stuur je sollicitatie. Kort en persoonlijk, en we reageren snel.'
+    cta_label: 'Solliciteer nu'
+    cta_href: /solliciteren
+  - type: cta_variant
+    key: cta_careers_open
+    is_active: true
+    title: 'Bekijk de open rollen'
+    text: 'Van ontwikkeling tot strategie. Vind de rol die bij je past.'
+    cta_label: 'Bekijk open rollen'
+    cta_href: /vacatures
+  - type: cta_variant
+    key: cta_careers_contact
+    is_active: true
+    title: 'Liever eerst even sparren?'
+    text: 'Stel je vraag of drink vrijblijvend een koffie met het team.'
+    cta_label: 'Neem contact op'
+    cta_href: /contact
   - type: cta_variant
     key: cta_about
     is_active: true
