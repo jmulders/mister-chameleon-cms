@@ -85,6 +85,36 @@ was ruled out as the cause: it renders the draft blocks regardless of slug; the
 fallback to the homepage only triggers when the CP's `mc-live-preview-data` endpoint
 returns an empty slug, i.e. exactly the fieldset-drift symptom this fix removes.)
 
+## Add-on install
+
+`mister-chameleon/statamic` is pinned to `^1.1` in `composer.json` and resolved
+through the VCS repository at the bottom of that file (`no-api: true`, so
+Composer reads git refs directly rather than the GitHub API). Git tags are what
+that constraint matches — `v1.1.0` today — so a rollout installs a **known
+version**, not whatever `main` happened to be that morning.
+
+**No credentials are needed.** `jmulders/mister-chameleon-statamic` is a public
+repository, so Ploi's `composer install --no-dev` clones it anonymously over
+HTTPS. Verified by resolving in a clean directory with `COMPOSER_AUTH={}` and no
+`GITHUB_TOKEN`:
+
+```
+- Locking mister-chameleon/statamic (v1.1.0)
+```
+
+There is therefore no GitHub token to set in the Ploi environment, and no
+Packagist entry to maintain.
+
+Two things to keep in mind:
+
+- **Releasing a new add-on version is a tag, not a push.** Merging to the
+  add-on's `main` changes nothing here until `vX.Y.Z` is tagged and pushed. Then
+  `composer update mister-chameleon/statamic` picks it up, within `^1.1`.
+- **If the add-on repo is ever made private,** this breaks on the next deploy
+  with a clone/authentication failure. The fix is a GitHub token with `repo`
+  scope in the Ploi environment as `COMPOSER_AUTH`
+  (`{"github-oauth":{"github.com":"<token>"}}`), not a change here.
+
 ## Required env (Ploi → Environment)
 
 - `APP_URL`                      = this CMS host (e.g. https://…ams1-t.preview.ploi.it)
