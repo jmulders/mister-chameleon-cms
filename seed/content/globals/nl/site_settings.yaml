@@ -1,0 +1,19 @@
+site_name: 'Your brand'
+site_tagline: 'Vervang deze placeholder door je eigen slogan.'
+logo: placeholder-logo.svg
+logo_alt: 'Your brand'
+logo_dark: placeholder-logo.svg
+logo_dark_alt: 'Your brand'
+contact_email: info@example.com
+social_media: []
+top_bar_show_search: false
+top_bar_show_cart: false
+top_bar_show_language_switcher: false
+top_bar_cta_enabled: false
+primary_cta_label: 'Neem contact op'
+primary_cta_href: 'entry::contact'
+primary_cta_style: primary
+footer_bottom_enabled: true
+footer_bottom_copyright: '© {year} Your brand'
+footer_bottom_show_social: false
+theme_preset: minimal-neutral

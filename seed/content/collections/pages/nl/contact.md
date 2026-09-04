@@ -5,7 +5,7 @@ site: nl
 title: Contact
 template: marketing_page
 uri: /contact
-seo_description: 'Get in touch — we reply within one business day.'
+seo_description: 'Neem contact op — vervang deze placeholder-tekst door je eigen content.'
 page_blocks:
   - id: ctx-hero
     type: context_slot
@@ -16,8 +16,8 @@ page_blocks:
   - id: contact-form
     type: form_section
     variant: form_inline
-    heading: 'Send us a message'
-    subtitle: 'We reply within one business day.'
+    heading: 'Stuur ons een bericht'
+    subtitle: 'We reageren binnen één werkdag.'
     form:
       - contact
     enabled: true
