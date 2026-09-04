@@ -1,0 +1,27 @@
+site_name: Acme
+site_tagline: 'Websites die je zelf beheert'
+logo: demo-logo.svg
+logo_alt: Acme
+logo_dark: demo-logo-dark.svg
+logo_dark_alt: Acme
+contact_email: hallo@example.com
+contact_phone: '010 123 45 67'
+address_street: 'Voorbeeldstraat 1'
+address_zip: '1234 AB'
+address_city: Voorbeeldstad
+address_country: Nederland
+social_media: []
+top_bar_show_search: false
+top_bar_show_cart: false
+top_bar_show_language_switcher: false
+top_bar_cta_enabled: true
+top_bar_cta_label: 'Neem contact op'
+top_bar_cta_href: 'entry::demo-contact'
+top_bar_cta_open_in_new_tab: false
+primary_cta_label: 'Neem contact op'
+primary_cta_href: 'entry::demo-contact'
+primary_cta_style: primary
+footer_bottom_enabled: true
+footer_bottom_copyright: '© {year} Acme'
+footer_bottom_show_social: false
+theme_preset: minimal-neutral

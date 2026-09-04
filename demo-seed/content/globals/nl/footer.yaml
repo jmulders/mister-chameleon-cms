@@ -1,0 +1,28 @@
+columns:
+  -
+    id: demofootercol1
+    type: column
+    heading: Acme
+    links:
+      - id: demofooterlink1
+        label: Diensten
+        href: 'entry::demo-diensten'
+      - id: demofooterlink2
+        label: Prijzen
+        href: 'entry::demo-prijzen'
+    enabled: true
+  -
+    id: demofootercol2
+    type: column
+    heading: 'Meer weten'
+    links:
+      - id: demofooterlink3
+        label: Cases
+        href: 'entry::demo-cases'
+      - id: demofooterlink4
+        label: 'Over ons'
+        href: 'entry::demo-over-ons'
+      - id: demofooterlink5
+        label: Contact
+        href: 'entry::demo-contact'
+    enabled: true

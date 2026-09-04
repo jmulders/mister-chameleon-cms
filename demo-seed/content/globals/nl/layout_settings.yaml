@@ -1,0 +1,7 @@
+header_variant: triband
+footer_variant: corporate
+section_tabs:
+  - id: 7c1a0002-0000-4000-8000-00000000t001
+    label: Website
+    href: 'entry::demo-home'
+    nav_handle: main_nav

@@ -1,0 +1,13 @@
+tree:
+  - id: 7c1a0001-0000-4000-8000-00000000d001
+    entry: demo-home
+  - id: 7c1a0001-0000-4000-8000-00000000d002
+    entry: demo-diensten
+  - id: 7c1a0001-0000-4000-8000-00000000d003
+    entry: demo-prijzen
+  - id: 7c1a0001-0000-4000-8000-00000000d004
+    entry: demo-cases
+  - id: 7c1a0001-0000-4000-8000-00000000d005
+    entry: demo-over-ons
+  - id: 7c1a0001-0000-4000-8000-00000000d006
+    entry: demo-contact
