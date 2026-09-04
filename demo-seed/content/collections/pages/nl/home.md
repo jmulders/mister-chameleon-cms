@@ -151,7 +151,7 @@ hero_variants:
       - label: 'Bekijk ons werk'
         href: /cases
   - type: hero_variant
-    key: hero_b2b
+    key: hero_enterprise
     is_active: true
     layout_variant: hero_default
     content_align: center

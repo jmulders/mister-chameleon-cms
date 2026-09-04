@@ -65,7 +65,11 @@ neutral columns).
 ## The adaptive hero
 
 `home.md` ships two hero variants in its catalogue, `hero_default` and
-`hero_b2b`, and its first block is a `context_slot` pointing at the hero. The
+`hero_enterprise`, and its first block is a `context_slot` pointing at the hero.
+
+Both keys are deliberately from the platform's `ALLOWED_HERO_KEYS`. A Statamic
+tenant has no `extraKeys`, so a rule naming a CMS-invented key would be rejected
+by `validateStoredConfig` and the slot would never switch. The
 CMS side is only half of it: the platform seeds an adaptive block and a rule for
 the tenant so the slot actually switches. Without that platform data the slot
 renders `hero_default` and nothing more.
