@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" width="220" height="48" role="img" aria-label="Your brand">
+  <title>Your brand</title>
+  <rect x="0" y="8" width="32" height="32" rx="8" fill="#9CA3AF"/>
+  <rect x="9" y="17" width="14" height="4" rx="2" fill="#F3F4F6"/>
+  <rect x="9" y="27" width="9" height="4" rx="2" fill="#F3F4F6"/>
+  <text x="44" y="31" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="20" font-weight="600" letter-spacing="-0.4" fill="#6B7280">Your brand</text>
+</svg>

@@ -1,0 +1,13 @@
+columns:
+  -
+    id: seedcol1
+    type: column
+    heading: Navigatie
+    links:
+      - id: seedlink1
+        label: Home
+        href: 'entry::home'
+      - id: seedlink2
+        label: Contact
+        href: 'entry::contact'
+    enabled: true
