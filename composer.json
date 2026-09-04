@@ -13,7 +13,7 @@
         "php": "^8.3",
         "laravel/framework": "^13.8",
         "laravel/tinker": "^3.0",
-        "mister-chameleon/statamic": "dev-main",
+        "mister-chameleon/statamic": "^1.1",
         "statamic/cms": "^6.0"
     },
     "require-dev": {

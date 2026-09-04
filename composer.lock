@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb70aaeefa928a46795d9af3c61d4545",
+    "content-hash": "dae8ba35522bc3a1c1bb4848c0f07908",
     "packages": [
         {
             "name": "ajthinking/archetype",
@@ -2956,23 +2956,22 @@
         },
         {
             "name": "mister-chameleon/statamic",
-            "version": "dev-main",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jmulders/mister-chameleon-statamic.git",
-                "reference": "0caca429b3bf9d38b0ba8f16abb9e3391c0d465a"
+                "reference": "bb95dc04fc4dfd42e43ea7c1bd3c54d8bd3b139c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jmulders/mister-chameleon-statamic/zipball/0caca429b3bf9d38b0ba8f16abb9e3391c0d465a",
-                "reference": "0caca429b3bf9d38b0ba8f16abb9e3391c0d465a",
+                "url": "https://api.github.com/repos/jmulders/mister-chameleon-statamic/zipball/bb95dc04fc4dfd42e43ea7c1bd3c54d8bd3b139c",
+                "reference": "bb95dc04fc4dfd42e43ea7c1bd3c54d8bd3b139c",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.2",
                 "statamic/cms": "^5.0 || ^6.0"
             },
-            "default-branch": true,
             "type": "statamic-addon",
             "extra": {
                 "statamic": {
@@ -3013,7 +3012,7 @@
                 "email": "support@misterchameleon.nl",
                 "issues": "https://www.misterchameleon.nl/support"
             },
-            "time": "2026-06-25T18:16:29+00:00"
+            "time": "2026-09-04T15:38:57+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -12252,9 +12251,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "mister-chameleon/statamic": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
