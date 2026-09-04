@@ -105,6 +105,10 @@ HTTPS. Verified by resolving in a clean directory with `COMPOSER_AUTH={}` and no
 There is therefore no GitHub token to set in the Ploi environment, and no
 Packagist entry to maintain.
 
+`composer.lock` is committed and pins the exact commit, so what a deploy
+installs is `composer install`'s business, not the resolver's — the constraint
+in `composer.json` only matters when someone runs `composer update`.
+
 Two things to keep in mind:
 
 - **Releasing a new add-on version is a tag, not a push.** Merging to the
