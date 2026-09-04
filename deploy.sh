@@ -92,6 +92,19 @@ composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 # which is exactly the "Fetching build manifest …" hang.
 # To refresh fieldsets, update them in the repo and redeploy.
 
+# ── CP login ─────────────────────────────────────────────────────────────────
+# A provisioned instance ships no users (Statamic keeps them as flat files in
+# users/, which this repo doesn't carry), so without this nobody can get past
+# the CP login screen. Reads CP_ADMIN_EMAIL / CP_ADMIN_PASSWORD, which the
+# provisioner sets as Ploi secrets; with neither set it is a no-op, so this is
+# harmless on instances that manage their own users.
+#
+# It runs on EVERY deploy on purpose: the container filesystem is ephemeral, so
+# a user created once would not survive the next one. It is idempotent and never
+# resets an existing user's password. `|| true` because a missing CP login must
+# never abort a deploy under `set -e`.
+php artisan mc:ensure-super-user || true
+
 php please cache:clear
 # stache:refresh = clear + warm in one, so the content index is pre-built at
 # deploy time instead of lazily on the first visitor request (which would give a
