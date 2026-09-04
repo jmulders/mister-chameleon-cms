@@ -12,23 +12,41 @@ page_blocks:
     enabled: true
     heading: 'Een vaste prijs per maand'
     body: 'Geen verrassingen achteraf. Je kiest een pakket en weet daarmee wat de site kost, inclusief hosting en onderhoud.'
-  - id: demo-prijzen-plannen
-    type: feature_grid
+  - id: demo-prijzen-pakketten
+    type: pricing_section
     enabled: true
     heading: Pakketten
-    items:
-      - type: feature
-        icon: leaf
-        title: 'Start — € 29 per maand'
-        body: 'Voor wie net begint. Enkele pagina''s, een contactformulier en hosting inbegrepen.'
-      - type: feature
-        icon: sparkles
-        title: 'Groei — € 79 per maand'
-        body: 'De meest gekozen optie. Meer pagina''s, een nieuwsoverzicht en ruimte om uit te breiden.'
-      - type: feature
-        icon: crown
-        title: 'Compleet — € 149 per maand'
-        body: 'Alles inbegrepen, met begeleiding en een vast aanspreekpunt voor je redactie.'
+    subheading: 'Kies wat past bij waar je nu staat. Je kunt per maand wisselen.'
+    footnote: 'Alle bedragen zijn exclusief btw. Opzeggen kan maandelijks.'
+    tiers:
+      - id: demo-tier-start
+        name: Start
+        price: '€ 29'
+        period: '/maand'
+        description: 'Voor wie net begint.'
+        features: "Tot 5 pagina's\nContactformulier\nHosting en back-ups\nSSL-certificaat"
+        cta_label: 'Kies Start'
+        cta_href: /contact
+        highlighted: false
+      - id: demo-tier-groei
+        name: Groei
+        price: '€ 79'
+        period: '/maand'
+        description: 'De meest gekozen optie.'
+        features: "Onbeperkt pagina's\nNieuws- en blogoverzicht\nMeerdere formulieren\nHosting en back-ups\nVoorrang bij support"
+        cta_label: 'Kies Groei'
+        cta_href: /contact
+        highlighted: true
+        badge: 'Meest gekozen'
+      - id: demo-tier-compleet
+        name: Compleet
+        price: '€ 149'
+        period: '/maand'
+        description: 'Alles inbegrepen, met begeleiding.'
+        features: "Alles uit Groei\nVast aanspreekpunt\nTraining voor je redactie\nJaarlijkse doorlichting\nReactie binnen 4 uur"
+        cta_label: 'Kies Compleet'
+        cta_href: /contact
+        highlighted: false
   - id: demo-prijzen-faq
     type: faq_section
     enabled: true

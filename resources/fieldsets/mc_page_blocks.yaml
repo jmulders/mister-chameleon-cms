@@ -164,6 +164,14 @@ fields:
               fields:
                 - import: mrc_form_section
                 - import: mrc_block_design
+            pricing_section:
+              display: 'Pricing Section'
+              icon: tag
+              instructions: 'Pricing cards — one per package, with features and a button.'
+              image: pricing_section.png
+              fields:
+                - import: mrc_pricing_section
+                - import: mrc_block_design
             contact_section:
               display: Contact Section
               icon: mail
