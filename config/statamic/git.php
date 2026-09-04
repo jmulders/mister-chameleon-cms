@@ -92,20 +92,28 @@ return [
     | to modify these paths to suit your storage config. Referencing
     | absolute paths to external repos is also completely valid.
     |
+    | CONTENT ONLY — never the platform-managed code. `resources/blueprints`,
+    | `resources/fieldsets` and `resources/addons` are owned by the platform
+    | (regenerated from the manifest by `php please mc:sync`, shipped via PRs).
+    | If the CP git-automation committed them, a drifted/stale fieldset would be
+    | pushed back → the CP strips `type` from replicator items on save → corrupts
+    | content and breaks the live preview. So they are deliberately EXCLUDED here;
+    | only content + CP-authored forms are versioned. See DEPLOY.md.
+    |
     */
 
     'paths' => [
         base_path('content'),
         base_path('users'),
-        resource_path('addons'),
-        resource_path('blueprints'),
-        resource_path('fieldsets'),
-        resource_path('forms'),
+        resource_path('forms'),               // CP-authored Statamic forms (e.g. locatie-test)
         resource_path('users'),
-        resource_path('preferences.yaml'),
-        resource_path('sites.yaml'),
-        storage_path('forms'),
+        resource_path('preferences.yaml'),    // CP preferences (per-instance, harmless)
+        storage_path('forms'),                // form submissions
         public_path('assets'),
+        // NOT tracked — platform-managed (PR + `php please mc:sync` authoritative):
+        //   resource_path('addons'), resource_path('blueprints'), resource_path('fieldsets')
+        // NOT tracked — env-derived per deploy (deploy.sh rewrites the URL):
+        //   resource_path('sites.yaml')
     ],
 
     /*
@@ -131,11 +139,21 @@ return [
     |
     | https://statamic.dev/git-automation#customizing-commits
     |
+    | The final push targets a DISPOSABLE, CP-owned branch (`cms-content`), never
+    | `main`. `main` is written only by PRs (platform code + reviewed content), so a
+    | CP "Content saved" push can never overwrite / force-remove a PR-merged commit
+    | on `main` (which is what happened to the locatie-test entry before this fix).
+    | The push is `--force` on purpose: `cms-content` is a throwaway snapshot branch
+    | with exactly one writer (this container), so there is nothing to clobber — the
+    | deploy rebuilds it from the current `main` tip on every run. `deploy.sh` then
+    | overlays that branch's content paths onto the deployed tree. See DEPLOY.md.
+    |
     */
 
     'commands' => [
         '{{ git }} add {{ paths }}',
         '{{ git }} -c "user.name={{ name }}" -c "user.email={{ email }}" commit -m "{{ message }}"',
+        '{{ git }} push --force origin HEAD:refs/heads/'.env('STATAMIC_GIT_CONTENT_BRANCH', 'cms-content'),
     ],
 
     /*
@@ -144,14 +162,20 @@ return [
     |--------------------------------------------------------------------------
     |
     | Determine whether `git push` should be run after the commands above
-    | have finished. This is disabled by default, but can be enabled
-    | globally, or per environment using the provided variable.
+    | have finished.
+    |
+    | HARDCODED `false` on purpose. Statamic's built-in push targets the CURRENT
+    | branch's upstream (i.e. `main` on the container) — exactly the push-back that
+    | clobbered `main`. We instead push explicitly to the disposable `cms-content`
+    | branch in `commands` above. Leaving this env-driven was a footgun: setting
+    | `STATAMIC_GIT_PUSH=true` (as the old setup did) would re-enable the push to
+    | `main` alongside our `cms-content` push. Do NOT set it back to env/true.
     |
     | https://statamic.dev/git-automation#pushing-changes
     |
     */
 
-    'push' => env('STATAMIC_GIT_PUSH', false),
+    'push' => false,
 
     /*
     |--------------------------------------------------------------------------

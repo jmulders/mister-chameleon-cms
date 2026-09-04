@@ -24,19 +24,43 @@ if [ -n "${STATAMIC_GIT_SSH_KEY:-}" ]; then
   git remote set-url origin "${STATAMIC_GIT_REMOTE:-$(git remote get-url origin | sed -E 's#https://github.com/#git@github.com:#')}"
 fi
 
-# Discard any local rewrite of sites.yaml from a previous deploy so `git pull`
-# never conflicts (the per-instance URL is re-applied below from the env var).
-git checkout -- resources/sites.yaml 2>/dev/null || true
+# ── Content / platform-code split ────────────────────────────────────────────
+# `main` = authoritative platform code + reviewed content (PRs only). The CP's
+# "Content saved" pushes go to a DISPOSABLE `cms-content` branch (see
+# config/statamic/git.php), NEVER to `main`. So the deploy:
+#   1. hard-resets the working tree to the clean `main` tip — this both drops the
+#      CP's local content commit (it lives safely on cms-content) AND discards any
+#      drift in sites.yaml / fieldsets / blueprints, so no `git pull` merge/conflict
+#      can ever block a deploy or resurrect a stale replicator-vs-grid fieldset
+#      (the CP 500 "Undefined array key \"type\"");
+#   2. overlays the CP's latest content snapshot from cms-content on top.
+BRANCH="${BRANCH:-main}"
+CONTENT_BRANCH="${STATAMIC_GIT_CONTENT_BRANCH:-cms-content}"
 
-# Discard any local drift in fieldsets/blueprints so `git pull` can always bring
-# in the committed versions. These are platform-owned code (never edited on the
-# container), but an old `mc:sync` run may have left replicator-vs-grid drift in
-# the working copy that otherwise blocks the pull — which manifests as a CP 500
-# ("Undefined array key \"type\"") when a grid field is still defined as a
-# replicator in the stale working copy.
-git checkout -- resources/fieldsets resources/blueprints 2>/dev/null || true
+git fetch origin --prune
+git reset --hard "origin/${BRANCH}"
 
-git pull origin "${BRANCH:-main}"
+# Overlay CP-authored content (content + forms + assets + users) from the
+# cms-content branch WITHOUT switching branches and WITHOUT touching the
+# platform-managed fieldsets/blueprints/addons. `git checkout <ref> -- <paths>`
+# only updates/adds the listed paths; it never deletes files that exist in the
+# working tree but not in that snapshot, so a content entry merged to `main` via
+# PR is preserved even if an older CP snapshot didn't have it.
+#
+# Done per-path on purpose: a single multi-path checkout aborts entirely if ANY
+# path is absent from the snapshot (e.g. storage/forms or public/assets before the
+# first submission/upload), which would silently apply NO content. Each path is
+# independent and no-ops if missing (or before cms-content exists at all).
+# NOTE: this list must mirror the tracked `paths` in config/statamic/git.php
+# (content-only) — anything the CP commits but the deploy doesn't overlay is lost.
+if git rev-parse --verify -q "origin/${CONTENT_BRANCH}" >/dev/null; then
+  for p in content users resources/forms resources/users resources/preferences.yaml storage/forms public/assets; do
+    git checkout "origin/${CONTENT_BRANCH}" -- "$p" 2>/dev/null \
+      && echo "→ overlaid ${p} from ${CONTENT_BRANCH}" || true
+  done
+else
+  echo "→ no ${CONTENT_BRANCH} branch yet (using main's content)"
+fi
 
 # ── Per-instance public site URL ─────────────────────────────────────────────
 # resources/sites.yaml is shared across all tenants (one repo) and hard-codes the
