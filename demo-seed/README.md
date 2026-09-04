@@ -40,7 +40,7 @@ bash seed/download-placeholders.sh   # the placeholder images this seed referenc
 | --- | --- |
 | `home` | adaptive hero slot, feature grid, stats, logo strip, testimonials, FAQ, CTA, form (message), text+media |
 | `diensten` | feature grid, process steps, rich text, CTA |
-| `prijzen` | feature grid (the three plans), FAQ, CTA |
+| `prijzen` | pricing section (three tiers, middle one highlighted), FAQ, CTA |
 | `cases` | collection listing (case studies), media slider, related content, CTA |
 | `over-ons` | team section, video, quote, timeline, stats, testimonials |
 | `contact` | form (redirect → `/bedankt`), contact details, floating contact |
@@ -84,8 +84,11 @@ renders `hero_default` and nothing more.
   must exist in that field's options and global keys must be real handles — a
   wrong value silently drops in the CP.
 - `collection_listing` can only target `blog`, `vacancies`, `case_studies` or
-  `team_members`. The pricing page therefore renders its plans as a feature
-  grid; the `pricing_plans` entries ship anyway, for the CP to show.
+  `team_members` — not `pricing_plans`. The pricing page uses the dedicated
+  `pricing_section` block instead, which carries its tiers inline. The
+  `pricing_plans` collection entries still ship: they are a separate content
+  model an editor can list elsewhere, and dropping them would leave that
+  collection empty in the CP for no reason.
 - The `contact` form must exist (`resources/forms/contact.yaml`).
 - Placeholder images come from `seed/download-placeholders.sh`, which both seeds
   share.
