@@ -11,7 +11,7 @@ tabs:
               validate: required
           - handle: meta_keywords
             field:
-              type: tags
+              type: list
               display: 'Interest Keywords'
               instructions: "Keywords describing the primary topics of this case. Used by the platform's interest-profile scoring engine to infer visitor interests from browsing history. First-party behavioural signals only — NOT SEO meta keywords."
           - handle: is_active
