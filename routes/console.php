@@ -25,17 +25,36 @@ Artisan::command('inspire', function () {
 Artisan::command('mc:check-fieldtypes', function () {
     $problems = [];
 
-    foreach (\Statamic\Facades\Blueprint::all() as $blueprint) {
-        try {
-            $blueprint->fields()->all();
-        } catch (\Throwable $e) {
-            $problems[] = "blueprint '{$blueprint->handle()}': {$e->getMessage()}";
+    // Blueprints. There is no BlueprintRepository::all(), so enumerate the
+    // blueprint YAML files on disk and resolve each through Statamic's own
+    // Blueprint pipeline (setContents → fields()->all()) — the same field
+    // resolution the entries-API augmentation runs, so an unregistered fieldtype
+    // (e.g. `type: tags`) throws HERE. instantiateFields() forces every field's
+    // fieldtype to be constructed, which is what surfaces "Fieldtype [x] not found".
+    $blueprintDir = resource_path('blueprints');
+    if (is_dir($blueprintDir)) {
+        foreach (\Illuminate\Support\Facades\File::allFiles($blueprintDir) as $file) {
+            if ($file->getExtension() !== 'yaml') {
+                continue;
+            }
+            $relative = $file->getRelativePathname();
+            $handle    = (string) \Illuminate\Support\Str::of($relative)->beforeLast('.yaml')->replace('/', '.');
+            try {
+                $contents = \Symfony\Component\Yaml\Yaml::parseFile($file->getRealPath()) ?? [];
+                \Statamic\Facades\Blueprint::make($handle)
+                    ->setContents($contents)
+                    ->fields()
+                    ->all()
+                    ->each(fn ($field) => $field->fieldtype());
+            } catch (\Throwable $e) {
+                $problems[] = "blueprint '{$relative}': {$e->getMessage()}";
+            }
         }
     }
 
     foreach (\Statamic\Facades\Fieldset::all() as $fieldset) {
         try {
-            $fieldset->fields()->all();
+            $fieldset->fields()->all()->each(fn ($field) => $field->fieldtype());
         } catch (\Throwable $e) {
             $problems[] = "fieldset '{$fieldset->handle()}': {$e->getMessage()}";
         }
